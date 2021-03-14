@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
 {
-    public class VacunasController : Controller
+    public class LoginController : Controller
     {
-        //Comentario prueba
-        // GET: Vacunas
+        // GET: Login
         public ActionResult Index()
         {
             return View();
