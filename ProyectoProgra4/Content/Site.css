@@ -1,12 +1,48 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+.ui.submit.button {
+    background-color: #4ABBDE;
+    color: #fff;
+    font-size: 15px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 20px;
+    font-size: 20px;
+    
+}
+
+.navbar-header > a {
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ui.big.button {
+    background-color: #4ABBDE;
+    color: #fff;
+    font-size: 15px;
+}
+
+.ui two column very relaxed stackable grid {
+    background-color: #F05742;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 10px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
