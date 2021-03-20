@@ -144,14 +144,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\funcional.jpg" />
     <Content Include="img\pesas.jpg" />
-    <Content Include="img\pilates0.jpg" />
-    <Content Include="img\pilates1.jpg" />
-    <Content Include="img\pilates3.jpg" />
-    <Content Include="img\pilates5.jpg" />
-    <Content Include="img\pilates6.jpg" />
-    <Content Include="img\pilates7.jpg" />
     <Content Include="img\pilates8.jpg" />
-    <Content Include="img\pilates_0.jpg" />
     <Content Include="img\PowerFit.png" />
     <Content Include="img\yoga.jpg" />
     <Content Include="js\JavaScript.js" />
