@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+
+<form class="ui form">
+    <h2 class="ui dividing header">Registrar</h2>
+    <div class="field">
+        <label>Nombre y Apellidos</label>
+        <div class="three fields">
+            <div class="field">
+                <input type="text" placeholder="Nombre">
+            </div>
+            <div class="field">
+                <input type="text" placeholder="Primer Apellido">
+            </div>
+            <div class="field">
+                <input type="text" placeholder="Segundo Apellido">
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label>Correo Electrónico</label>
+        <div class="three fields">
+            @* Revisar campo de texto, es de 12 pero no se visualiza *@
+            <div class="field">
+                <input type="text" name="Correo Electrónico" placeholder="Correo Electrónico">
+            </div>
+            <div class="field">
+                <input type="password" name="Contraseña" placeholder="Contraseña">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="four fields">
+        <div class="field">
+            <label>Edad</label>
+            <input type="number" min="0" name="Edad" placeholder="Edad">
+        </div>
+        <div class="field">
+            <label>Número de teléfono</label>
+            <input type="number" min="0" name="Número de teléfono" placeholder="Número de teléfono">
+        </div>
+        <div class="field">
+            <label>Número de emergencia</label>
+            <input type="number" min="0" name="Número de emergencia" placeholder="Número de emergencia">
+        </div>
+        <div class="field">
+            <label>Número de emergencia</label>
+            <input type="number" min="0" name="Número de emergencia" placeholder="Número de emergencia">
+        </div>
+
+        @* Arreglar el select de los paises *@
+        <!--<div class="field">
+            <label>País</label>
+            <div class="ui fluid search selection dropdown">
+                <input type="hidden" name="country">
+                <i class="dropdown icon"></i>
+                <div class="default text">Select Country</div>
+                <div class="menu">
+                </div>
+            </div>
+        </div>>-->
+    </div>
+
+
+    <h4 class="ui dividing header">Información Médica</h4>
+    <div class="field">
+        <div class="two fields">
+            <div class="field">
+                <label>Peso</label>
+                <div class="ui right labeled input">
+                    <input type="text" placeholder="Peso">
+                    <div class="ui basic label">
+                        kg
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Estatura</label>
+                <div class="ui right labeled input">
+                    <input type="number" min="0" name="Estatura" placeholder="Estatura">
+                    <div class="ui basic label">
+                        m
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="field">
+                <label>Tipo de sangre</label>
+                <input type="text" name="tipoSangre" placeholder="Tipo de sangre">
+            </div>
+        </div>
+    </div>
+
+    <div class="ui form">
+        <div class="field">
+            <label>Condiciones Médicas</label>
+            <textarea rows="2"></textarea>
+        </div>
+    </div>
+
+    
+    <div class="ui big button" style="margin-top: 10px;" tabindex="0">Continuar</div>
+</form>

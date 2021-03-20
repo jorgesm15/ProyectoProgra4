@@ -32,6 +32,18 @@ body {
     background-color: #4ABBDE;
     color: #fff;
     font-size: 15px;
+    text-decoration: none;
+}
+
+.ui.big.button > a:link, a:visited {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    /*color: #fff !important*/;
+    text-decoration: none;
 }
 
 .ui two column very relaxed stackable grid {
