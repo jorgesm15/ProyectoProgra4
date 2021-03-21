@@ -42,7 +42,7 @@ body {
 }
 
 a:link, a:visited {
-    /*color: #fff !important*/;
+    /*color: #fff !important;*/
     text-decoration: none;
 }
 
@@ -69,4 +69,10 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+#secNav a:hover {
+    background-color: rgba(240, 87, 66,0.85);
+    color: white;
 }

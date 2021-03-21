@@ -12,13 +12,29 @@
     </div>*@
 
 <br />
-<br />
+
+<div class="ui secondary menu" id="secNav">
+    @*Menu interno*@
+    <br />
+    <br />
+    <a class="item" href="#seccionDisciplinas">
+        Disciplinas
+    </a>
+    <a class="item" href="#seccionHistoria">
+        Historia
+    </a>
+    <a class="item" href="#seccionContacto">
+        Contacto
+    </a>
+</div>
+
 <br />
 
 <div class="row justify-content-start">
-    <div class="col-7">
-        <div style="background-color: rgba(69, 64, 63,1); color:white; padding-top:3%; margin-left:5%; padding-bottom:8%; border-radius:15px">
-            <h2 style=" text-align: center">¿Qué disciplinas que ofrecemos en PowerFit?</h2>
+    @*Div de carousel, parte izquierda*@
+    <div class="col-7" id="seccionDisciplinas">
+        <div style="background-color: #45403F; color:white; padding-top:3%; margin-left:5%; padding-bottom:8%; border-radius:15px">
+            <h2 style=" text-align: center">¿Qué disciplinas ofrecemos en PowerFit?</h2>
             <br />
             <br />
             <div id="carousel" class="carousel slide" data-ride="carousel" style="width:75%; margin-left:13%; ">
@@ -53,6 +69,7 @@
 
 
         <div style=" width: 80%;  padding-left:15% ; padding-top:15%; ">
+            @*div de las disciplinas, parte derecha*@
             <div style="background-color: rgba(240, 87, 66 ,0.85); color:white; padding-top:7%;  padding-bottom:2%; border-radius:15px">
                 <div style="margin-left:15%">
                     <div class=" label" style=" font-size:large; font-weight:bold;">
@@ -83,5 +100,52 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<br />
+<br />
+
+<div class="row justify-content-start">
+    <div class="col-5">
+        <div style=" width: 90%;  padding-left:2% ; padding-top:15%; ">
+            @*div de las disciplinas, parte derecha*@
+            <div style="background-color: #45403F; color:white; padding-top:7%;  padding-bottom:2%; border-radius:15px">
+                <div style="margin-left:15%">
+                    <div class=" label" style=" font-size:medium;">
+                        <i class="circle outline icon" style="color:#4ABBDE;"></i>@*<i class="video icon" style="color:red;"></i>*@ Clases en directo y presenciales todos los días
+                    </div>
+                    <br />
+                 <div class=" label" style=" font-size:medium;">
+                    <i class="circle outline icon" style="color:#4ABBDE;"></i>Entrenadores de primer nivel
+                </div>
+                    <br />
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Div de carousel, parte izquierda*@
+    <div class="col-7" id="seccionDisciplinas">
+        <div style="background-color: #CECDCD; color:white; padding-top:3%;padding-bottom:5%; border-radius:15px">
+           <br />
+
+            <img class="d-block w-85" src="~/img/rutinas-ejercicio.jpg" alt="RUTINAS" style=" width: 75%; margin-left: 13%;">
+
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+<br />
+
+<h2 id="seccionHistoria">Historia</h2>
+<p>Aqui iria la historia de la empresa</p>
+
+<br />
+<br />
+<br />
+
+<h2 id="seccionContacto">Contacto</h2>
+<p>Aqui iria el contacto de la empresa</p>

@@ -138,14 +138,15 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="css\Estilos.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\funcional.jpg" />
+    <Content Include="img\live.jpg" />
     <Content Include="img\pesas.jpg" />
     <Content Include="img\pilates8.jpg" />
     <Content Include="img\PowerFit.png" />
+    <Content Include="img\rutinas-ejercicio.jpg" />
     <Content Include="img\yoga.jpg" />
     <Content Include="js\JavaScript.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
