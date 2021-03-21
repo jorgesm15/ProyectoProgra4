@@ -73,6 +73,14 @@ textarea {
 
 
 #secNav a:hover {
-    background-color: rgba(240, 87, 66,0.85);
+    background-color: #F05742;
     color: white;
+}
+
+#titulo {
+    color: white;
+}
+
+#titulo .colorDos {
+    color: #F05742;
 }
