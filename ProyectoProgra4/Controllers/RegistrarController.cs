@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
 {
-    public class LoginController : Controller
+    public class RegistrarController : Controller
     {
-   
+        // GET: Registrar
         public ActionResult Index()
         {
             return View();

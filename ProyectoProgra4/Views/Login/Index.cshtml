@@ -4,25 +4,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+@*<h2>Index</h2>*@
+<br />
+<br />
+<br />
 
 <div class="ui container">
     <h2>Iniciar Sesión</h2>
 
-    <div class="ui placeholder segment">
-        <div class="ui two column very relaxed stackable grid">
+    <div class="ui placeholder segment" style="background-color:#45403F;">
+        <div class="ui two column very relaxed stackable grid" >
             <div class="column">
                 <div class="ui form">
                     <div class="field">
-                        <label>Correo Electrónico</label>
+                        <label style=" color:#ffffff">Correo Electrónico</label>
                         <div class="ui left icon input">
                             <input type="text" placeholder="">
                             <i class="user icon"></i>
                         </div>
                     </div>
                     <div class="field">
-                        <label>Contraseña</label>
+                        <label style=" color:#ffffff">Contraseña</label>
                         <div class="ui left icon input">
                             <input type="password">
                             <i class="lock icon"></i>
@@ -33,12 +35,14 @@
             </div>
             <div class="middle aligned column">
                 <div class="ui big button">
-                    <i class="signup icon"></i>
-                    Registrarse
+                    <a href="@Url.Action("Index", "Registrar")">
+                        <i class="signup icon"></i>
+                        Registrarse
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="ui vertical divider">
+        <div class="ui vertical divider" style=" color:#ffffff">
             O
         </div>
     </div>

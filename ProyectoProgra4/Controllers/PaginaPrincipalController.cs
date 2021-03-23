@@ -6,10 +6,11 @@ using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
 {
-    public class LoginController : Controller
+    public class PaginaPrincipalController : Controller
     {
-   
-        public ActionResult Index()
+        // GET: PaginaPrincipal
+        [HttpGet]
+        public ActionResult PaginaPrincipal()
         {
             return View();
         }
