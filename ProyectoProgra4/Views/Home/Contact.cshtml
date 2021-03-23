@@ -1,17 +1,58 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<form action="/" method="post">
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <div class="ui form">
+        <label>Formulario de Contacto</label>
+        <div class="ui middle aligned center aligned grid">
+
+            <div class="ui form">
+                <div class="field">
+                    <label>Nombre</label>
+                    <div class="ui left icon input">
+                        <input type="text" placeholder="">
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Apellidos</label>
+                    <div class="ui left icon input">
+                        <input type="text" placeholder="">
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Teléfono</label>
+                    <div class="ui left icon input">
+                        <input type="text" placeholder="">
+                        <i class="phone icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Correo Electrónico</label>
+                    <div class="ui left icon input">
+                        <input type="text" placeholder="">
+                        <i class="envelope icon"></i>
+                    </div>
+                </div>
+                <div class="middle aligned column">
+                    <div class="ui button">
+                        <i class="envelope icon"></i>
+                        Enviar
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        
+
+    </div>
+     
+
+</form>
