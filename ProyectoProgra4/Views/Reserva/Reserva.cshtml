@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Reserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<div class="ui container">
+    <form class="ui form">
+        <div class="field">
+            <label>Día y hora que desea reservar</label>
+            <div class="two fields">
+                <div class="field">
+                    <input type="date">
+                </div>
+                <div class="field">
+                    <input type="time">
+                </div>
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>¿Qué disciplina desea reservar?</label>
+                <select class="ui fluid dropdown">
+                    <option value="">Disciplinas</option>
+                    <option value="">Yoga</option>
+                    <option value="">Pilates</option>
+                    <option value="">Fitness</option>
+                    <option value="">Funcional</option>
+                </select>
+            </div>
+        </div>
+      
+        <h4 class="ui dividing header">Equipo</h4>
+        <div class="field">
+        </div>
+        <div class="ui segment">
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                    <label>Desea reservar equipo para su clase?</label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("/js/JavaScript.js")
+}
