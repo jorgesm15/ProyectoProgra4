@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power Fit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
-
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -65,8 +63,8 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>*@
                 <li class="nav-item nav-link active">@Html.ActionLink("Página Principal ", "PaginaPrincipal", "PaginaPrincipal", null, new { Style = "color:#45403F; font-weight:600" })</li>
-                @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                <li class="nav-item nav-link active">@Html.ActionLink("Realizar Reserva ", "Reserva", "Reserva", null, new { Style = "color:#45403F; font-weight:600;" })</li>
+
 
             </ul>
             @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
@@ -74,7 +72,7 @@
                 <ul class="navbar-nav mr-auto">
                     @*<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>*@
-                    <li class="nav-item nav-link"><i class="user icon" style="font-size:large"></i></li>
+                    <li class="nav-item nav-link"><i class="user icon" style="font-size:medium"></i></li>
                     <li class="nav-item nav-link">@Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { Style = "color:#45403F; font-weight:600" })</li>
                 </ul>
             </div>
@@ -96,6 +94,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>
