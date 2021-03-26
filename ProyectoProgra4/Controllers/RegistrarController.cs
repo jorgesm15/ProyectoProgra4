@@ -20,6 +20,8 @@ namespace ProyectoProgra4.Controllers
             return View("InsertarUsuario");
         }
 
+        //Prueba
+
         public ActionResult InsertarUsuario(clsUsuario usuario)
         {
             try
