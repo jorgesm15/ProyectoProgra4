@@ -19,7 +19,6 @@ body {
 .navbar-nav > li > a {
     padding-top: 20px;
     font-size: 20px;
-    
 }
 
 .navbar-header > a {
@@ -35,11 +34,11 @@ body {
     text-decoration: none;
 }
 
-.ui.big.button > a:link, a:visited {
-    color: #fff;
-    font-size: 15px;
-    text-decoration: none;
-}
+    .ui.big.button > a:link, a:visited {
+        color: #fff;
+        font-size: 15px;
+        text-decoration: none;
+    }
 
 a:link, a:visited {
     /*color: #fff !important;*/
@@ -81,6 +80,7 @@ textarea {
     color: white;
 }
 
-#titulo .colorDos {
-    color: #F05742;
-}
+    #titulo .colorDos {
+        color: #F05742;
+        font-size: 30px;
+    }
