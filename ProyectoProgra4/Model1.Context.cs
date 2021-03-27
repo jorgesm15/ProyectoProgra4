@@ -15,10 +15,10 @@ namespace ProyectoProgra4
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ProyectoEntities : DbContext
+    public partial class ProyectoEntities1 : DbContext
     {
-        public ProyectoEntities()
-            : base("name=ProyectoEntities")
+        public ProyectoEntities1()
+            : base("name=ProyectoEntities1")
         {
         }
     

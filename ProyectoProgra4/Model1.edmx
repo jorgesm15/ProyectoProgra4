@@ -135,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyectoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProyectoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" />
           <EntitySet Name="HorariosDisciplinas" EntityType="Self.HorariosDisciplinas" />
@@ -165,7 +165,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyectoModelStoreContainer" CdmEntityContainer="ProyectoEntities">
+        <EntityContainerMapping StorageEntityContainer="ProyectoModelStoreContainer" CdmEntityContainer="ProyectoEntities1">
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="ProyectoModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">

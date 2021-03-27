@@ -1,10 +1,6 @@
 ﻿using ProyectoProgra4.Entidades;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net.Http;
-using System.Web;
 
 namespace ProyectoProgra4.Models
 {

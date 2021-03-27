@@ -1,14 +1,7 @@
 ﻿using ProyectoProgra4.Entidades;
 using ProyectoProgra4.Models;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace ProyectoProgra4.Controllers
 {
@@ -26,7 +19,7 @@ namespace ProyectoProgra4.Controllers
         {
             try
             {
-                using (var contextoUsuario = new ProyectoEntities())
+                using (var contextoUsuario = new ProyectoEntities1())
                 {
                     contextoUsuario.InsertarClientes(
                         usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
@@ -36,7 +29,7 @@ namespace ProyectoProgra4.Controllers
                 }
 
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 return Json(new { success = false, responseText = "Error al insertar", JsonRequestBehavior.AllowGet });
             }
