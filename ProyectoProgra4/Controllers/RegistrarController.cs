@@ -31,7 +31,7 @@ namespace ProyectoProgra4.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { success = false, responseText = "Error al insertar", JsonRequestBehavior.AllowGet });
+                ViewBag.Error = "Ana Laura está buscando en google que es un view bag";
             }
             return View();
         }

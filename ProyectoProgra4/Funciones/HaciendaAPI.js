@@ -29,3 +29,11 @@
     });
     document.getElementById("cedulaPersona").focus();
 }
+
+$(document).ready(function () {
+
+    if ($("#txtError").val().trim() != "") {
+        alert($("#txtError").val().trim());
+    }
+    
+});
