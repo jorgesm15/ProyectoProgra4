@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power Fit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-  
 
 
     @Styles.Render("~/Content/css")
@@ -65,7 +64,7 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>*@
                 <li class="nav-item nav-link active">@Html.ActionLink("Página Principal ", "PaginaPrincipal", "PaginaPrincipal", null, new { Style = "color:#45403F; font-weight:600" })</li>
-                <li class="nav-item nav-link active">@Html.ActionLink("Realizar Reserva ", "Reserva", "Reserva", null, new { Style = "color:#45403F; font-weight:600;" })</li>
+                <li class="nav-item nav-link active">@Html.ActionLink("Realizar Reserva ", "Reserva", "Reservar", null, new { Style = "color:#45403F; font-weight:600;" })</li>
 
 
             </ul>
@@ -96,6 +95,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>
