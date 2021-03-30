@@ -32,25 +32,38 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="cupos" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="HorariosDisciplinas">
+        <EntityType Name="Reserva">
           <Key>
-            <PropertyRef Name="claseID" />
-            <PropertyRef Name="dia" />
-            <PropertyRef Name="hora" />
+            <PropertyRef Name="reservaID" />
           </Key>
+          <Property Name="reservaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="claseID" Type="int" Nullable="false" />
-          <Property Name="dia" Type="int" Nullable="false" />
+          <Property Name="dia" Type="date" Nullable="false" />
           <Property Name="hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="equipo" Type="bit" Nullable="false" />
+          <Property Name="ID_Cliente" Type="varchar" MaxLength="9" Nullable="false" />
         </EntityType>
-        <Association Name="FK__HorariosD__clase__31EC6D26">
+        <Association Name="FK__Reserva__claseID__4F7CD00D">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
-          <End Role="HorariosDisciplinas" Type="Self.HorariosDisciplinas" Multiplicity="*" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Disciplinas">
               <PropertyRef Name="claseID" />
             </Principal>
-            <Dependent Role="HorariosDisciplinas">
+            <Dependent Role="Reserva">
               <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__ID_Clie__4E88ABD4">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ID_Cliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -70,13 +83,24 @@
           <Parameter Name="pCondicionesMedicas" Type="varchar" Mode="In" />
           <Parameter Name="pTipoSangre" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="RegistrarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="claseID" Type="int" Mode="In" />
+          <Parameter Name="dia" Type="date" Mode="In" />
+          <Parameter Name="hora" Type="time" Mode="In" />
+          <Parameter Name="equipo" Type="bit" Mode="In" />
+          <Parameter Name="idCliente" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="ProyectoModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HorariosDisciplinas" EntityType="Self.HorariosDisciplinas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HorariosD__clase__31EC6D26" Association="Self.FK__HorariosD__clase__31EC6D26">
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
-            <End Role="HorariosDisciplinas" EntitySet="HorariosDisciplinas" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -102,6 +126,7 @@
           <Property Name="Estatura" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="CondicionesMedicas" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoSangre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__ID_Clie__4E88ABD4" FromRole="Clientes" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="Disciplinas">
           <Key>
@@ -110,27 +135,41 @@
           <Property Name="claseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cupos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HorariosDisciplinas" Relationship="Self.FK__HorariosD__clase__31EC6D26" FromRole="Disciplinas" ToRole="HorariosDisciplinas" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Disciplinas" ToRole="Reserva" />
         </EntityType>
-        <EntityType Name="HorariosDisciplinas">
+        <EntityType Name="Reserva">
           <Key>
-            <PropertyRef Name="claseID" />
-            <PropertyRef Name="dia" />
-            <PropertyRef Name="hora" />
+            <PropertyRef Name="reservaID" />
           </Key>
+          <Property Name="reservaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="claseID" Type="Int32" Nullable="false" />
-          <Property Name="dia" Type="Int32" Nullable="false" />
+          <Property Name="dia" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Disciplinas" Relationship="Self.FK__HorariosD__clase__31EC6D26" FromRole="HorariosDisciplinas" ToRole="Disciplinas" />
+          <Property Name="equipo" Type="Boolean" Nullable="false" />
+          <Property Name="ID_Cliente" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Reserva__ID_Clie__4E88ABD4" FromRole="Reserva" ToRole="Clientes" />
+          <NavigationProperty Name="Disciplinas" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Reserva" ToRole="Disciplinas" />
         </EntityType>
-        <Association Name="FK__HorariosD__clase__31EC6D26">
+        <Association Name="FK__Reserva__ID_Clie__4E88ABD4">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ID_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__claseID__4F7CD00D">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
-          <End Role="HorariosDisciplinas" Type="Self.HorariosDisciplinas" Multiplicity="*" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Disciplinas">
               <PropertyRef Name="claseID" />
             </Principal>
-            <Dependent Role="HorariosDisciplinas">
+            <Dependent Role="Reserva">
               <PropertyRef Name="claseID" />
             </Dependent>
           </ReferentialConstraint>
@@ -138,10 +177,14 @@
         <EntityContainer Name="ProyectoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" />
-          <EntitySet Name="HorariosDisciplinas" EntityType="Self.HorariosDisciplinas" />
-          <AssociationSet Name="FK__HorariosD__clase__31EC6D26" Association="Self.FK__HorariosD__clase__31EC6D26">
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
-            <End Role="HorariosDisciplinas" EntitySet="HorariosDisciplinas" />
+            <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
           <FunctionImport Name="InsertarClientes">
             <Parameter Name="pIdCliente" Mode="In" Type="String" />
@@ -158,6 +201,13 @@
             <Parameter Name="pEstatura" Mode="In" Type="Decimal" />
             <Parameter Name="pCondicionesMedicas" Mode="In" Type="String" />
             <Parameter Name="pTipoSangre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarReserva">
+            <Parameter Name="claseID" Mode="In" Type="Int32" />
+            <Parameter Name="dia" Mode="In" Type="DateTime" />
+            <Parameter Name="hora" Mode="In" Type="Time" />
+            <Parameter Name="equipo" Mode="In" Type="Boolean" />
+            <Parameter Name="idCliente" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -195,16 +245,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HorariosDisciplinas">
-            <EntityTypeMapping TypeName="ProyectoModel.HorariosDisciplinas">
-              <MappingFragment StoreEntitySet="HorariosDisciplinas">
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="ProyectoModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="reservaID" ColumnName="reservaID" />
                 <ScalarProperty Name="claseID" ColumnName="claseID" />
                 <ScalarProperty Name="dia" ColumnName="dia" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="equipo" ColumnName="equipo" />
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="InsertarClientes" FunctionName="ProyectoModel.Store.InsertarClientes" />
+          <FunctionImportMapping FunctionImportName="RegistrarReserva" FunctionName="ProyectoModel.Store.RegistrarReserva" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -222,7 +276,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
