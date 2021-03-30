@@ -22,7 +22,7 @@
                         <option value="">Disciplinas</option>
                         @foreach (var item in Model)
                         {
-                            <option value="">@item.nombre</option>
+                            <option id="disciplinas" value="@item.nombre">@item.nombre</option>
                         }
                     </select>
                 </div>
@@ -73,20 +73,25 @@
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
 
     <script>
-        $('#custom_format_calendar').calendar({
-            disabledDaysOfWeek: [1, 3, 5],
-            monthFirst: false,
-            type: 'date',
-            formatter: {
-                date: function (date, settings) {
-                    if (!date) return '';
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return day + '/' + month + '/' + year;
+
+        var disciplina = document.getElementById('disciplinas');
+        if (disciplina.value == 'Pilates') {
+            $('#custom_format_calendar').calendar({
+                disabledDaysOfWeek: [1, 3, 5],
+                monthFirst: false,
+                type: 'date',
+                formatter: {
+                    date: function (date, settings) {
+                        if (!date) return '';
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1;
+                        var year = date.getFullYear();
+                        return day + '/' + month + '/' + year;
+                    }
                 }
-            }
-        })
+            });
+        }
+
         var minDate = new Date();
         var maxDate = new Date();
         minDate.setHours(13);
@@ -102,8 +107,7 @@
             })
 
         $('.ui.checkbox')
-            .checkbox()
-            ;
+            .checkbox();
     </script>
 
 }
