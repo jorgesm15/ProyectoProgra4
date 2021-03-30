@@ -22,30 +22,16 @@
                     <label>¿Qué disciplina desea reservar?</label>
                     @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as IEnumerable<SelectListItem> )
                  </div>
-            </div>
-            <br />
-            <div class="field">
-                <label>Día y hora que desea reservar</label>
-                <div class="two fields">
-                    <div class="field">
-                        <div class="ui calendar" id="custom_format_calendar">
-                            <div class="ui input left icon">
-                                <i class="calendar icon"></i>
-                                <input type="text" placeholder="Date">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui calendar" id="time_calendar">
-                            <div class="ui input left icon">
-                                <i class="time icon"></i>
-                                <input type="text" placeholder="Time">
-                            </div>
-                        </div>
-                    </div>
+                    <select class="ui fluid dropdown">
+                        <option value="">Disciplinas</option>
+                        @foreach (var item in Model)
+                        {
+                            <option id="disciplinas" value="@item.nombre">@item.nombre</option>
+                        }
+                    </select>
                 </div>
             </div>
-
+            <br />
             <h4 class="ui dividing header">Equipo</h4>
             <div class="field">
             </div>
@@ -132,6 +118,5 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
 
-    @Scripts.Render("/Funciones/Reserva.js")
-
+    @Scripts.Render("/Funciones/Reserva.js")  
 }

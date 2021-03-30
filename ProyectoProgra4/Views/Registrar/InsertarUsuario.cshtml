@@ -127,6 +127,16 @@
         </button>
 
     </div>
+
+    if (ViewBag.Error != null)
+    {
+        @Html.Hidden("txtError", (string)ViewBag.Error.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtError", "")
+    }
+
 }
 
 @section Scripts
