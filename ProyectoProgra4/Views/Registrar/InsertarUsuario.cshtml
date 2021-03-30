@@ -132,4 +132,24 @@
 @section Scripts
 {
     @Scripts.Render("/Funciones/HaciendaAPI.js")
+<script>
+    $(document).ready(function () {
+        $("#txtEstatura").on("keypress keyup blur", function (event) {
+            ValidarTelefonos(event);
+        });
+        $("#txtPeso").on("keypress keyup blur", function (event) {
+            ValidarTelefonos(event);
+        });
+    });
+
+    function ValidarTelefonos(event) {
+            if (event.which >= 48 && event.which <= 57)
+                return true;
+            else if (event.which == 46)
+                return true;
+            else
+                event.preventDefault();
+        };
+
+</script>
 }
