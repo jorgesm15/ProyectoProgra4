@@ -12,19 +12,16 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Disciplinas
+    public partial class Reserva
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Disciplinas()
-        {
-            this.Reserva = new HashSet<Reserva>();
-        }
-    
+        public int reservaID { get; set; }
         public int claseID { get; set; }
-        public string nombre { get; set; }
-        public int cupos { get; set; }
+        public System.DateTime dia { get; set; }
+        public System.TimeSpan hora { get; set; }
+        public bool equipo { get; set; }
+        public string ID_Cliente { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reserva> Reserva { get; set; }
+        public virtual Clientes Clientes { get; set; }
+        public virtual Disciplinas Disciplinas { get; set; }
     }
 }
