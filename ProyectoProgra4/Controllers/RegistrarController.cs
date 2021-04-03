@@ -1,6 +1,8 @@
 ﻿using ProyectoProgra4.Entidades;
 using ProyectoProgra4.Models;
 using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
@@ -23,7 +25,7 @@ namespace ProyectoProgra4.Controllers
                 {
                     contextoUsuario.InsertarClientes(
                         usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
-                        usuario.correo, usuario.edad, usuario.contrasenia, usuario.direccion, usuario.telefono,
+                        usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
                         usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre
                     );
                 }
@@ -31,7 +33,7 @@ namespace ProyectoProgra4.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { success = false, responseText = "Error al insertar", JsonRequestBehavior.AllowGet });
+                ViewBag.Error = "Dato duplicado";
             }
             return View();
         }
@@ -48,6 +50,21 @@ namespace ProyectoProgra4.Controllers
             {
                 return Json(null, JsonRequestBehavior.DenyGet);
             }
+        }
+
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
         }
 
     }

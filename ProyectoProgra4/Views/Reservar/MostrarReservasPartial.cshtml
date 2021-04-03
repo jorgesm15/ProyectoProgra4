@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Reserva>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Disciplina</th>
+            <th>Dia</th>
+            <th>Hora</th>
+            <th>Requiere Equipo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.claseID</td>
+            <td>@item.dia</td>
+            <td>@item.hora</td>
+            <td>@item.equipo</td>
+        </tr>
+        }
+    </tbody>
+</table>
