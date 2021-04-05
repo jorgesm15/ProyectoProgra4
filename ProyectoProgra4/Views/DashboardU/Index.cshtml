@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Power Fit</h2>
+
+
+@if (Session["UserCorreo"] != null)
+{
+    <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>
+    <div class="ui four column centered grid">
+        <div class="four column centered row">
+            <div class="column">
+                <div class="ui centered orange card">
+                    <div class="image">
+                        <img src="~/img/mitchell-hollander-8b1cWDyvT7Y-unsplash.jpg">
+                    </div>
+                    <div class="content">
+                        <a href="@Url.Action("Reserva","Reservar")" class="header">Reservar</a>
+                        <div class="description">
+                            Acá podrá reservar sus clases y equipo necesario
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui centered orange card">
+                    <div class="image">
+                        <img src="~/img/mitchell-hollander-8b1cWDyvT7Y-unsplash.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Reservar</a>
+                        <div class="description">
+                            Acá podrá reservar sus clases y equipo necesario
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui centered orange card">
+                    <div class="image">
+                        <img src="~/img/calendario.png">
+                    </div>
+                    <div class="content">
+                        <a class="header">Reservar</a>
+                        <div class="description">
+                            Acá podrá reservar sus clases y equipo necesario
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    Response.Redirect("~/Login/Index");
+}

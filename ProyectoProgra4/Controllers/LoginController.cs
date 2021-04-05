@@ -22,7 +22,7 @@ namespace ProyectoProgra4.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var login = new ProyectoEntities1())
+                using (var login = new ProyectoEntities())
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();
@@ -33,7 +33,7 @@ namespace ProyectoProgra4.Controllers
                         {
                             Session["UserCorreo"] = user.Correo.ToString();
                             Session["Nombre"] = user.Nombre.ToString();
-                            return RedirectToAction("UserDashBoard");
+                            return RedirectToAction("Index", "DashboardU");
                         }
                         else
                         {
@@ -58,18 +58,7 @@ namespace ProyectoProgra4.Controllers
             return View("Index");
         }
 
-        public ActionResult UserDashBoard()
-        {
-            if (Session["UserCorreo"] != null)
-            {
-                return View("~/Views/PaginaPrincipal/PaginaPrincipal.cshtml");
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
+    
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();

@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power Fit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -64,7 +62,7 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>*@
                 <li class="nav-item nav-link active">@Html.ActionLink("Página Principal ", "PaginaPrincipal", "PaginaPrincipal", null, new { Style = "color:#45403F; font-weight:600" })</li>
-                <li class="nav-item nav-link active">@Html.ActionLink("Realizar Reserva ", "Reserva", "Reservar", null, new { Style = "color:#45403F; font-weight:600;" })</li>
+                @*<li class="nav-item nav-link active">@Html.ActionLink("Realizar Reserva ", "Reserva", "Reservar", null, new { Style = "color:#45403F; font-weight:600;" })</li>*@
 
 
             </ul>
@@ -73,8 +71,38 @@
                 <ul class="navbar-nav mr-auto">
                     @*<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>*@
-                    <li class="nav-item nav-link"><i class="user icon" style="font-size:medium"></i></li>
-                    <li class="nav-item nav-link">@Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { Style = "color:#45403F; font-weight:600" })</li>
+                    @if (Session["UserCorreo"] == null)
+                    {
+                        <li class="nav-item nav-link"><i class="user icon" style="font-size:medium"></i></li>
+                        <li class="nav-item nav-link">@Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { Style = "color:#45403F; font-weight:600" })</li>
+                    }
+                    else
+                    {
+                        @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>*@
+
+                        <li id="dropdown" class="ui pointing dropdown link item">
+                                <span class="text">Mi Perfil</span>
+                                <i class="user circle outline icon"></i>
+                                <div class="menu">
+                                    <div class="header">Perfil</div>
+                                    <div class="divider"></div>
+                                    <div class="dropdown-item">@Html.ActionLink("Menú Principal", "Index", "DashboardU", null, new { Style = "color:black;" })</div>
+                                    <div class="header">Cuenta</div>
+                                    <div class="divider"></div>
+                                    <div class="item">Cerrar Sesión</div>
+                                </div>
+                            </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -87,16 +115,21 @@
         <br />
         <br />
         @*<div style="position: absolute; bottom: 0px"class="col-12">*@
-            <hr size="4" color="F05742" />
-            <footer style="text-align:center; ">
-                <p>&copy; @DateTime.Now.Year - Power Fit</p>
-            </footer>
+        <hr size="4" color="F05742" />
+        <footer style="text-align:center; ">
+            <p>&copy; @DateTime.Now.Year - Power Fit</p>
+        </footer>
         @*</div>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" />
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+            $('#dropdown').dropdown()
+                ;
+        </script>
 </body>
 </html>
