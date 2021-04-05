@@ -23,6 +23,7 @@
           <Property Name="Estatura" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="CondicionesMedicas" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="TipoSangre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Motivo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Disciplinas">
           <Key>
@@ -31,6 +32,13 @@
           <Property Name="claseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="cupos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Motivo">
+          <Key>
+            <PropertyRef Name="ID_Motivo" />
+          </Key>
+          <Property Name="ID_Motivo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
@@ -67,6 +75,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Clientes_Motivo">
+          <End Role="Motivo" Type="Self.Motivo" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motivo">
+              <PropertyRef Name="ID_Motivo" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="ID_Motivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="InsertarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pIdCliente" Type="varchar" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
@@ -82,6 +103,7 @@
           <Parameter Name="pEstatura" Type="decimal" Mode="In" />
           <Parameter Name="pCondicionesMedicas" Type="varchar" Mode="In" />
           <Parameter Name="pTipoSangre" Type="varchar" Mode="In" />
+          <Parameter Name="pIdMotivo" Type="int" Mode="In" />
         </Function>
         <Function Name="RegistrarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="claseID" Type="int" Mode="In" />
@@ -90,9 +112,40 @@
           <Parameter Name="equipo" Type="bit" Mode="In" />
           <Parameter Name="idCliente" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ProyectoModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
@@ -101,6 +154,10 @@
           <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_Motivo" Association="Self.FK_Clientes_Motivo">
+            <End Role="Motivo" EntitySet="Motivo" />
+            <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -126,7 +183,9 @@
           <Property Name="Estatura" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="CondicionesMedicas" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoSangre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Motivo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__ID_Clie__4E88ABD4" FromRole="Clientes" ToRole="Reserva" />
+          <NavigationProperty Name="Motivo" Relationship="Self.FK_Clientes_Motivo" FromRole="Clientes" ToRole="Motivo" />
         </EntityType>
         <EntityType Name="Disciplinas">
           <Key>
@@ -136,6 +195,14 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cupos" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Disciplinas" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Motivo">
+          <Key>
+            <PropertyRef Name="ID_Motivo" />
+          </Key>
+          <Property Name="ID_Motivo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_Motivo" FromRole="Motivo" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
@@ -162,6 +229,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Clientes_Motivo">
+          <End Role="Motivo" Type="Self.Motivo" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motivo">
+              <PropertyRef Name="ID_Motivo" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="ID_Motivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Reserva__claseID__4F7CD00D">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
@@ -174,13 +253,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyectoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProyectoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" />
+          <EntitySet Name="Motivo" EntityType="Self.Motivo" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_Motivo" Association="Self.FK_Clientes_Motivo">
+            <End Role="Motivo" EntitySet="Motivo" />
+            <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
           <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
@@ -201,6 +285,7 @@
             <Parameter Name="pEstatura" Mode="In" Type="Decimal" />
             <Parameter Name="pCondicionesMedicas" Mode="In" Type="String" />
             <Parameter Name="pTipoSangre" Mode="In" Type="String" />
+            <Parameter Name="pIdMotivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RegistrarReserva">
             <Parameter Name="claseID" Mode="In" Type="Int32" />
@@ -209,13 +294,54 @@
             <Parameter Name="equipo" Mode="In" Type="Boolean" />
             <Parameter Name="idCliente" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProyectoModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProyectoModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyectoModelStoreContainer" CdmEntityContainer="ProyectoEntities1">
+        <EntityContainerMapping StorageEntityContainer="ProyectoModelStoreContainer" CdmEntityContainer="ProyectoEntities">
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="ProyectoModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
@@ -233,6 +359,7 @@
                 <ScalarProperty Name="Estatura" ColumnName="Estatura" />
                 <ScalarProperty Name="CondicionesMedicas" ColumnName="CondicionesMedicas" />
                 <ScalarProperty Name="TipoSangre" ColumnName="TipoSangre" />
+                <ScalarProperty Name="ID_Motivo" ColumnName="ID_Motivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -242,6 +369,14 @@
                 <ScalarProperty Name="claseID" ColumnName="claseID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="cupos" ColumnName="cupos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Motivo">
+            <EntityTypeMapping TypeName="ProyectoModel.Motivo">
+              <MappingFragment StoreEntitySet="Motivo">
+                <ScalarProperty Name="ID_Motivo" ColumnName="ID_Motivo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -259,6 +394,30 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="InsertarClientes" FunctionName="ProyectoModel.Store.InsertarClientes" />
           <FunctionImportMapping FunctionImportName="RegistrarReserva" FunctionName="ProyectoModel.Store.RegistrarReserva" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProyectoModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProyectoModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProyectoModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProyectoModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProyectoModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProyectoModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProyectoModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -276,7 +435,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

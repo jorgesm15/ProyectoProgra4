@@ -13,7 +13,7 @@ namespace ProyectoProgra4.Controllers
 
         public ActionResult Reserva()
         {
-            using (var contexto = new ProyectoEntities1())
+            using (var contexto = new ProyectoEntities())
             {
                 var reservas = (from x in contexto.Reserva select x).ToList();
                 CargarDisciplinas();
@@ -27,7 +27,7 @@ namespace ProyectoProgra4.Controllers
 
         public void CargarDisciplinas()
         {
-            using (var contexto = new ProyectoEntities1())
+            using (var contexto = new ProyectoEntities())
             {
                 var respuesta = (from x in contexto.Disciplinas select x).ToList();
                 List<SelectListItem> listilla = new List<SelectListItem>();
@@ -45,7 +45,7 @@ namespace ProyectoProgra4.Controllers
         [HttpPost]
         public ActionResult InsertarReserva(clsReserva reserva)
         {
-            using (var contextoReservar = new ProyectoEntities1())
+            using (var contextoReservar = new ProyectoEntities())
             {
                 contextoReservar.RegistrarReserva(
                     reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
