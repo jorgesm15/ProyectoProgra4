@@ -31,6 +31,7 @@ namespace ProyectoProgra4
         public virtual DbSet<Disciplinas> Disciplinas { get; set; }
         public virtual DbSet<Motivo> Motivo { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual int InsertarClientes(string pIdCliente, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, Nullable<decimal> pPeso, Nullable<decimal> pEstatura, string pCondicionesMedicas, string pTipoSangre, Nullable<int> pIdMotivo)
         {
@@ -95,6 +96,18 @@ namespace ProyectoProgra4
                 new ObjectParameter("pIdMotivo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarClientes", pIdClienteParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pContraseñaParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pPesoParameter, pEstaturaParameter, pCondicionesMedicasParameter, pTipoSangreParameter, pIdMotivoParameter);
+
+        }
+    
+        public virtual ObjectResult<MostrarListaResevas_Result> MostrarListaResevas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarListaResevas_Result>("MostrarListaResevas");
+        }
+    
+        public virtual ObjectResult<MostrarResevas_Result> MostrarResevas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarResevas_Result>("MostrarResevas");
+
         }
     
         public virtual int RegistrarReserva(Nullable<int> claseID, Nullable<System.DateTime> dia, Nullable<System.TimeSpan> hora, Nullable<bool> equipo, string idCliente)

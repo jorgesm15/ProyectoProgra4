@@ -48,6 +48,7 @@ namespace ProyectoProgra4.Controllers
             return View();
         }
 
+
         public ActionResult RegistrarUsuario(string cedula)
         {
             RegistrarModel registrarModel = new RegistrarModel();
