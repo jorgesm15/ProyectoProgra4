@@ -28,6 +28,7 @@
 
 <br />
 
+
 <div class="row justify-content-start">
     @*Div de carousel, parte izquierda*@
     <div class="col-7" id="seccionDisciplinas">
@@ -75,7 +76,7 @@
             <div style="background-color:#F05742; color:#45403F; padding-top:7%;  padding-bottom:7%; border-radius:15px">
                 <div style="margin-left:15%">
                     <div class=" label" style=" font-size:medium; font-weight:bold;">
-                        <i class="large arrow box right icon" ></i> YOGA
+                        <i class="large arrow box right icon"></i> YOGA
                     </div>
                     <div class=" label" style=" font-size:small; margin-left:12%;">
                         Cuida tu mente
@@ -123,7 +124,7 @@
                         <h2 class="font-weight-bold mb-4" style="text-align:center">
                             <i class="small circle icon" style="color: #F05742"></i>CUIDA TU <span class="colorDos">CUERPO</span>
                         </h2>
-                                       </div>
+                    </div>
                     <div class=" label" style=" font-size:medium;">
                         TODO LO QUE NECESITAS PARA PONERTE EN FORMA
                     </div>
@@ -205,38 +206,48 @@
                 </div>
                 <div class="label" style="font-size:large; margin-left:36%; align-content: center; padding-top:1%;">
                     <h4>Heredia, San Francisco, Mall Oxígeno, tercer piso</h4>
-                    </div>
-                    <br />
-                    <br />
-                    <div class=" label" style=" font-size:large; margin-left:42%; align-content:center">
-                        <h2>Número de teléfono: </h2>
-                    </div>
-                    <div class="label" style="font-size:large; margin-left:46%; align-content: center; padding-top:1%;">
-                        <h4>2288-1753</h4>
-                    </div>
-                    <br />
-                    <br />
-                    <div class=" label" style=" font-size:large; margin-left:42%; align-content:center">
-                        <h2>Correo electrónico: </h2>
-                    </div>
-                    <div class="label" style="font-size:large; margin-left:42.7%; align-content: center; padding-top:1%;">
-                        <h4>contacto@powerfit.com</h4>
-                    </div>
-                    <br />
-                    <br />
-                    <div class=" label" style=" font-size:large; margin-left:46%; align-content:center">
-                        <h2>Horario: </h2>
-                    </div>
-                    <div class="label" style="font-size:large; margin-left:30%; align-content: center; padding-top:1%;">
-                        <h4>De lunes a viernes de 8am a 11pm - Sábados y domingos de 9am a 9pm</h4>
-                    </div>
-                    <br />
-                    <br />
-                    <div class=" label" style=" font-size:large; margin-left:41%; align-content:center">
-                        <h2 id="fraseFinal">¡Estamos para servirle!</h2>
-                    </div>
+                </div>
+                <br />
+                <br />
+                <div class=" label" style=" font-size:large; margin-left:42%; align-content:center">
+                    <h2>Número de teléfono: </h2>
+                </div>
+                <div class="label" style="font-size:large; margin-left:46%; align-content: center; padding-top:1%;">
+                    <h4>2288-1753</h4>
+                </div>
+                <br />
+                <br />
+                <div class=" label" style=" font-size:large; margin-left:42%; align-content:center">
+                    <h2>Correo electrónico: </h2>
+                </div>
+                <div class="label" style="font-size:large; margin-left:42.7%; align-content: center; padding-top:1%;">
+                    <h4>contacto@powerfit.com</h4>
+                </div>
+                <br />
+                <br />
+                <div class=" label" style=" font-size:large; margin-left:46%; align-content:center">
+                    <h2>Horario: </h2>
+                </div>
+                <div class="label" style="font-size:large; margin-left:30%; align-content: center; padding-top:1%;">
+                    <h4>De lunes a viernes de 8am a 11pm - Sábados y domingos de 9am a 9pm</h4>
+                </div>
+                <br />
+                <br />
+                <div class=" label" style=" font-size:large; margin-left:41%; align-content:center">
+                    <h2 id="fraseFinal">¡Estamos para servirle!</h2>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
+@if (ViewBag.Message != null)
+{
+    @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+}
+else
+{
+    @Html.Hidden("txtSuccessful", "")
+}
+
+@Scripts.Render("/Funciones/ViewBags.js")

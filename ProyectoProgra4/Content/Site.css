@@ -85,3 +85,12 @@ textarea {
         font-size: 30px;
     }
 
+
+#dropdown {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-weight: 600;
+    padding-right: 3em;
+    font-size: 20px;
+}
+

@@ -35,9 +35,13 @@ function obtenerValor() {
                 minDate: minDate,
                 maxDate: maxDate,
 
+
             });
         return maxDate.toJSON();
         
+
+            })
+
         
 
     } else if (selectedValue == 2) { //Condiciones por si se selecciona Pilates

@@ -146,10 +146,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Clientes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\DashboardUController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaginaPrincipalController.cs" />
@@ -179,12 +179,14 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RegistrarModel.cs" />
+
     <Compile Include="MostrarListaResevas_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MostrarResevas_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+
     <Compile Include="Motivo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -198,9 +200,11 @@
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -210,14 +214,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Funciones\Errores.js" />
+    <Content Include="Funciones\ViewBags.js" />
     <Content Include="Funciones\HaciendaAPI.js" />
     <Content Include="Funciones\Reserva.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="img\calendar.jpg" />
+    <Content Include="img\calendario.png" />
+    <Content Include="img\calendario2.png" />
+    <Content Include="img\charles-deluvio-ew3sC-F6d_c-unsplash.jpg" />
     <Content Include="img\funcional4.jpg" />
     <Content Include="img\live.jpg" />
+    <Content Include="img\mitchell-hollander-8b1cWDyvT7Y-unsplash.jpg" />
     <Content Include="img\pesas.jpg" />
     <Content Include="img\pilates8.jpg" />
     <Content Include="img\PowerFit.png" />
@@ -376,6 +385,7 @@
     <Content Include="Views\Registrar\InsertarUsuario.cshtml" />
     <Content Include="Views\Reservar\Reserva.cshtml" />
     <Content Include="Views\Reservar\MostrarReservasPartial.cshtml" />
+    <Content Include="Views\DashboardU\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

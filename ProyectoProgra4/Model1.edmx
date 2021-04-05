@@ -351,6 +351,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+
         <ComplexType Name="MostrarListaResevas_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="dia" Nullable="false" />
@@ -363,6 +364,7 @@
           <Property Type="Time" Name="hora" Nullable="false" />
           <Property Type="Boolean" Name="equipo" Nullable="false" />
         </ComplexType>
+
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -504,7 +506,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
