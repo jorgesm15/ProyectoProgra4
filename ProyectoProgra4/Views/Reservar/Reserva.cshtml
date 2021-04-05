@@ -72,7 +72,8 @@
                     <div class="ui calendar" id="custom_format_calendar">
                         <div class="ui input left icon">
                             <i class="calendar icon"></i>
-                            @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia" , autocomplete="off"})
+                            @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off" })
+                            @*@Convert.ToString(string.Format("{0:dd/MM/yyyy}", mbox .dia), new { @class = "text", @placeholder = "Dia", autocomplete = "off" })*@
                             @*<input type="text" placeholder="Date">*@
                         </div>
                     </div>
@@ -82,7 +83,7 @@
                         <div class="ui input left icon">
                             <i class="time icon"></i>
                             @*<input type="text" placeholder="Time">*@
-                            @Html.TextBoxFor(m => m.hora, new { @class = "text", @placeholder = "Hora", autocomplete = "off" })
+                            @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off" })
                         </div>
                     </div>
                 </div>

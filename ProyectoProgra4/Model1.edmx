@@ -51,6 +51,16 @@
           <Property Name="equipo" Type="bit" Nullable="false" />
           <Property Name="ID_Cliente" Type="varchar" MaxLength="9" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <Association Name="FK__Reserva__claseID__4F7CD00D">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
@@ -105,6 +115,8 @@
           <Parameter Name="pTipoSangre" Type="varchar" Mode="In" />
           <Parameter Name="pIdMotivo" Type="int" Mode="In" />
         </Function>
+        <Function Name="MostrarListaResevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MostrarResevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="RegistrarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="claseID" Type="int" Mode="In" />
           <Parameter Name="dia" Type="date" Mode="In" />
@@ -147,6 +159,7 @@
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Reserva" EntitySet="Reserva" />
@@ -217,6 +230,16 @@
           <NavigationProperty Name="Clientes" Relationship="Self.FK__Reserva__ID_Clie__4E88ABD4" FromRole="Reserva" ToRole="Clientes" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Reserva" ToRole="Disciplinas" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <Association Name="FK__Reserva__ID_Clie__4E88ABD4">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
@@ -258,6 +281,7 @@
           <EntitySet Name="Disciplinas" EntityType="Self.Disciplinas" />
           <EntitySet Name="Motivo" EntityType="Self.Motivo" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Reserva" EntitySet="Reserva" />
@@ -287,6 +311,8 @@
             <Parameter Name="pTipoSangre" Mode="In" Type="String" />
             <Parameter Name="pIdMotivo" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="MostrarListaResevas" ReturnType="Collection(ProyectoModel.MostrarListaResevas_Result)" />
+          <FunctionImport Name="MostrarResevas" ReturnType="Collection(ProyectoModel.MostrarResevas_Result)" />
           <FunctionImport Name="RegistrarReserva">
             <Parameter Name="claseID" Mode="In" Type="Int32" />
             <Parameter Name="dia" Mode="In" Type="DateTime" />
@@ -325,6 +351,20 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+
+        <ComplexType Name="MostrarListaResevas_Result">
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="dia" Nullable="false" />
+          <Property Type="Time" Name="hora" Nullable="false" />
+          <Property Type="Boolean" Name="equipo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="MostrarResevas_Result">
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="dia" Nullable="false" />
+          <Property Type="Time" Name="hora" Nullable="false" />
+          <Property Type="Boolean" Name="equipo" Nullable="false" />
+        </ComplexType>
+
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -392,7 +432,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProyectoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="InsertarClientes" FunctionName="ProyectoModel.Store.InsertarClientes" />
+          <FunctionImportMapping FunctionImportName="MostrarListaResevas" FunctionName="ProyectoModel.Store.MostrarListaResevas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoModel.MostrarListaResevas_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="equipo" ColumnName="equipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MostrarResevas" FunctionName="ProyectoModel.Store.MostrarResevas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoModel.MostrarResevas_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="equipo" ColumnName="equipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegistrarReserva" FunctionName="ProyectoModel.Store.RegistrarReserva" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProyectoModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProyectoModel.Store.sp_creatediagram" />

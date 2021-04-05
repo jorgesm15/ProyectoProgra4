@@ -15,9 +15,22 @@ namespace ProyectoProgra4.Controllers
         {
             using (var contexto = new ProyectoEntities())
             {
-                var reservas = (from x in contexto.Reserva select x).ToList();
+                //var reservas = (from x in contexto.Reserva select x).ToList();
+                var reservas = (from x in contexto.Reserva.AsEnumerable()
+                                join d in contexto.Disciplinas.AsEnumerable()
+                        on x.claseID equals d.claseID
+                        select new Reserva()
+                        {
+                            nombreDis = d.nombre,
+                            dia = x.dia,
+                            hora = x.hora,
+                            equipo = x.equipo
+                        }).ToList();
+                 
+
                 CargarDisciplinas();
 
+               
                 Session["mostrarReservas"] = reservas;
                 return View("Reserva");
             }
@@ -55,8 +68,6 @@ namespace ProyectoProgra4.Controllers
             Reserva();
 
             return View("Reserva");
-        }
-
-
+        }       
     }
 }
