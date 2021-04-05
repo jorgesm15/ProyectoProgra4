@@ -22,7 +22,7 @@ namespace ProyectoProgra4.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var login = new ProyectoEntities1())
+                using (var login = new ProyectoEntities())
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();

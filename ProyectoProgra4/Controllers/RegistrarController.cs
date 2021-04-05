@@ -17,26 +17,26 @@ namespace ProyectoProgra4.Controllers
 
         //Prueba
 
-        public ActionResult InsertarUsuario(clsUsuario usuario)
-        {
-            try
-            {
-                using (var contextoUsuario = new ProyectoEntities1())
-                {
-                    contextoUsuario.InsertarClientes(
-                        usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
-                        usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
-                        usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre
-                    );
-                }
+        //public ActionResult InsertarUsuario(clsUsuario usuario)
+        //{
+        //    try
+        //    {
+        //        using (var contextoUsuario = new ProyectoEntities())
+        //        {
+        //            contextoUsuario.InsertarClientes(
+        //                usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
+        //                usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
+        //                usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre
+        //            );
+        //        }
 
-            }
-            catch (Exception e)
-            {
-                ViewBag.Error = "Dato duplicado";
-            }
-            return View();
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.Error = "Dato duplicado";
+        //    }
+        //    return View();
+        //}
 
         public ActionResult RegistrarUsuario(string cedula)
         {

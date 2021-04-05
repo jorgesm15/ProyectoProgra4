@@ -3,8 +3,8 @@
 
 function obtenerValor() {
 
+
     var selectedValue = document.getElementById("selectedDis").value;
-    debugger;
     if (selectedValue == 1) { //Condiciones por si se selecciona Yoga
         $('#custom_format_calendar').calendar({  //seleccion dia
             disabledDaysOfWeek: [0, 2, 3, 4, 5, 6],
@@ -17,7 +17,7 @@ function obtenerValor() {
                     var month = date.getMonth() + 1;
                     var year = date.getFullYear();
                     return day + '/' + month + '/' + year;
-                    alert.log(dayW);
+                    
                 }
             }
 
@@ -35,7 +35,10 @@ function obtenerValor() {
                 minDate: minDate,
                 maxDate: maxDate,
 
-            })
+            });
+        return maxDate.toJSON();
+        
+        
 
     } else if (selectedValue == 2) { //Condiciones por si se selecciona Pilates
         $('#custom_format_calendar').calendar({
@@ -93,8 +96,10 @@ function obtenerValor() {
                 disableMinute: true,
                 minDate: minDate,
                 maxDate: maxDate,
-
+                
             })
+
+        
     } else { //Condiciones por si se selecciona Funcional
         $('#custom_format_calendar').calendar({
             disabledDaysOfWeek: [0, 1, 2, 3, 5, 6],
@@ -144,3 +149,4 @@ function toggle() {
     console.log('Toggled bool is',
         toggleCheck);
 }
+

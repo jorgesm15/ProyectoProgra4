@@ -12,18 +12,12 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Reserva
+    public partial class sysdiagrams
     {
-        public int reservaID { get; set; }
-        public int claseID { get; set; }
-        public System.DateTime dia { get; set; }
-        public System.TimeSpan hora { get; set; }
-        public bool equipo { get; set; }
-        public string ID_Cliente { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
-        public virtual Disciplinas Disciplinas { get; set; }
-
-        public string nombreDis { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -1,25 +1,42 @@
 ﻿@model IEnumerable<Reserva>
 
 
-<table class="table">
-    <thead>
+<table class="table table-bordered table-hover" style="text-align:center">
+    <thead style="background-color: #45403F; color:white">
         <tr>
             <th>Disciplina</th>
-            <th>Dia</th>
+            <th>Día</th>
             <th>Hora</th>
             <th>Requiere Equipo</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>@item.claseID</td>
-            <td>@item.dia</td>
-            <td>@item.hora</td>
-            <td>@item.equipo</td>
-        </tr>
+            <tr>
+                <td>@item.nombreDis</td>
+                <td>@item.dia.</td>
+                <td>@item.hora</td>
+
+                @if (item.equipo == true)
+                {
+                    <td style="color:#F05742"><i class="check circle icon"></i></td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>
+                    <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                        Actualizar
+                    </button>
+                    <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
