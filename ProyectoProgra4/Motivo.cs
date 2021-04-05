@@ -12,32 +12,18 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Clientes
+    public partial class Motivo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Clientes()
+        public Motivo()
         {
-            this.Reserva = new HashSet<Reserva>();
+            this.Clientes = new HashSet<Clientes>();
         }
     
-        public string ID_Cliente { get; set; }
-        public string Nombre { get; set; }
-        public string PrimerApellido { get; set; }
-        public string SegundoApellido { get; set; }
-        public string Correo { get; set; }
-        public int Edad { get; set; }
-        public string Contraseña { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public string TelefonoEmergencia { get; set; }
-        public decimal Peso { get; set; }
-        public decimal Estatura { get; set; }
-        public string CondicionesMedicas { get; set; }
-        public string TipoSangre { get; set; }
         public int ID_Motivo { get; set; }
+        public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reserva> Reserva { get; set; }
-        public virtual Motivo Motivo { get; set; }
+        public virtual ICollection<Clientes> Clientes { get; set; }
     }
 }

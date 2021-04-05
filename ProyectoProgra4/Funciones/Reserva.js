@@ -4,7 +4,6 @@
 function obtenerValor() {
 
     var selectedValue = document.getElementById("selectedDis").value;
-    debugger;
     if (selectedValue == 1) { //Condiciones por si se selecciona Yoga
         $('#custom_format_calendar').calendar({  //seleccion dia
             disabledDaysOfWeek: [0, 2, 3, 4, 5, 6],
@@ -34,8 +33,8 @@ function obtenerValor() {
                 disableMinute: true,
                 minDate: minDate,
                 maxDate: maxDate,
-
             })
+        
 
     } else if (selectedValue == 2) { //Condiciones por si se selecciona Pilates
         $('#custom_format_calendar').calendar({

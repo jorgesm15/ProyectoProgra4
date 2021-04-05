@@ -1,9 +1,12 @@
 ﻿using ProyectoProgra4.Entidades;
 using ProyectoProgra4.Models;
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace ProyectoProgra4.Controllers
 {
@@ -12,29 +15,36 @@ namespace ProyectoProgra4.Controllers
         // GET: Registrar
         public ActionResult Index()
         {
+            CargarMotivo();
             return View("InsertarUsuario");
         }
 
-        //Prueba
-
         public ActionResult InsertarUsuario(clsUsuario usuario)
         {
-            try
+            if (ModelState.IsValid)
             {
-                using (var contextoUsuario = new ProyectoEntities1())
+                try
                 {
-                    contextoUsuario.InsertarClientes(
-                        usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
-                        usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
-                        usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre
-                    );
+                    using (var contextoUsuario = new ProyectoEntities())
+                    {
+                        contextoUsuario.InsertarClientes(
+                            usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
+                            usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
+                            usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre,
+                            usuario.motivo
+                        );
+                    }
+                    //ViewBag.Message = "Usuario registrado";
+                    TempData["Message"] = "Usuario Registrado";
+                    return RedirectToAction("PaginaPrincipal", "PaginaPrincipal");
                 }
+                catch (Exception e)
+                {
+                    ViewBag.Error = "Dato duplicado";
+                }
+            }
 
-            }
-            catch (Exception e)
-            {
-                ViewBag.Error = "Dato duplicado";
-            }
+            Index();
             return View();
         }
 
@@ -51,6 +61,23 @@ namespace ProyectoProgra4.Controllers
                 return Json(null, JsonRequestBehavior.DenyGet);
             }
         }
+
+        public void CargarMotivo()
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var respuesta = (from x in contexto.Motivo select x).ToList();
+                List<SelectListItem> listilla = new List<SelectListItem>();
+
+                foreach (var item in respuesta)
+                {
+                    listilla.Add(new SelectListItem { Value = item.ID_Motivo.ToString(), Text = item.Descripcion });
+                }
+
+                ViewBag.ListaComboMotivo = listilla;
+            }
+        }
+
 
         public static string GetMD5(string str)
         {
