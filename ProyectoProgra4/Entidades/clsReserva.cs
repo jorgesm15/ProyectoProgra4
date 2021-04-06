@@ -18,7 +18,7 @@ namespace ProyectoProgra4.Entidades
 
       
         //public String diaFormato { get { return String.Format("{0:yyyy/MM/dd}", dia); } }
-        public DateTime hora { get; set; }
+        public TimeSpan hora { get; set; }
         public bool equipo { get; set; }
         public string clienteID { get; set; }
 
