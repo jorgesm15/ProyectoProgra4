@@ -12,18 +12,22 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Motivo
+    public partial class Administrador
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Motivo()
+        public Administrador()
         {
-            this.Clientes = new HashSet<Clientes>();
+            this.Instructor = new HashSet<Instructor>();
         }
     
-        public int ID_Motivo { get; set; }
-        public string Descripcion { get; set; }
+        public string ID_Administrador { get; set; }
+        public string Nombre { get; set; }
+        public string PrimerApellido { get; set; }
+        public string SegundoApellido { get; set; }
+        public string Correo { get; set; }
+        public string Contraseña { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clientes> Clientes { get; set; }
+        public virtual ICollection<Instructor> Instructor { get; set; }
     }
 }

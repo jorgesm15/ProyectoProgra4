@@ -9,45 +9,6 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
 
-@*<div class="container body-content">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <form class="ui form">
-            <div class="one field">
-                <div class="field">
-                    <label>¿Qué disciplina desea reservar?</label>
-                    @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as IEnumerable<SelectListItem> )
-                 </div>
-                    <select class="ui fluid dropdown">
-                        <option value="">Disciplinas</option>
-                        @foreach (var item in Model)
-                        {
-                            <option id="disciplinas" value="@item.nombre">@item.nombre</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <br />
-            <h4 class="ui dividing header">Equipo</h4>
-            <div class="field">
-            </div>
-            <div class="ui segment">
-                <div class="field">
-                    <div class="ui toggle checkbox">
-                        <input id="togBtn" type="checkbox" name="gift" tabindex="0" onchange="obtenerValor()">
-                        <label>Desea reservar equipo para su clase?</label>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
-                Reservar
-            </button>
-        </form>
-    </div>*@
 
 @using (Html.BeginForm("InsertarReserva", "Reservar", FormMethod.Post, new { @class = "ui form" }))
 {
@@ -73,17 +34,15 @@
                         <div class="ui input left icon">
                             <i class="calendar icon"></i>
                             @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off" })
-                            @*@Convert.ToString(string.Format("{0:dd/MM/yyyy}", mbox .dia), new { @class = "text", @placeholder = "Dia", autocomplete = "off" })*@
-                            @*<input type="text" placeholder="Date">*@
+                          
                         </div>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui calendar" id="time_calendar">
                         <div class="ui input left icon">
-                            <i class="time icon"></i>
-                            @*<input type="text" placeholder="Time">*@
-                            @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off" })
+                            <i class="time icon"></i>                         
+                            @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", onchange = "obtenerHora()" })
                         </div>
                     </div>
                 </div>
@@ -96,7 +55,6 @@
         <div class="ui segment">
             <div class="field">
                 <div class="ui toggle checkbox">
-                    @*<input id="togBtn" type="checkbox" name="gift" tabindex="0" onchange="obtenerValor()">*@
                     @Html.CheckBoxFor(m => m.equipo, new { @class = "checkbox", @id = "togBtn", onchange = "toggle()" })
                     <label>Desea reservar equipo para su clase?</label>
                 </div>
