@@ -33,7 +33,7 @@ namespace ProyectoProgra4.Controllers
                     var receiverEmail = new MailAddress("proyectoprogra4fidelitas@gmail.com", "Proyecto Gimnasio");
                     var password = "A723r88pT57qh@f34tGh344%gd37";
                     var sub = subject;
-                    var body = message;
+                    var body = "Correo: " + receiver + "\n\r" + "Mensaje: " + message;
                     var smtp = new SmtpClient
                     {
                         Host = "smtp.gmail.com",
