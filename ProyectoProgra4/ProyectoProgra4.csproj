@@ -194,6 +194,7 @@
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaginaPrincipalController.cs" />
+    <Compile Include="Controllers\PruebaContactoController.cs" />
     <Compile Include="Controllers\RegistrarController.cs" />
     <Compile Include="Controllers\ReservarController.cs" />
     <Compile Include="Disciplinas.cs">
@@ -432,6 +433,8 @@
     <Content Include="Views\Administrador\Administrador.cshtml" />
     <Content Include="Views\Instructor\Instructor.cshtml" />
     <Content Include="Views\Especialidad\Especialidad.cshtml" />
+    <Content Include="Views\PruebaContacto\PruebaContacto.cshtml" />
+    <Content Include="Views\PruebaContacto\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
