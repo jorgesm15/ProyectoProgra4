@@ -18,19 +18,19 @@ namespace ProyectoProgra4.Controllers
                 //var reservas = (from x in contexto.Reserva select x).ToList();
                 var reservas = (from x in contexto.Reserva.AsEnumerable()
                                 join d in contexto.Disciplinas.AsEnumerable()
-                        on x.claseID equals d.claseID
-                        select new Reserva()
-                        {
-                            nombreDis = d.nombre,
-                            dia = x.dia,
-                            hora = x.hora,
-                            equipo = x.equipo
-                        }).ToList();
-                 
+                                on x.claseID equals d.claseID
+                                select new Reserva()
+                                {
+                                    nombreDis = d.nombre,
+                                    dia = x.dia,
+                                    hora = x.hora,
+                                    equipo = x.equipo
+                                }).ToList();
+
 
                 CargarDisciplinas();
 
-               
+
                 Session["mostrarReservas"] = reservas;
                 return View("Reserva");
             }
@@ -62,12 +62,36 @@ namespace ProyectoProgra4.Controllers
             {
                 contextoReservar.RegistrarReserva(
                     reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
-                ) ;
+                );
             }
 
             Reserva();
 
-            return View("Reserva");
+            return RedirectToAction("Reserva");
         }       
+
+        [HttpPost]
+        public ActionResult EliminarReserva(Reserva reserv)
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                //var reservas = (from x in contexto.Reserva select x).ToList();
+                var reservas = (from x in contexto.Reserva
+                                where x.reservaID == reserv.reservaID
+                                select x).FirstOrDefault();
+
+                if (reservas != null)
+                {
+                    contexto.Reserva.Remove(reservas);
+                    contexto.SaveChanges();
+                }
+
+
+
+                Session["mostrarReservas"] = reservas;
+                return View("Reserva");
+            }
+
+        }
     }
 }
