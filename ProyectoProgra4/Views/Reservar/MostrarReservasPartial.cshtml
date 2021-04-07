@@ -17,8 +17,8 @@
         {
             <tr>
                 <td>@item.nombreDis</td>
-                <td>@item.dia.</td>
-                <td>@item.hora</td>
+                <td>@item.dia.ToString("dd/MM/yyyy").Trim()</td>
+                <td>@item.hora PM</td>
 
                 @if (item.equipo == true)
                 {
@@ -29,9 +29,11 @@
                     <td></td>
                 }
                 <td>
+                    
                     <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
                         Actualizar
                     </button>
+
                     <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
                         Eliminar
                     </button>
