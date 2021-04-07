@@ -8,10 +8,10 @@ using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
 {
-    public class PruebaContactoController : Controller
+    public class ContactoController : Controller
     {
-        // GET: PruebaContacto
-        public ActionResult PruebaContacto()
+        // GET: Contacto
+        public ActionResult Contacto()
         {
             return View();
         }
@@ -60,7 +60,5 @@ namespace ProyectoProgra4.Controllers
             }
             return View();
         }
-
-
     }
 }
