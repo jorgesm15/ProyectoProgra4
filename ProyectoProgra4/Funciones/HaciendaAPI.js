@@ -14,9 +14,15 @@
             nombre = data.nombre;
             var separador = [];
             var separador = nombre.split(' ');
-            document.getElementById("txtNombre").value = separador[0];
-            document.getElementById("txtPrimerApellido").value = separador[2];
-            document.getElementById("txtSegundoApellido").value = separador[3];
+            if (separador.length < 4) {
+                document.getElementById("txtNombre").value = separador[0];
+                document.getElementById("txtPrimerApellido").value = separador[1];
+                document.getElementById("txtSegundoApellido").value = separador[2];
+            } else {
+                document.getElementById("txtNombre").value = separador[0];
+                document.getElementById("txtPrimerApellido").value = separador[2];
+                document.getElementById("txtSegundoApellido").value = separador[3];
+            }
         },
         error: function (data) {
             Swal.fire({

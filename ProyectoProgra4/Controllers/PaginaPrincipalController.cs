@@ -12,7 +12,6 @@ namespace ProyectoProgra4.Controllers
         [HttpGet]
         public ActionResult PaginaPrincipal()
         {
-            ViewBag.Message = TempData["Message"];
             return View();
         }
 
@@ -31,7 +30,7 @@ namespace ProyectoProgra4.Controllers
                 {
                     var senderEmail = new MailAddress("proyectoprogra4fidelitas@gmail.com", "Proyecto Gimnasio");
                     var receiverEmail = new MailAddress("proyectoprogra4fidelitas@gmail.com", "Proyecto Gimnasio");
-                    var password = "";
+                    var password = "A723r88pT57qh@f34tGh344%gd37";
                     var sub = "Solicitud de contacto de la Web";
                     var body = "Nombre: " + nombre + "\n\r" + "Apellidos: " + apellidos + "\n\r" + "Telefono: " + telefono + "\n\r" + "Email: " + email + "\n\r" + "Mensaje: " + mensaje;
                     var smtp = new SmtpClient
