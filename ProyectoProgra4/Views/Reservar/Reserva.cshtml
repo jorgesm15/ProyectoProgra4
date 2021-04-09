@@ -12,59 +12,66 @@
 
 @using (Html.BeginForm("InsertarReserva", "Reservar", FormMethod.Post, new { @class = "ui form" }))
 {
-    <div class="container body-content">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="one field">
-            <div class="field">
-                <label>¿Qué disciplina desea reservar?</label>
-                @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerValor()" , @id= "selectedDis" })
-            </div>
-        </div>
-        <br />
-        <div class="field">
-            <label>Día y hora que desea reservar</label>
-            <div class="two fields">
+    if (Session["UserCorreo"] != null)
+    {
+        <div class="container body-content">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="one field">
                 <div class="field">
-                    <div class="ui calendar" id="custom_format_calendar">
-                        <div class="ui input left icon">
-                            <i class="calendar icon"></i>
-                            @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off" })
-                          
+                    <label>¿Qué disciplina desea reservar?</label>
+                    @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerValor()", @id = "selectedDis" })
+                </div>
+            </div>
+            <br />
+            <div class="field">
+                <label>Día y hora que desea reservar</label>
+                <div class="two fields">
+                    <div class="field">
+                        <div class="ui calendar" id="custom_format_calendar">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui calendar" id="time_calendar">
+                            <div class="ui input left icon">
+                                <i class="time icon"></i>
+                                @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", onchange = "obtenerHora()" })
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <h4 class="ui dividing header">Equipo</h4>
+            <div class="field">
+            </div>
+            <div class="ui segment">
                 <div class="field">
-                    <div class="ui calendar" id="time_calendar">
-                        <div class="ui input left icon">
-                            <i class="time icon"></i>                         
-                            @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", onchange = "obtenerHora()" })
-                        </div>
+                    <div class="ui toggle checkbox">
+                        @Html.CheckBoxFor(m => m.equipo, new { @class = "checkbox", @id = "togBtn", onchange = "toggle()" })
+                        <label>Desea reservar equipo para su clase?</label>
                     </div>
                 </div>
             </div>
-        </div>
+            <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                Reservar
+            </button>
 
-        <h4 class="ui dividing header">Equipo</h4>
-        <div class="field">
         </div>
-        <div class="ui segment">
-            <div class="field">
-                <div class="ui toggle checkbox">
-                    @Html.CheckBoxFor(m => m.equipo, new { @class = "checkbox", @id = "togBtn", onchange = "toggle()" })
-                    <label>Desea reservar equipo para su clase?</label>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
-            Reservar
-        </button>
-
-    </div>
+    }
+    else
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 <br />
 <br />
@@ -77,5 +84,5 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
 
-    @Scripts.Render("/Funciones/Reserva.js")  
+    @Scripts.Render("/Funciones/Reserva.js")
 }

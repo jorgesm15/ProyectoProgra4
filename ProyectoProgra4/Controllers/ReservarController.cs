@@ -21,6 +21,7 @@ namespace ProyectoProgra4.Controllers
                                 on x.claseID equals d.claseID
                                 select new Reserva()
                                 {
+                                    reservaID = x.reservaID,
                                     nombreDis = d.nombre,
                                     dia = x.dia,
                                     hora = x.hora,
@@ -68,28 +69,27 @@ namespace ProyectoProgra4.Controllers
             Reserva();
 
             return RedirectToAction("Reserva");
-        }       
+        }
 
         [HttpPost]
-        public ActionResult EliminarReserva(Reserva reserv)
+        public ActionResult EliminarReserva(int id)
         {
             using (var contexto = new ProyectoEntities())
             {
                 //var reservas = (from x in contexto.Reserva select x).ToList();
                 var reservas = (from x in contexto.Reserva
-                                where x.reservaID == reserv.reservaID
+                                where x.reservaID == id
                                 select x).FirstOrDefault();
 
                 if (reservas != null)
                 {
                     contexto.Reserva.Remove(reservas);
                     contexto.SaveChanges();
+                    return RedirectToAction("Reserva");
                 }
 
-
-
-                Session["mostrarReservas"] = reservas;
                 return View("Reserva");
+                //Session["mostrarReservas"] = reservas;
             }
 
         }
