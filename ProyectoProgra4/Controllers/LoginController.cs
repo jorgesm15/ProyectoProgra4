@@ -59,6 +59,13 @@ namespace ProyectoProgra4.Controllers
         }
 
     
+        public ActionResult CerrarSession()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("PaginaPrincipal", "PaginaPrincipal");
+        }
+
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
