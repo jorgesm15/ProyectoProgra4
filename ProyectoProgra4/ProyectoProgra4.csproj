@@ -197,6 +197,7 @@
     <Compile Include="Controllers\PaginaPrincipalController.cs" />
     <Compile Include="Controllers\RegistrarController.cs" />
     <Compile Include="Controllers\ReservarController.cs" />
+    <Compile Include="Controllers\RutinaController.cs" />
     <Compile Include="Disciplinas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -205,6 +206,7 @@
     <Compile Include="Especialidad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Content Include="Funciones\RutinaF.js" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,6 +259,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Compile Include="Entidades\clsRutina.cs" />
     <Content Include="favicon.ico" />
     <Content Include="Funciones\ViewBags.js" />
     <Content Include="Funciones\HaciendaAPI.js" />
@@ -274,6 +277,11 @@
     <Content Include="img\pesas.jpg" />
     <Content Include="img\pilates8.jpg" />
     <Content Include="img\PowerFit.png" />
+    <Content Include="img\rutina-aficionado.jpg" />
+    <Content Include="img\rutina-deportista.jpg" />
+    <Content Include="img\rutina-ejecutivo.jpg" />
+    <Content Include="img\rutina-recuperacion.jpg" />
+    <Content Include="img\rutina-senior.jpg" />
     <Content Include="img\rutinas-ejercicio.jpg" />
     <Content Include="img\yoga.jpg" />
     <Content Include="js\JavaScript.js" />
@@ -434,6 +442,8 @@
     <Content Include="Views\Instructor\Instructor.cshtml" />
     <Content Include="Views\Especialidad\Especialidad.cshtml" />
     <Content Include="Views\PaginaPrincipal\SendEmail.cshtml" />
+    <Content Include="Views\Rutina\RutinasLista.cshtml" />
+    <Content Include="Views\Rutina\Rutina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

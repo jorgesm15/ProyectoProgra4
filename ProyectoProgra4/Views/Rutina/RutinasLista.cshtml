@@ -1,0 +1,39 @@
+﻿
+@model ProyectoProgra4.Entidades.clsRutina
+
+@{
+    ViewBag.Title = "RutinasLista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+
+@using (Html.BeginForm("VerRutina", "Rutina", FormMethod.Post, new { @class = "ui form" }))
+{
+    <div class="container body-content">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="ui container">
+            <img class="ui fluid image" id="imgRutina"/>
+        </div>
+        <div class="one field">
+            <div class="field">
+                <label>Escoja el tipo de rutina que desea ver: </label>
+                @Html.DropDownListFor(m => m.motivo, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerRutina()", @id = "selectedRutina" })
+            </div>
+        </div>
+        <br />
+        <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+            Visualizar
+        </button>
+    </div>
+}
+
+@section Scripts
+{
+    @Scripts.Render("/Funciones/RutinaF.js")
+}
+
