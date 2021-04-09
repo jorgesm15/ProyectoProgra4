@@ -1,0 +1,176 @@
+﻿
+<br />
+@if (ViewBag.Error != null)
+{
+    <h2>@ViewBag.Error</h2>
+}
+
+<form method="post" action="SendEmail">
+    <div class="container">
+        <div class="ui form" style="color:white;">
+            <div class="ui middle aligned center aligned grid">
+                <div class="ui form">
+                    <h3>Formulario de contacto</h3>
+                    <br />
+                    <div class="field">
+                        <div>
+                            <h5>Nombre</h5>
+                        </div>
+                        <div class="ui left icon input">
+                            <input type="text" placeholder="" name="nombre">
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <h5>Apellidos</h5>
+                        </div>
+                        <div class="ui left icon input">
+                            <input type="text" placeholder="" name="apellidos">
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <h5>Teléfono</h5>
+                        </div>
+                        <div class="ui left icon input">
+                            <input type="text" placeholder="" name="telefono">
+                            <i class="phone icon"></i>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <h5>Correo Electrónico</h5>
+                        </div>
+                        <div class="ui left icon input">
+                            <input type="text" placeholder="" name="email">
+                            <i class="envelope icon"></i>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div>
+                            <h5>Mensaje</h5>
+                        </div>
+                        <br />
+                        <div class="ui left icon input">
+                            <input type="text" placeholder="" name="mensaje">
+                            <i class="edit outline icon"></i>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="middle aligned column">
+                        <button class="ui orange button" type="submit"><i class="envelope icon"></i>Enviar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>      
+        
+    </div>
+</form>
+
+
+
+
+
+@*Div imagen, parte derecha*@
+<!--<div class="col-5" id="formularioContacto" style="padding-top:0%">
+    <div style="background-color: #45403F; color:white; padding-top:4%;padding-bottom:5%; border-radius:15px">
+        <br />
+        <form action="/" method="post">
+            <div class="ui form" style="color:white;">
+                <div class="ui middle aligned center aligned grid">
+                    <div class="ui form">
+                        <h3>Formulario de contacto</h3>
+                        <br />
+                        <div class="field">
+                            <div>
+                                <h5>Nombre</h5>
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="text" placeholder="">
+                                <i class="user icon"></i>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div>
+                                <h5>Apellidos</h5>
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="text" placeholder="">
+                                <i class="user icon"></i>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div>
+                                <h5>Teléfono</h5>
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="text" placeholder="">
+                                <i class="phone icon"></i>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div>
+                                <h5>Correo Electrónico</h5>
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="text" placeholder="">
+                                <i class="envelope icon"></i>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div>
+                                <h5>Mensaje</h5>
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="text" placeholder="">
+                                <i class="edit outline icon"></i>
+                            </div>
+                        </div>
+                        <div class="middle aligned column">
+                            <div class="ui orange button">
+                                <i class="envelope icon"></i>
+                                Enviar
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+<h2> Formulario de contacto </h2>
+<br />
+<br />
+@if (ViewBag.Error != null)
+{
+    <h2>@ViewBag.Error</h2>
+}
+
+<form method="post" action="SendEmail">
+    <div class="container">
+        <span class="form-control-static"> Receiver: </span>
+        <input class="form-control" type="text" name="receiver" />
+        <br />
+        <span class="form-control-static"> Subject: </span>
+        <input class="form-control" type="text" name="subject" />
+        <br />
+        <span class="form-control-static"> Message: </span>
+        <input class="form-control" type="text" name="message" />
+        <br />
+        <input class="btn btn-primary" type="submit" value="Send" />
+    </div>
+</form>-->
