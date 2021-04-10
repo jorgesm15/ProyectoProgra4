@@ -1,6 +1,7 @@
 ﻿
 <br />
-<form method="post" action="SendEmail">
+@using (Html.BeginForm("SendEmail", "PaginaPrincipal", FormMethod.Post))
+{
     <div class="container">
         <div class="ui form" style="color:white;">
             <div class="ui middle aligned center aligned grid">
@@ -60,10 +61,10 @@
 
                 </div>
             </div>
-        </div>      
-        
+        </div>
     </div>
-</form>
+}
+
 
 
 
