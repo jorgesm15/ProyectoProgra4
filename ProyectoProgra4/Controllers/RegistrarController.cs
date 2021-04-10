@@ -36,7 +36,9 @@ namespace ProyectoProgra4.Controllers
                     }
                     //ViewBag.Message = "Usuario registrado";
                     TempData["Message"] = "Usuario Registrado";
-                    return RedirectToAction("PaginaPrincipal", "PaginaPrincipal");
+                    Session["UserCorreo"] = usuario.correo.ToString();
+                    Session["Nombre"] = usuario.nombre.ToString();
+                    return RedirectToAction("Index", "DashboardU");
                 }
                 catch (Exception e)
                 {
