@@ -200,6 +200,7 @@
     <Compile Include="Disciplinas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\clsLogin.cs" />
     <Compile Include="Entidades\clsReserva.cs" />
     <Compile Include="Entidades\clsUsuario.cs" />
     <Compile Include="Especialidad.cs">

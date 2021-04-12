@@ -18,7 +18,7 @@ namespace ProyectoProgra4.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(clsUsuario usuario)
+        public ActionResult Login(clsLogin usuario)
         {
             if (ModelState.IsValid)
             {

@@ -23,7 +23,7 @@ namespace ProyectoProgra4.Entidades
         public int edad { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string contrasenia { get; set; }
-        [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        //[Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string direccion { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string telefono { get; set; }
