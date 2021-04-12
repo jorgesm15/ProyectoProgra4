@@ -5,9 +5,76 @@
 }
 
 
-
 <div class="body-content">
     <h2>Administrador</h2>
 </div>
 
 
+@if (Session["UserCorreo"] != null)
+{
+
+
+    <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;"></label>
+    <div class="ui four column centered grid">
+        <div class="four column centered row">
+            <div class="column">
+                <div class="ui centered orange card">
+                    <div class="image">
+                        <img src="~/img/jonathan-borba-R0y_bEUjiOM-unsplash.jpg">
+                    </div>
+                    <div class="content">
+                        <a href="@Url.Action("Instructor","Instructor")" class="header">Instructores</a>
+                        <div class="description">
+                            Panel de instructores
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui centered orange card">
+                    <div class="image">
+                        <img src="~/img/danielle-cerullo-CQfNt66ttZM-unsplash.jpg">
+                    </div>
+                    <div class="content">
+                        <a href="@Url.Action("Especialidad","Especialidad")" class="header">Especialidad</a>
+                        <div class="description">
+                            Panel de especialidades
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui centered orange card">
+                    <div class="image">
+                        <img src="~/img/luis-vidal-FodEsaNZs48-unsplash.jpg">
+                    </div>
+                    <div class="content">
+                        <a href="@Url.Action("Clientes","Clientes")" class="header">Clientes</a>
+                        <div class="description">
+                            Panel de Clientes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    if (ViewBag.Message != null)
+    {
+        @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtSuccessful", "")
+    }
+
+}
+else
+{
+    Response.Redirect("~/Login/Index");
+}
+
+@Scripts.Render("~/bundles/jquery");
+@Scripts.Render("/Funciones/ViewBags.js")

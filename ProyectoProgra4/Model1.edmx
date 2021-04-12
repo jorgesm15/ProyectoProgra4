@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="ID_Administrador" />
@@ -43,6 +43,7 @@
           <Property Name="claseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="cupos" Type="int" Nullable="false" />
+          <Property Name="ID_Instructor" Type="varchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
@@ -125,6 +126,18 @@
             </Principal>
             <Dependent Role="Clientes">
               <PropertyRef Name="ID_Motivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Disciplinas_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID_Instructor" />
+            </Principal>
+            <Dependent Role="Disciplinas">
+              <PropertyRef Name="ID_Instructor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -230,6 +243,10 @@
             <End Role="Motivo" EntitySet="Motivo" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Disciplinas_Instructor" Association="Self.FK_Disciplinas_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Disciplinas" EntitySet="Disciplinas" />
+          </AssociationSet>
           <AssociationSet Name="FK_Instructor_Administrador" Association="Self.FK_Instructor_Administrador">
             <End Role="Administrador" EntitySet="Administrador" />
             <End Role="Instructor" EntitySet="Instructor" />
@@ -239,8 +256,7 @@
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -286,6 +302,8 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cupos" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Disciplinas" ToRole="Reserva" />
+          <Property Name="ID_Instructor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Instructor" Relationship="ProyectoModel.FK_Disciplinas_Instructor" FromRole="Disciplinas" ToRole="Instructor" />
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
@@ -309,6 +327,7 @@
           <Property Name="ID_Administrador" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
           <NavigationProperty Name="Especialidad" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Especialidad" />
+          <NavigationProperty Name="Disciplinas" Relationship="ProyectoModel.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
         </EntityType>
         <EntityType Name="Motivo">
           <Key>
@@ -486,6 +505,10 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_Disciplinas_Instructor" Association="ProyectoModel.FK_Disciplinas_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Disciplinas" EntitySet="Disciplinas" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="MostrarListaResevas_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
@@ -510,6 +533,18 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_Disciplinas_Instructor">
+          <End Type="ProyectoModel.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="ProyectoModel.Disciplinas" Role="Disciplinas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID_Instructor" />
+            </Principal>
+            <Dependent Role="Disciplinas">
+              <PropertyRef Name="ID_Instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -552,6 +587,7 @@
           <EntitySetMapping Name="Disciplinas">
             <EntityTypeMapping TypeName="ProyectoModel.Disciplinas">
               <MappingFragment StoreEntitySet="Disciplinas">
+                <ScalarProperty Name="ID_Instructor" ColumnName="ID_Instructor" />
                 <ScalarProperty Name="claseID" ColumnName="claseID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="cupos" ColumnName="cupos" />

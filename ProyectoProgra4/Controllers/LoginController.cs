@@ -20,8 +20,8 @@ namespace ProyectoProgra4.Controllers
         [HttpPost]
         public ActionResult Login(clsUsuario usuario)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 using (var login = new ProyectoEntities())
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
@@ -54,7 +54,7 @@ namespace ProyectoProgra4.Controllers
                     }
 
                 }
-            }
+            //}
             return View("Index");
         }
 
