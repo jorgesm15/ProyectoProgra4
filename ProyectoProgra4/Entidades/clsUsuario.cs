@@ -40,6 +40,7 @@ namespace ProyectoProgra4.Entidades
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public int motivo{ get; set; }
 
+        public string rol { get; set; }
 
 
     }

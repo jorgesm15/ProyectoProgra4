@@ -35,6 +35,7 @@
           <Property Name="CondicionesMedicas" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="TipoSangre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_Motivo" Type="int" Nullable="false" />
+          <Property Name="Rol" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Disciplinas">
           <Key>
@@ -74,7 +75,9 @@
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
-            <PropertyRef Name="reservaID" />
+            <PropertyRef Name="claseID" />
+            <PropertyRef Name="dia" />
+            <PropertyRef Name="hora" />
           </Key>
           <Property Name="reservaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="claseID" Type="int" Nullable="false" />
@@ -93,7 +96,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK__Reserva__claseID__4F7CD00D">
+        <Association Name="FK__Reserva__claseID__1AD3FDA4">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,7 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reserva__ID_Clie__4E88ABD4">
+        <Association Name="FK__Reserva__ID_Clie__19DFD96B">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,6 +185,7 @@
           <Parameter Name="pCondicionesMedicas" Type="varchar" Mode="In" />
           <Parameter Name="pTipoSangre" Type="varchar" Mode="In" />
           <Parameter Name="pIdMotivo" Type="int" Mode="In" />
+          <Parameter Name="pRol" Type="varchar" Mode="In" />
         </Function>
         <Function Name="MostrarListaResevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarResevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -231,11 +235,11 @@
           <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
+          <AssociationSet Name="FK__Reserva__claseID__1AD3FDA4" Association="Self.FK__Reserva__claseID__1AD3FDA4">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
+          <AssociationSet Name="FK__Reserva__ID_Clie__19DFD96B" Association="Self.FK__Reserva__ID_Clie__19DFD96B">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
@@ -291,7 +295,8 @@
           <Property Name="CondicionesMedicas" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoSangre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Motivo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__ID_Clie__4E88ABD4" FromRole="Clientes" ToRole="Reserva" />
+          <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__ID_Clie__19DFD96B" FromRole="Clientes" ToRole="Reserva" />
           <NavigationProperty Name="Motivo" Relationship="Self.FK_Clientes_Motivo" FromRole="Clientes" ToRole="Motivo" />
         </EntityType>
         <EntityType Name="Disciplinas">
@@ -301,9 +306,14 @@
           <Property Name="claseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cupos" Type="Int32" Nullable="false" />
+
+          <Property Name="ID_Instructor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__1AD3FDA4" FromRole="Disciplinas" ToRole="Reserva" />
+          <NavigationProperty Name="Instructor" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Disciplinas" ToRole="Instructor" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Disciplinas" ToRole="Reserva" />
           <Property Name="ID_Instructor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Instructor" Relationship="ProyectoModel.FK_Disciplinas_Instructor" FromRole="Disciplinas" ToRole="Instructor" />
+
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
@@ -326,6 +336,7 @@
           <Property Name="ID_Especialidad" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="ID_Administrador" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
+          <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
           <NavigationProperty Name="Especialidad" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Especialidad" />
           <NavigationProperty Name="Disciplinas" Relationship="ProyectoModel.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
         </EntityType>
@@ -339,7 +350,9 @@
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
-            <PropertyRef Name="reservaID" />
+            <PropertyRef Name="claseID" />
+            <PropertyRef Name="dia" />
+            <PropertyRef Name="hora" />
           </Key>
           <Property Name="reservaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="claseID" Type="Int32" Nullable="false" />
@@ -347,8 +360,8 @@
           <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
           <Property Name="equipo" Type="Boolean" Nullable="false" />
           <Property Name="ID_Cliente" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK__Reserva__ID_Clie__4E88ABD4" FromRole="Reserva" ToRole="Clientes" />
-          <NavigationProperty Name="Disciplinas" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Reserva" ToRole="Disciplinas" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Reserva__ID_Clie__19DFD96B" FromRole="Reserva" ToRole="Clientes" />
+          <NavigationProperty Name="Disciplinas" Relationship="Self.FK__Reserva__claseID__1AD3FDA4" FromRole="Reserva" ToRole="Disciplinas" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -372,7 +385,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reserva__ID_Clie__4E88ABD4">
+        <Association Name="FK__Reserva__ID_Clie__19DFD96B">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -396,7 +409,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reserva__claseID__4F7CD00D">
+        <Association Name="FK__Reserva__claseID__1AD3FDA4">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
@@ -405,6 +418,18 @@
             </Principal>
             <Dependent Role="Reserva">
               <PropertyRef Name="claseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Disciplinas_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID_Instructor" />
+            </Principal>
+            <Dependent Role="Disciplinas">
+              <PropertyRef Name="ID_Instructor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -433,7 +458,7 @@
             <End Role="Administrador" EntitySet="Administrador" />
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reserva__ID_Clie__4E88ABD4" Association="Self.FK__Reserva__ID_Clie__4E88ABD4">
+          <AssociationSet Name="FK__Reserva__ID_Clie__19DFD96B" Association="Self.FK__Reserva__ID_Clie__19DFD96B">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
@@ -441,9 +466,13 @@
             <End Role="Motivo" EntitySet="Motivo" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reserva__claseID__4F7CD00D" Association="Self.FK__Reserva__claseID__4F7CD00D">
+          <AssociationSet Name="FK__Reserva__claseID__1AD3FDA4" Association="Self.FK__Reserva__claseID__1AD3FDA4">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Disciplinas_Instructor" Association="Self.FK_Disciplinas_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Disciplinas" EntitySet="Disciplinas" />
           </AssociationSet>
           <AssociationSet Name="FK_Instructor_Especialidad" Association="Self.FK_Instructor_Especialidad">
             <End Role="Especialidad" EntitySet="Especialidad" />
@@ -465,6 +494,7 @@
             <Parameter Name="pCondicionesMedicas" Mode="In" Type="String" />
             <Parameter Name="pTipoSangre" Mode="In" Type="String" />
             <Parameter Name="pIdMotivo" Mode="In" Type="Int32" />
+            <Parameter Name="pRol" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="MostrarListaResevas" ReturnType="Collection(ProyectoModel.MostrarListaResevas_Result)" />
           <FunctionImport Name="MostrarResevas" ReturnType="Collection(ProyectoModel.MostrarResevas_Result)" />
@@ -581,6 +611,7 @@
                 <ScalarProperty Name="CondicionesMedicas" ColumnName="CondicionesMedicas" />
                 <ScalarProperty Name="TipoSangre" ColumnName="TipoSangre" />
                 <ScalarProperty Name="ID_Motivo" ColumnName="ID_Motivo" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -591,6 +622,7 @@
                 <ScalarProperty Name="claseID" ColumnName="claseID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="cupos" ColumnName="cupos" />
+                <ScalarProperty Name="ID_Instructor" ColumnName="ID_Instructor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -710,7 +742,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

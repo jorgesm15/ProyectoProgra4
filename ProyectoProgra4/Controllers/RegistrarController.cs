@@ -27,17 +27,19 @@ namespace ProyectoProgra4.Controllers
                 {
                     using (var contextoUsuario = new ProyectoEntities())
                     {
+                        var rol = "Cliente";
                         contextoUsuario.InsertarClientes(
                             usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
                             usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
                             usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre,
-                            usuario.motivo
+                            usuario.motivo, rol
                         );
                     }
                     //ViewBag.Message = "Usuario registrado";
                     TempData["Message"] = "Usuario Registrado";
                     Session["UserCorreo"] = usuario.correo.ToString();
                     Session["Nombre"] = usuario.nombre.ToString();
+                    Session["ID_Usuario"] = usuario.cedula.ToString();
                     return RedirectToAction("Index", "DashboardU");
                 }
                 catch (Exception e)
@@ -80,7 +82,6 @@ namespace ProyectoProgra4.Controllers
                 ViewBag.ListaComboMotivo = listilla;
             }
         }
-
 
         public static string GetMD5(string str)
         {
