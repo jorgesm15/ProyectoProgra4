@@ -12,7 +12,6 @@ namespace ProyectoProgra4.Controllers
         [HttpGet]
         public ActionResult PaginaPrincipal()
         {
-            ViewBag.Message = TempData["Message"];
             return View();
         }
 

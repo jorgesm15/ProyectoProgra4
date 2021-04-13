@@ -18,6 +18,7 @@
         <AssociationConnector Association="ProyectoModel.FK_Clientes_Motivo" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoModel.FK__Reserva__claseID__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoModel.FK_Instructor_Especialidad" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoModel.FK_Disciplinas_Instructor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

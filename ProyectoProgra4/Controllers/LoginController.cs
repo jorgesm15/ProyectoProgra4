@@ -18,10 +18,10 @@ namespace ProyectoProgra4.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(clsUsuario usuario)
+        public ActionResult Login(clsLogin usuario)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 using (var login = new ProyectoEntities())
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
@@ -54,11 +54,18 @@ namespace ProyectoProgra4.Controllers
                     }
 
                 }
-            }
+            //}
             return View("Index");
         }
 
     
+        public ActionResult CerrarSession()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("PaginaPrincipal", "PaginaPrincipal");
+        }
+
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();

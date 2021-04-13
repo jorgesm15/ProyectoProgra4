@@ -4,11 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Power Fit</h2>
-
 
 @if (Session["UserCorreo"] != null)
 {
+    <div id="msjExito" class="ui success message hidden">
+        <i class="close icon"></i>
+        <div class="header">
+            Su registro fue exitoso.
+        </div>
+        <p>Ya puedes hacer uso de todas las funcionalidades que ofrece Power Fit.</p>
+    </div>
+
     <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>
     <div class="ui four column centered grid">
         <div class="four column centered row">
@@ -28,20 +34,21 @@
             <div class="column">
                 <div class="ui centered orange card">
                     <div class="image">
-                        <img src="~/img/mitchell-hollander-8b1cWDyvT7Y-unsplash.jpg">
+                        <img src="~/img/hayley-kim-design-eot-ka5dM7Q-unsplash.jpg">
                     </div>
                     <div class="content">
-                        <a class="header">Reservar</a>
+                        <a href="@Url.Action("Rutina","Rutina")" class="header">Rutina</a>
                         <div class="description">
-                            Acá podrá reservar sus clases y equipo necesario
+                            Acá podrá ver sus rutina
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="column">
                 <div class="ui centered orange card">
                     <div class="image">
-                        <img src="~/img/calendario.png">
+                        <img src="">
                     </div>
                     <div class="content">
                         <a class="header">Reservar</a>
@@ -54,8 +61,20 @@
         </div>
     </div>
 
+    if (ViewBag.Message != null)
+    {
+        @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtSuccessful", "")
+    }
+
 }
 else
 {
     Response.Redirect("~/Login/Index");
 }
+
+@Scripts.Render("~/bundles/jquery");
+@Scripts.Render("/Funciones/ViewBags.js")
