@@ -22,7 +22,7 @@ namespace ProyectoProgra4.Controllers
                                 select new Reserva()
                                 {
                                     reservaID = x.reservaID,
-                                    nombreDis = d.nombre,
+                                    //nombreDis = d.nombre,
                                     dia = x.dia,
                                     hora = x.hora,
                                     equipo = x.equipo
