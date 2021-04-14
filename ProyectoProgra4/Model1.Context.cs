@@ -35,6 +35,7 @@ namespace ProyectoProgra4
         public virtual DbSet<Motivo> Motivo { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Errores> Errores { get; set; }
     
         public virtual int InsertarClientes(string pIdCliente, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, Nullable<decimal> pPeso, Nullable<decimal> pEstatura, string pCondicionesMedicas, string pTipoSangre, Nullable<int> pIdMotivo, string pRol)
         {
@@ -103,6 +104,23 @@ namespace ProyectoProgra4
                 new ObjectParameter("pRol", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarClientes", pIdClienteParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pContraseñaParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pPesoParameter, pEstaturaParameter, pCondicionesMedicasParameter, pTipoSangreParameter, pIdMotivoParameter, pRolParameter);
+        }
+    
+        public virtual int InsertarErrores(string pDescripcion, string pCliente, Nullable<System.DateTime> pDia)
+        {
+            var pDescripcionParameter = pDescripcion != null ?
+                new ObjectParameter("pDescripcion", pDescripcion) :
+                new ObjectParameter("pDescripcion", typeof(string));
+    
+            var pClienteParameter = pCliente != null ?
+                new ObjectParameter("pCliente", pCliente) :
+                new ObjectParameter("pCliente", typeof(string));
+    
+            var pDiaParameter = pDia.HasValue ?
+                new ObjectParameter("pDia", pDia) :
+                new ObjectParameter("pDia", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarErrores", pDescripcionParameter, pClienteParameter, pDiaParameter);
         }
     
         public virtual ObjectResult<MostrarListaResevas_Result> MostrarListaResevas()

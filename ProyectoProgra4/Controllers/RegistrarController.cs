@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
 using System.Web.Mvc;
-using System.Text.RegularExpressions;
+
 
 namespace ProyectoProgra4.Controllers
 {
@@ -30,7 +30,7 @@ namespace ProyectoProgra4.Controllers
                         var rol = "Cliente";
                         contextoUsuario.InsertarClientes(
                             usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
-                            usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
+                            usuario.correo, usuario.edad, usuario.contrasenia, usuario.direccion, usuario.telefono,
                             usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre,
                             usuario.motivo, rol
                         );
@@ -42,9 +42,34 @@ namespace ProyectoProgra4.Controllers
                     Session["ID_Usuario"] = usuario.cedula.ToString();
                     return RedirectToAction("Index", "DashboardU");
                 }
+                ////Validar excepción de SQL
                 catch (Exception e)
                 {
-                    ViewBag.Error = "Dato duplicado";
+                    if (e.GetType().Name == "Exception")
+                    {
+                        ViewBag.Error = "El usuario ya existe, intente con otro número de cédula.";
+                        DateTime dateTime = DateTime.Now;
+                        using (var contextoUsuario = new ProyectoEntities())
+                        {
+                            contextoUsuario.InsertarErrores(
+                               e.Message.ToString(), usuario.correo, dateTime
+                            );
+                        }
+                    }
+                    else
+                    {
+                        if (e.GetType().Name == "EntityCommandExecutionException")
+                        {
+                            ViewBag.Error = "El usuario ya existe, intente con otro número de cédula.";
+                            DateTime dateTime = DateTime.Now;
+                            using (var contextoUsuario = new ProyectoEntities())
+                            {
+                                contextoUsuario.InsertarErrores(
+                                   e.Message.ToString(), usuario.cedula, dateTime
+                                );
+                            }
+                        }
+                    }
                 }
             }
 

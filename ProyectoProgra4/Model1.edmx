@@ -46,6 +46,20 @@
           <Property Name="cupos" Type="int" Nullable="false" />
           <Property Name="ID_Instructor" Type="varchar" MaxLength="12" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Errores">
+          <Key>
+            <PropertyRef Name="ID_Error" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Dia" />
+          </Key>
+          <Property Name="ID_Error" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Dia" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Especialidad">
           <Key>
             <PropertyRef Name="ID_Especialidad" />
@@ -187,6 +201,11 @@
           <Parameter Name="pIdMotivo" Type="int" Mode="In" />
           <Parameter Name="pRol" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="InsertarErrores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pCliente" Type="varchar" Mode="In" />
+          <Parameter Name="pDia" Type="date" Mode="In" />
+        </Function>
         <Function Name="MostrarListaResevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarResevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="RegistrarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -235,6 +254,14 @@
           <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errores" EntityType="Self.Errores" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Errores].[ID_Error] AS [ID_Error], 
+    [Errores].[Descripcion] AS [Descripcion], 
+    [Errores].[Cliente] AS [Cliente], 
+    [Errores].[Dia] AS [Dia]
+    FROM [dbo].[Errores] AS [Errores]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Reserva__claseID__1AD3FDA4" Association="Self.FK__Reserva__claseID__1AD3FDA4">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Reserva" EntitySet="Reserva" />
@@ -373,6 +400,18 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Errores">
+          <Key>
+            <PropertyRef Name="ID_Error" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Dia" />
+          </Key>
+          <Property Name="ID_Error" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cliente" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dia" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
         <Association Name="FK_Instructor_Administrador">
           <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
           <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
@@ -454,6 +493,7 @@
           <EntitySet Name="Motivo" EntityType="Self.Motivo" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Errores" EntityType="Self.Errores" />
           <AssociationSet Name="FK_Instructor_Administrador" Association="Self.FK_Instructor_Administrador">
             <End Role="Administrador" EntitySet="Administrador" />
             <End Role="Instructor" EntitySet="Instructor" />
@@ -495,6 +535,11 @@
             <Parameter Name="pTipoSangre" Mode="In" Type="String" />
             <Parameter Name="pIdMotivo" Mode="In" Type="Int32" />
             <Parameter Name="pRol" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarErrores">
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pCliente" Mode="In" Type="String" />
+            <Parameter Name="pDia" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="MostrarListaResevas" ReturnType="Collection(ProyectoModel.MostrarListaResevas_Result)" />
           <FunctionImport Name="MostrarResevas" ReturnType="Collection(ProyectoModel.MostrarResevas_Result)" />
@@ -679,7 +724,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Errores">
+            <EntityTypeMapping TypeName="ProyectoModel.Errores">
+              <MappingFragment StoreEntitySet="Errores">
+                <ScalarProperty Name="ID_Error" ColumnName="ID_Error" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="InsertarClientes" FunctionName="ProyectoModel.Store.InsertarClientes" />
+          <FunctionImportMapping FunctionImportName="InsertarErrores" FunctionName="ProyectoModel.Store.InsertarErrores" />
           <FunctionImportMapping FunctionImportName="MostrarListaResevas" FunctionName="ProyectoModel.Store.MostrarListaResevas">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoModel.MostrarListaResevas_Result">

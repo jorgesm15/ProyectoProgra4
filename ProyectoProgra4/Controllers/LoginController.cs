@@ -20,13 +20,12 @@ namespace ProyectoProgra4.Controllers
         [HttpPost]
         public ActionResult Login(clsLogin usuario)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 using (var login = new ProyectoEntities())
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();
-
                     try
                     {
                         if (user != null)
@@ -47,6 +46,13 @@ namespace ProyectoProgra4.Controllers
                             if (user == null)
                             {
                                 ViewBag.Error = "El correo electrónico que ingresaste no existe.";
+                                DateTime dateTime = DateTime.Now;
+                                using (var contextoUsuario = new ProyectoEntities())
+                                {
+                                    contextoUsuario.InsertarErrores(
+                                       e.Message.ToString(), usuario.correo, dateTime
+                                    );
+                                }
 
                             }
 
@@ -54,7 +60,7 @@ namespace ProyectoProgra4.Controllers
                     }
 
                 }
-            //}
+            }
             return View("Index");
         }
 
