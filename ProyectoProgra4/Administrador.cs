@@ -26,6 +26,7 @@ namespace ProyectoProgra4
         public string SegundoApellido { get; set; }
         public string Correo { get; set; }
         public string Contraseña { get; set; }
+        public string Rol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Instructor> Instructor { get; set; }

@@ -10,10 +10,8 @@
 </div>
 
 
-@if (Session["UserCorreo"] != null)
+@if (Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador"))
 {
-
-
     <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;"></label>
     <div class="ui four column centered grid">
         <div class="four column centered row">
@@ -23,7 +21,7 @@
                         <img src="~/img/jonathan-borba-R0y_bEUjiOM-unsplash.jpg">
                     </div>
                     <div class="content">
-                        <a href="@Url.Action("Instructor","Instructor")" class="header">Instructores</a>
+                        <a href="@Url.Action("InsertarInstructor","Instructor")" class="header">Instructores</a>
                         <div class="description">
                             Panel de instructores
                         </div>
@@ -57,8 +55,6 @@
                 </div>
             </div>
         </div>
-
-            <div class="four column centered row">
                 <div class="column">
                     <div class="ui centered orange card">
                         <div class="ui image">
@@ -72,9 +68,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
             
         </div>
 

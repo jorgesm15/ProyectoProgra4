@@ -6,8 +6,9 @@ using System.Web;
 
 namespace ProyectoProgra4.Entidades
 {
-    public class clsUsuario
+    public class clsInstructor
     {
+
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string cedula { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
@@ -30,19 +31,11 @@ namespace ProyectoProgra4.Entidades
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string telefonoEmergencia { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
-        public decimal peso { get; set; }
-        [Required(ErrorMessage = "Este campo no puede ser vacío.")]
-        public decimal estatura { get; set; }
-        [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string condicionesMedicas { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
-        public string tipoSangre { get; set; }
-        [Required(ErrorMessage = "Este campo no puede ser vacío.")]
-        public int motivo { get; set; }
-
+        public int especialidad { get; set; }
+        
         public string rol { get; set; }
-
-        public int ID_Sexo { get; set; }
 
     }
 }

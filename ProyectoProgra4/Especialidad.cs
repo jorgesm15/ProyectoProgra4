@@ -14,16 +14,7 @@ namespace ProyectoProgra4
     
     public partial class Especialidad
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Especialidad()
-        {
-            this.Instructor = new HashSet<Instructor>();
-        }
-    
         public string ID_Especialidad { get; set; }
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Instructor> Instructor { get; set; }
     }
 }
