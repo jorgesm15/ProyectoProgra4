@@ -30,8 +30,6 @@ namespace ProyectoProgra4.Controllers
 
 
                 CargarDisciplinas();
-
-
                 Session["mostrarReservas"] = reservas;
                 return View("Reserva");
             }

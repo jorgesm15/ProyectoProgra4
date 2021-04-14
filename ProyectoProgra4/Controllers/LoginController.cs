@@ -26,7 +26,6 @@ namespace ProyectoProgra4.Controllers
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();
-
                     try
                     {
                         if (user != null)
@@ -47,6 +46,13 @@ namespace ProyectoProgra4.Controllers
                             if (user == null)
                             {
                                 ViewBag.Error = "El correo electrónico que ingresaste no existe.";
+                                DateTime dateTime = DateTime.Now;
+                                using (var contextoUsuario = new ProyectoEntities())
+                                {
+                                    contextoUsuario.InsertarErrores(
+                                       e.Message.ToString(), usuario.correo, dateTime
+                                    );
+                                }
 
                             }
 

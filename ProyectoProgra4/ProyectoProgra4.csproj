@@ -203,6 +203,9 @@
     <Compile Include="Entidades\clsLogin.cs" />
     <Compile Include="Entidades\clsReserva.cs" />
     <Compile Include="Entidades\clsUsuario.cs" />
+    <Compile Include="Errores.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Especialidad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
