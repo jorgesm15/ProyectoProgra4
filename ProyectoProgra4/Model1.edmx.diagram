@@ -20,6 +20,7 @@
         <AssociationConnector Association="ProyectoModel.FK__Reserva__claseID__1AD3FDA4" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoModel.FK_Disciplinas_Instructor" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoModel.FK_Instructor_Especialidad" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoModel.FK_Disciplinas_Instructor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

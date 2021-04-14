@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="ID_Administrador" />
@@ -287,8 +287,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -334,9 +333,14 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="claseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cupos" Type="Int32" Nullable="false" />
+
           <Property Name="ID_Instructor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__1AD3FDA4" FromRole="Disciplinas" ToRole="Reserva" />
           <NavigationProperty Name="Instructor" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Disciplinas" ToRole="Instructor" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__claseID__4F7CD00D" FromRole="Disciplinas" ToRole="Reserva" />
+          <Property Name="ID_Instructor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Instructor" Relationship="ProyectoModel.FK_Disciplinas_Instructor" FromRole="Disciplinas" ToRole="Instructor" />
+
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
@@ -361,6 +365,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
           <NavigationProperty Name="Especialidad" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Especialidad" />
+          <NavigationProperty Name="Disciplinas" Relationship="ProyectoModel.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
         </EntityType>
         <EntityType Name="Motivo">
           <Key>
@@ -575,6 +580,10 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_Disciplinas_Instructor" Association="ProyectoModel.FK_Disciplinas_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Disciplinas" EntitySet="Disciplinas" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="MostrarListaResevas_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
@@ -599,6 +608,18 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_Disciplinas_Instructor">
+          <End Type="ProyectoModel.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="ProyectoModel.Disciplinas" Role="Disciplinas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="ID_Instructor" />
+            </Principal>
+            <Dependent Role="Disciplinas">
+              <PropertyRef Name="ID_Instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -642,6 +663,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <EntitySetMapping Name="Disciplinas">
             <EntityTypeMapping TypeName="ProyectoModel.Disciplinas">
               <MappingFragment StoreEntitySet="Disciplinas">
+                <ScalarProperty Name="ID_Instructor" ColumnName="ID_Instructor" />
                 <ScalarProperty Name="claseID" ColumnName="claseID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="cupos" ColumnName="cupos" />
