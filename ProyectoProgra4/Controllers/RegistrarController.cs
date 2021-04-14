@@ -15,7 +15,8 @@ namespace ProyectoProgra4.Controllers
         // GET: Registrar
         public ActionResult Index()
         {
-            CargarMotivo();
+            CargarEspecialidad();
+            CargarSexo();
             return View("InsertarUsuario");
         }
 
@@ -30,9 +31,9 @@ namespace ProyectoProgra4.Controllers
                         var rol = "Cliente";
                         contextoUsuario.InsertarClientes(
                             usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
-                            usuario.correo, usuario.edad, usuario.contrasenia, usuario.direccion, usuario.telefono,
+                            usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
                             usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre,
-                            usuario.motivo, rol
+                            usuario.motivo, rol, usuario.ID_Sexo
                         );
                     }
                     //ViewBag.Message = "Usuario registrado";
@@ -40,6 +41,7 @@ namespace ProyectoProgra4.Controllers
                     Session["UserCorreo"] = usuario.correo.ToString();
                     Session["Nombre"] = usuario.nombre.ToString();
                     Session["ID_Usuario"] = usuario.cedula.ToString();
+                    Session["ID_Sexo"] = usuario.ID_Sexo.ToString();
                     return RedirectToAction("Index", "DashboardU");
                 }
                 ////Validar excepción de SQL
@@ -92,19 +94,35 @@ namespace ProyectoProgra4.Controllers
             }
         }
 
-        public void CargarMotivo()
+        public void CargarEspecialidad()
         {
             using (var contexto = new ProyectoEntities())
             {
-                var respuesta = (from x in contexto.Motivo select x).ToList();
+                var respuesta = (from x in contexto.Disciplinas select x).ToList();
                 List<SelectListItem> listilla = new List<SelectListItem>();
 
                 foreach (var item in respuesta)
                 {
-                    listilla.Add(new SelectListItem { Value = item.ID_Motivo.ToString(), Text = item.Descripcion });
+                    listilla.Add(new SelectListItem { Value = item.claseID.ToString(), Text = item.nombre });
                 }
 
                 ViewBag.ListaComboMotivo = listilla;
+            }
+        }
+
+        public void CargarSexo()
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var respuesta = (from x in contexto.Sexo select x).ToList();
+                List<SelectListItem> listilla = new List<SelectListItem>();
+
+                foreach (var item in respuesta)
+                {
+                    listilla.Add(new SelectListItem { Value = item.ID_Sexo.ToString(), Text = item.Sexo1 });
+                }
+
+                ViewBag.ListaComboSexo = listilla;
             }
         }
 

@@ -1,19 +1,27 @@
-﻿@model ProyectoProgra4.Entidades.clsUsuario
+﻿@model ProyectoProgra4.Entidades.clsInstructor
 
 @{
-    ViewBag.Title = "InsertarUsuario";
+    ViewBag.Title = "InsertarInstructor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br />
-<br />
 
-@using (Html.BeginForm("InsertarUsuario", "Registrar", FormMethod.Post, new { @class = "ui form" }))
+
+@using (Html.BeginForm("InsertarInstructor", "Instructor", FormMethod.Post, new { @class = "ui form" }))
 {
-    if (Session["UserCorreo"] == null)
+    if (Session["Rol"].Equals("Administrador"))
     {
+
+        <div id="msjExito" class="ui success message hidden">
+            <i class="close icon"></i>
+            <div class="header">
+                El instructor fue registrado exitosamente.
+            </div>
+            <p>Ya puedes hacer uso de todas las funcionalidades que ofrece Power Fit.</p>
+        </div>
+
         <div class="container body-content">
-            <h2 class="ui dividing header">Registrar</h2>
+            <h2 class="ui dividing header">Registrar Instructores</h2>
             <div class="field">
                 <label>Cédula</label>
                 <div class="three fields">
@@ -88,83 +96,68 @@
             </div>
 
 
-            <h4 class="ui dividing header">Información Médica</h4>
-            <div class="field">
-                <div class="two fields">
-                    <div class="required field">
-                        <label>Peso</label>
-                        <div class="ui right labeled input">
-                            @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
-                            <div class="ui basic label">
-                                kg
+            @*<h4 class="ui dividing header">Información Médica</h4>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="required field">
+                            <label>Peso</label>
+                            <div class="ui right labeled input">
+                                @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
+                                <div class="ui basic label">
+                                    kg
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="required field">
-                        <label>Estatura</label>
-                        <div class="ui right labeled input">
-                            @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
-                            <div class="ui basic label">
-                                m
+                        <div class="required field">
+                            <label>Estatura</label>
+                            <div class="ui right labeled input">
+                                @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
+                                <div class="ui basic label">
+                                    m
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
 
-                <div class="two fields">
-                    <div class="required field">
+            <div class="two fields">
+                @*<div class="required field">
                         <label>Tipo de sangre</label>
                         @Html.TextBoxFor(Model => Model.tipoSangre, new { @class = "form-control", @id = "txtTipoSangre", @required = "true" })
-                    </div>
-                    <div class="required field">
-                        <label>Motivo</label>
-                        @Html.DropDownListFor(Model => Model.motivo, ViewBag.ListaComboMotivo as List<SelectListItem>, new { @id = "selectedMotivo", @required = "true" })
-                    </div>
-                    <div class="required field">
-                        <label>Sexo</label>
-                        @Html.DropDownListFor(Model => Model.ID_Sexo, ViewBag.ListaComboSexo as List<SelectListItem>, new { @id = "selectedSexo", @required = "true" })
-                    </div>
+                    </div>*@
+                <div class="required field">
+                    <label>Motivo</label>
+                    @Html.DropDownListFor(Model => Model.especialidad, ViewBag.ListaComboEspecialidad as List<SelectListItem>, new { @id = "selectedEspecialidad", @required = "true" })
                 </div>
-
-
-                <div class="ui form">
-                    <div class="required field">
-                        <label>Condiciones Médicas</label>
-                        @Html.TextAreaFor(Model => Model.condicionesMedicas, new { @id = "txtCondiciones", @rows = "2", @required = "true" })
-                        @*<textarea rows="2"></textarea>*@
-                    </div>
-                </div>
-
-                <button type="submit" class="ui big button" style="margin-top: 10px;">
-                    Continuar
-                </button>
-
             </div>
+
+
+            <div class="ui form">
+                <div class="required field">
+                    <label>Condiciones Médicas</label>
+                    @Html.TextAreaFor(Model => Model.condicionesMedicas, new { @id = "txtCondiciones", @rows = "2", @required = "true" })
+                    @*<textarea rows="2"></textarea>*@
+                </div>
+            </div>
+
+            <button type="submit" class="ui big button" style="margin-top: 10px;">
+                Continuar
+            </button>
         </div>
-    }else
+    }
+    else
     {
         Response.Redirect("~/DashboardU/Index");
     }
 
 
-    if (ViewBag.Error != null)
+    if (ViewBag.Message != null)
     {
-        @Html.Hidden("txtError", (string)ViewBag.Error.ToString())
+        @Html.Hidden("txtExito", (string)ViewBag.Message.ToString())
     }
     else
     {
-        @Html.Hidden("txtError", "")
+        @Html.Hidden("txtExito", "")
     }
-
-    if (ViewBag.Vacios != null)
-    {
-        @Html.Hidden("txtVacio", (string)ViewBag.Error.ToString())
-    }
-    else
-    {
-        @Html.Hidden("txtVacio", "")
-    }
-
 }
 
 @section Scripts
@@ -173,6 +166,17 @@
     @Scripts.Render("/Funciones/ViewBags.js")
 
     <script>
+
+        function ValidarDecimales(event) {
+            if (event.which >= 48 && event.which <= 57) {
+                return true;
+            } else if (event.which == 46) {
+                return true;
+            } else {
+                event.preventDefault;
+            }
+        }
+
         $(document).ready(function () {
             $("#txtEstatura").on("keypress keyup blur", function (event) {
                 ValidarDecimales(event);
@@ -182,26 +186,14 @@
             });
             $("#txtTlf").on("keypress keyup blur", function (event) {
                 ValidarTelefono(event);
-            }
+            });
+        }
 
-                                });
 
-        //function ValidarTelefono(event) {
-        //    if (event.which >= 48 && event.which <= 57)
-        //        return true;
-        //    else if (event.which >= 65 && event.which <= 90)
-        //        return false;
-        //    else
-        //        event.preventDefault();
-        //}
 
-        function ValidarDecimales(event) {
-            if (event.which >= 48 && event.which <= 57)
-                return true;
-            else if (event.which == 46)
-                return true;
-            else
-                event.preventDefault();
-        };
+
     </script>
 }
+
+
+

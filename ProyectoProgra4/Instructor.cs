@@ -26,14 +26,18 @@ namespace ProyectoProgra4
         public string SegundoApellido { get; set; }
         public string Correo { get; set; }
         public string Contraseña { get; set; }
-        public string ID_Especialidad { get; set; }
+        public string Telefono { get; set; }
+        public string TelefonoEmergencia { get; set; }
+        public int Edad { get; set; }
+        public string CondicionesMedicas { get; set; }
+        public string Direccion { get; set; }
+        public string Rol { get; set; }
+        public int ID_Especialidad { get; set; }
         public string ID_Administrador { get; set; }
     
         public virtual Administrador Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Disciplinas> Disciplinas { get; set; }
-        public virtual Especialidad Especialidad { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Disciplinas> Disciplinas { get; set; }
+        public virtual Disciplinas Disciplinas1 { get; set; }
     }
 }

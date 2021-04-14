@@ -26,6 +26,7 @@ namespace ProyectoProgra4.Controllers
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();
+                    var admin = login.Administrador.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash) && query.Rol.Equals("Administrador")).SingleOrDefault();
                     try
                     {
                         if (user != null)
@@ -33,6 +34,14 @@ namespace ProyectoProgra4.Controllers
                             Session["UserCorreo"] = user.Correo.ToString();
                             Session["Nombre"] = user.Nombre.ToString();
                             return RedirectToAction("Index", "DashboardU");
+                        }
+                        else if (admin != null)
+                        {
+                            Session["UserCorreo"] = admin.Correo.ToString();
+                            Session["Nombre"] = admin.Nombre.ToString();
+                            Session["Rol"] = admin.Rol.ToString();
+                            Session["ID_Admin"] = admin.ID_Administrador;
+                            return RedirectToAction("Administrador", "Administrador");
                         }
                         else
                         {
@@ -64,7 +73,7 @@ namespace ProyectoProgra4.Controllers
             return View("Index");
         }
 
-    
+
         public ActionResult CerrarSession()
         {
             Session.Clear();
