@@ -275,7 +275,6 @@
     <Content Include="img\PowerFit.png" />
     <Content Include="img\rutinas-ejercicio.jpg" />
     <Content Include="img\yoga.jpg" />
-    <Content Include="js\JavaScript.js" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

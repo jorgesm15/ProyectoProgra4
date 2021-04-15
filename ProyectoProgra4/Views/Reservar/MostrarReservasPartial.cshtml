@@ -16,6 +16,7 @@
         @foreach (var item in Model)
         {
             <tr>
+
                 <td>@item.nombreDis</td>
                 <td>@item.dia.ToString("dd/MM/yyyy").Trim()</td>
                 <td>@item.hora PM</td>
@@ -28,17 +29,49 @@
                 {
                     <td></td>
                 }
-                <td>
-                    
-                    <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+            <td>
+
+                @*<div class="form-group row" style="border:solid red; ">
+                    <button type="button" class="ui medium button" id="btnActualizar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.reservaID)" ;>
                         Actualizar
                     </button>
 
-                    <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
-                        Eliminar
-                    </button>
-                </td>
+                    @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.reservaID }, FormMethod.Post))
+                    {
+                        <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                            Eliminar
+                        </button>
+                    }
+                </div>*@
+
+                <div class="form-group row" style="align-content:center">
+                    <div class="col-sm-3">
+                        
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="ui medium button" id="btnActualizar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.reservaID)" ;>
+                            Actualizar
+                        </button>                   
+                    </div>
+                    <div class="col-sm-2">
+                        @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.reservaID }, FormMethod.Post))
+                        {
+                            <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                                Eliminar
+                            </button>
+                        }
+                    </div>
+                </div>
+            </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+
+    @section Scripts
+{
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+        @Scripts.Render("/Funciones/Reserva.js")
+    }

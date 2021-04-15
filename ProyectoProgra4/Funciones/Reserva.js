@@ -2,6 +2,8 @@
 
 $(document).ready(function () {
     obtenerValor();
+    $('#btnActualizarCambios').hide();
+    
 });
 
 function obtenerValor() {
@@ -153,10 +155,10 @@ function obtenerValor() {
 }
 
 function obtenerHora() {
-
-    document.getElementById("hora").value = document.getElementById("hora").value.split(" ")[0]; 
-
     
+    document.getElementById("hora").value = document.getElementById("hora").value.split(" ")[0];  
+
+    return false;
 
 }
 
@@ -173,3 +175,32 @@ function toggle() {
         toggleCheck);
 }
 
+function ActualizarDatos(reservaID){
+
+    $.ajax({
+        type: 'Post',
+        url: '/Reservar/ActualizarDatos',
+        data: {
+            reservaID: reservaID
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (data) {
+
+            $('#btnReservar').hide();
+            $('#btnActualizarCambios').show();
+            
+            document.getElementById("selectedDis").value = data.claseID;
+            obtenerValor();
+            document.getElementById("dia").value = data.dia;
+            document.getElementById("hora").value = data.hora;
+            debugger;
+            document.getElementById("reservaTXT").value = data.reservaID;
+        },
+        error: function (data) {
+            aler("MAL")
+        }
+        
+    });
+   
+}

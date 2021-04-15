@@ -29,3 +29,9 @@ $(document).ready(function () {
         document.getElementById("msjExito").style.visibility = "visible";
     }
 });
+
+$(document).ready(function () {
+    if ($("#txtErrorReserva").val() != "") {
+        $("msjErrorReserva").removeClass('hidden')
+    }
+});

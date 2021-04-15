@@ -23,8 +23,10 @@ namespace ProyectoProgra4
         public int claseID { get; set; }
         public string nombre { get; set; }
         public int cupos { get; set; }
+        public string ID_Instructor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reserva> Reserva { get; set; }
+        public virtual Instructor Instructor { get; set; }
     }
 }

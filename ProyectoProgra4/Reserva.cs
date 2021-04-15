@@ -25,5 +25,5 @@ namespace ProyectoProgra4
         public virtual Disciplinas Disciplinas { get; set; }
 
         public string nombreDis { get; set; }
-}
+    }
 }

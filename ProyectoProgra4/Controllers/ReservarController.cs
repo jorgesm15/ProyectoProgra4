@@ -13,23 +13,20 @@ namespace ProyectoProgra4.Controllers
 
         public ActionResult Reserva()
         {
+            
             using (var contexto = new ProyectoEntities())
             {
-                //var reservas = (from x in contexto.Reserva select x).ToList();
                 var reservas = (from x in contexto.Reserva.AsEnumerable()
                                 join d in contexto.Disciplinas.AsEnumerable()
                                 on x.claseID equals d.claseID
                                 select new Reserva()
-                                {
+                                {   reservaID = x.reservaID,
                                     nombreDis = d.nombre,
                                     dia = x.dia,
                                     hora = x.hora,
                                     equipo = x.equipo
                                 }).ToList();
-
-
-                CargarDisciplinas();
-
+                CargarDisciplinas(); //se trae las disciplinas al drop-down
 
                 Session["mostrarReservas"] = reservas;
                 return View("Reserva");
@@ -38,9 +35,9 @@ namespace ProyectoProgra4.Controllers
         }
 
 
-        public void CargarDisciplinas()
+        public void CargarDisciplinas() //se trae las disciplinas al drop-down
         {
-            using (var contexto = new ProyectoEntities())
+           using (var contexto = new ProyectoEntities())
             {
                 var respuesta = (from x in contexto.Disciplinas select x).ToList();
                 List<SelectListItem> listilla = new List<SelectListItem>();
@@ -55,43 +52,114 @@ namespace ProyectoProgra4.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult InsertarReserva(clsReserva reserva)
+        public ActionResult ValidarBoton(clsReserva reserva, string submit)
         {
-            using (var contextoReservar = new ProyectoEntities())
+            if (submit == "Reservar")
             {
-                contextoReservar.RegistrarReserva(
-                    reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
-                );
+                InsertarReserva(reserva);
+                Reserva();
+                return RedirectToAction("Reserva");
             }
+            else if (submit == "Guardar Cambios")
+            {
+                ActualizarCambios(reserva);
+                return RedirectToAction("Reserva");
+            }
+            else 
+            { 
+                return RedirectToAction("Index", "Home"); 
+            }
+        }
 
-            Reserva();
-
-            return RedirectToAction("Reserva");
+        public void InsertarReserva(clsReserva reserva) // Ejecuta el procedimiento almancenado de Insertar
+        {
+            try
+            {
+                using (var contextoReservar = new ProyectoEntities())
+                {
+                    contextoReservar.RegistrarReserva(
+                        reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
+                    );
+                }
+            }catch (Exception e)
+            {
+                ViewBag.ErrorReserva = "Reserva Duplicada";
+            }
         }       
 
         [HttpPost]
-        public ActionResult EliminarReserva(Reserva reserv)
+        public ActionResult EliminarReserva(int id)
         {
             using (var contexto = new ProyectoEntities())
             {
-                //var reservas = (from x in contexto.Reserva select x).ToList();
                 var reservas = (from x in contexto.Reserva
-                                where x.reservaID == reserv.reservaID
+                                where x.reservaID == id
                                 select x).FirstOrDefault();
 
                 if (reservas != null)
                 {
                     contexto.Reserva.Remove(reservas);
                     contexto.SaveChanges();
+                    return RedirectToAction("Reserva");
                 }
 
-
-
-                Session["mostrarReservas"] = reservas;
                 return View("Reserva");
             }
 
         }
+        [HttpPost]
+        public ActionResult ActualizarDatos(int reservaID) //Cargar Datos en la parte de mostrar vista reserva
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                
+                var reservas = (from x in contexto.Reserva
+                                where x.reservaID == reservaID
+                                select x).FirstOrDefault();
+
+                Dictionary<String, String> reserva = new Dictionary<string, string>();
+
+                
+                reserva.Add("claseID", reservas.claseID.ToString());
+                reserva.Add("hora", reservas.hora.ToString()+" PM");
+                reserva.Add("dia", reservas.dia.ToString().Split(' ')[0]);
+                reserva.Add("reservaID", reservas.reservaID.ToString());
+
+
+                if (reservas.reservaID != reservaID)
+                {
+                    return Json(null, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    return Json(reserva, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+        }
+
+        public void ActualizarCambios(clsReserva reserva) //Cargar los datos 
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var reservas = (from x in contexto.Reserva
+                                where x.reservaID == reserva.reservaID
+                                select x).FirstOrDefault();
+
+                if (reservas != null)
+                {
+                    contexto.Reserva.Remove(reservas);
+                    contexto.SaveChanges();
+
+                }
+                
+
+            }
+
+            InsertarReserva(reserva);
+
+        }
     }
+
 }
+
