@@ -1,4 +1,4 @@
-﻿@model ProyectoProgra4.Entidades.clsUsuario
+﻿@model ProyectoProgra4.Entidades.clsLogin
 
 @{
     ViewBag.Title = "Login";
@@ -12,69 +12,76 @@
 
 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
 {
-    <div class="ui container">
-        <h2>Iniciar Sesión</h2>
-
-        <div id="msjError" class="ui negative message">
-            <i class="close icon"></i>
-            <div class="header">
-                El correo electrónico que ingresaste no existe en nuestros registros.
-            </div>
-            <p>
-                Por favor, revisa e inténtalo de nuevo.
-            </p>
-        </div>
-
-        <div class="ui placeholder segment" style="background-color:#45403F; border-radius:15px ">
-            <div class="ui two column very relaxed stackable grid">
-                <div class="column">
-                    <div class="ui form">
-                        <div class="field">
-                            <label style=" color:#ffffff">Correo Electrónico</label>
-                            <div class="ui left icon input">
-                                @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "correoPersona" })
-                                @*<input type="text" placeholder="">*@
-                                <i class="user icon"></i>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label style=" color:#ffffff">Contraseña</label>
-                            <div class="ui left icon input">
-                                @Html.TextBoxFor(Model => Model.contrasenia, new { @class = "form-control", @id = "contraseniaPersona", @type = "password" })
-                                @*<input type="password">*@
-                                <i class="lock icon"></i>
-                            </div>
-                        </div>
-                        <button type="submit" class="ui big button" style="margin-top: 10px;">
-                            Iniciar Sesión
-                        </button>
-                    </div>
-                </div>
-                <div class="middle aligned column">
-                    <div class="ui big button">
-                        <a href="@Url.Action("Index", "Registrar")">
-                            <i class="signup icon"></i>
-                            Registrarse
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="ui vertical divider" style=" color:#ffffff">
-                O
-            </div>
-        </div>
-    </div>
-
-
-    if (ViewBag.Error != null)
+    if (Session["UserCorreo"] == null)
     {
-        @Html.Hidden("txtErrorUsuario", (string)ViewBag.Error.ToString())
+        <div class="ui container">
+            <h2>Iniciar Sesión</h2>
+            <div id="msjError" class="ui negative message hidden">
+                <i class="close icon"></i>
+                <div class="header">
+                    El correo electrónico que ingresaste no existe en nuestros registros.
+                </div>
+                <p>
+                    Por favor, revisa e inténtalo de nuevo.
+                </p>
+            </div>
+
+            <div class="ui placeholder segment" style="background-color:#45403F; border-radius:15px ">
+                <div class="ui two column very relaxed stackable grid">
+                    <div class="column">
+                        <div class="ui form">
+                            <div class="field">
+                                <label style=" color:#ffffff">Correo Electrónico</label>
+                                <div class="ui left icon input">
+                                    @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "correoPersona", @required = "required" })
+                                    @*<input type="text" placeholder="">*@
+                                    <i class="user icon"></i>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label style=" color:#ffffff">Contraseña</label>
+                                <div class="ui left icon input">
+                                    @Html.TextBoxFor(Model => Model.contrasenia, new { @class = "form-control", @id = "contraseniaPersona", @type = "password", @required = "required" })
+                                    @*<input type="password">*@
+                                    <i class="lock icon"></i>
+                                </div>
+                            </div>
+                            <button type="submit" class="ui big button" style="margin-top: 10px;">
+                                Iniciar Sesión
+                            </button>
+                        </div>
+                    </div>
+                    <div class="middle aligned column">
+                        <div class="ui big button">
+                            <a href="@Url.Action("Index", "Registrar")">
+                                <i class="signup icon"></i>
+                                Registrarse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical divider" style=" color:#ffffff">
+                    O
+                </div>
+            </div>
+        </div>
+
+        if (ViewBag.Error != null)
+        {
+            @Html.Hidden("txtErrorUsuario", (string)ViewBag.Error.ToString())
+        }
+        else
+        {
+            @Html.Hidden("txtErrorUsuario", "")
+        }
     }
     else
     {
-        @Html.Hidden("txtErrorUsuario", "")
+        Response.Redirect("~/DashboardU/Index");
     }
+
 }
+
 
 @section Scripts
 {

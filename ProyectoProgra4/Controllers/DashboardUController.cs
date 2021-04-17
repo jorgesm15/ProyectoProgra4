@@ -11,6 +11,7 @@ namespace ProyectoProgra4.Controllers
         // GET: DashboardU
         public ActionResult Index()
         {
+            ViewBag.Message = TempData["Message"];
             return View();
         }
     }

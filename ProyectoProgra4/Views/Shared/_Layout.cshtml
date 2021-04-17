@@ -62,6 +62,7 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>*@
                 <li class="nav-item nav-link active">@Html.ActionLink("Página Principal ", "PaginaPrincipal", "PaginaPrincipal", null, new { Style = "color:#45403F; font-weight:600" })</li>
+                @*<li class="nav-item nav-link active">@Html.ActionLink("Ver rutinas ", "RutinasLista", "Rutina", null, new { Style = "color:#45403F; font-weight:600" })</li>*@
                 @*<li class="nav-item nav-link active">@Html.ActionLink("Realizar Reserva ", "Reserva", "Reservar", null, new { Style = "color:#45403F; font-weight:600;" })</li>*@
 
 
@@ -99,7 +100,7 @@
                                     <div class="dropdown-item">@Html.ActionLink("Menú Principal", "Index", "DashboardU", null, new { Style = "color:black;" })</div>
                                     <div class="header">Cuenta</div>
                                     <div class="divider"></div>
-                                    <div class="item">Cerrar Sesión</div>
+                                    <div class="item">@Html.ActionLink("Cerrar Sesión", "CerrarSession", "Login", null, new { Style = "color:black;" })</div>
                                 </div>
                             </li>
                     }

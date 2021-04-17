@@ -16,17 +16,27 @@
 });
 
 $(document).ready(function () {
-    document.getElementById("msjError").style.visibility = "hidden";
-    if ($("#txtErrorUsuario").val().trim() != "") {
+    if ($("#txtErrorUsuario").val() != "") {
+        $("#msjError").removeClass('hidden');
         document.getElementById("contraseniaPersona").value = '';
-        document.getElementById("msjError").style.visibility = "visible";
     }
 });
 
 $(document).ready(function () {
-    document.getElementById("msjExito").style.visibility = "hidden";
-    if ($("#txtSuccessful").val().trim() != "") {
-        document.getElementById("msjExito").style.visibility = "visible";
+    if ($("#txtSuccessful").val() != "") {
+        $("#msjExito").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjExito").fadeOut(300)
+        }, 5000);
+    }
+});
+
+$(document).ready(function () {
+    if ($("#txtExito").val() != "") {
+        $("#msjExito").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjExito").fadeOut(300)
+        }, 5000);
     }
 });
 

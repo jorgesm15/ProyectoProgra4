@@ -20,14 +20,18 @@ namespace ProyectoProgra4.Controllers
                                 join d in contexto.Disciplinas.AsEnumerable()
                                 on x.claseID equals d.claseID
                                 select new Reserva()
+
                                 {   reservaID = x.reservaID,
+
+                                {
+                                    reservaID = x.reservaID,
                                     nombreDis = d.nombre,
                                     dia = x.dia,
                                     hora = x.hora,
                                     equipo = x.equipo
                                 }).ToList();
-                CargarDisciplinas(); //se trae las disciplinas al drop-down
 
+                CargarDisciplinas(); //se trae las disciplinas al drop-down
                 Session["mostrarReservas"] = reservas;
                 return View("Reserva");
             }
@@ -90,8 +94,8 @@ namespace ProyectoProgra4.Controllers
                 
                 
             }
-
         }       
+
 
         [HttpPost]
         public ActionResult EliminarReserva(int id)
@@ -107,6 +111,7 @@ namespace ProyectoProgra4.Controllers
                     contexto.Reserva.Remove(reservas);
                     contexto.SaveChanges();
                     return RedirectToAction("Reserva");
+
                 }
 
                 return View("Reserva");
@@ -142,6 +147,7 @@ namespace ProyectoProgra4.Controllers
                 }
             }
 
+
         }
 
         public void ActualizarCambios(clsReserva reserva) //Cargar los datos 
@@ -156,14 +162,9 @@ namespace ProyectoProgra4.Controllers
                 {
                     contexto.Reserva.Remove(reservas);
                     contexto.SaveChanges();
-
                 }
-                
-
             }
-
             InsertarReserva(reserva);
-
         }
     }
 

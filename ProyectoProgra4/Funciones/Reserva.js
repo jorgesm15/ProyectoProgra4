@@ -1,4 +1,4 @@
-﻿let toggleCheck = false;
+﻿ let toggleCheck = false;
 
 $(document).ready(function () {
     obtenerValor();

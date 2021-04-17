@@ -96,4 +96,7 @@ textarea {
 
 .hidden {
     display: none;
+#comboBox {
+  
+    margin: 0 auto;
 }

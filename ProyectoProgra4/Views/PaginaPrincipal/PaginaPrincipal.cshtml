@@ -194,103 +194,7 @@
 <h2 id="seccionContacto">Contacto</h2>
 <br />
 
-<!--<div class="col-5">
-    <div style=" width: 240%;  padding-left:2% ; padding-top: 5%; padding-bottom: 5%;">-->
-        @*div de contacto*@
-        <!--<div class="col-lg-6">
-            <div style="background-color:#F05742; color:white; padding-top:3%;  padding-bottom:3%; border-radius:15px">
-                <div style="margin-left: 3%; margin-right: 3%;">
-                    <div class="ui middle aligned center aligned grid">
-                        <div class="col-lg-12 align-content-md-center">
-                            <h2>Estamos ubicados en: </h2>
-                            <h4>Heredia, San Francisco, Mall Oxígeno, tercer piso</h4>
-                            <br />
-                        </div>
-                        <div class="col-lg-12">
-                            <h2>Número de teléfono: </h2>
-                            <h4>2288-1753</h4>
-                            <br />
-                        </div>
-                        <div class="col-lg-12">
-                            <h2>Correo electrónico: </h2>
-                            <h4>contacto@powerfit.com</h4>
-                            <br />
-                        </div>
-                        <div class="col-lg-12">
-                            <h2>Horario: </h2>
-                            <h4>De lunes a viernes de 8am a 11pm - Sábados y domingos de 9am a 9pm</h4>
-                            <br />
-                            <h2 id="fraseFinal">¡Estamos para servirle!</h2>
-                        </div>
 
-                    </div>
-                </div>
-                <br />
-                <br />
-
-            </div>
-
-
-
-        </div>
-        <div class="col-lg-6">
-            <form action="/" method="post">
-                <div class="ui form">
-                    <div class="ui middle aligned center aligned grid">
-
-                        <div class="ui form">
-                            <div class="field">
-                                <label>Nombre</label>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="user icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Apellidos</label>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="user icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Teléfono</label>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="phone icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Correo Electrónico</label>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="envelope icon"></i>
-                                </div>
-                            </div>
-                            <div class="middle aligned column">
-                                <div class="ui button">
-                                    <i class="envelope icon"></i>
-                                    Enviar
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-
-
-            </form>
-        </div>
-    </div>
-
-    
-</div>-->
 
 
 <div class="row justify-content-start">
@@ -323,91 +227,18 @@
             </div>
         </div>
     </div>
+
     @*Div imagen, parte derecha*@
     <div class="col-5" id="formularioContacto" style="padding-top:0%">
-        <div  style="background-color: #45403F; color:white; padding-top:4%;padding-bottom:5%; border-radius:15px">
-            <br />
-            <form action="/" method="post">
-                <div class="ui form" style="color:white;">
-                    <div class="ui middle aligned center aligned grid">
-                        <div class="ui form">
-                            <h3>Formulario de contacto</h3>
-                            <br />
-                            <div class="field">
-                                <div>
-                                    <h5>Nombre</h5>
-                                </div>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="user icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div>
-                                    <h5>Apellidos</h5>
-                                </div>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="user icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div>
-                                    <h5>Teléfono</h5>
-                                </div>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="phone icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div>
-                                    <h5>Correo Electrónico</h5>
-                                </div>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="envelope icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div>
-                                    <h5>Mensaje</h5>
-                                </div>
-                                <div class="ui left icon input">
-                                    <input type="text" placeholder="">
-                                    <i class="edit outline icon"></i>
-                                </div>
-                            </div>
-                            <div class="middle aligned column">
-                                <div class="ui orange button">
-                                    <i class="envelope icon"></i>
-                                    Enviar
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-
-
-            </form>
+        <div style="background-color: #45403F; color:white; padding-top:4%;padding-bottom:5%; border-radius:15px">
+            @{
+                Html.RenderPartial("SendEmail");
+            }
         </div>
+
     </div>
 </div>
 
-@if (ViewBag.Message != null)
-{
-    @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
-}
-else
-{
-    @Html.Hidden("txtSuccessful", "")
-}
+
 
 @Scripts.Render("/Funciones/ViewBags.js")

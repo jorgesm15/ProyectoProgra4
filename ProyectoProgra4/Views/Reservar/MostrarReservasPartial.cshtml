@@ -12,7 +12,7 @@
         </tr>
     </thead>
 
-    <tbody>
+    <tbody> 
         @foreach (var item in Model)
         {
             <tr>
@@ -29,20 +29,6 @@
                 {
                     <td></td>
                 }
-            <td>
-
-                @*<div class="form-group row" style="border:solid red; ">
-                    <button type="button" class="ui medium button" id="btnActualizar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.reservaID)" ;>
-                        Actualizar
-                    </button>
-
-                    @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.reservaID }, FormMethod.Post))
-                    {
-                        <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
-                            Eliminar
-                        </button>
-                    }
-                </div>*@
 
                 <div class="form-group row" style="align-content:center">
                     <div class="col-sm-3">

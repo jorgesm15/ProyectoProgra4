@@ -1,5 +1,4 @@
-﻿@*@model  ProyectoProgra4.Disciplinas*@
-@model ProyectoProgra4.Entidades.clsReserva
+﻿@model ProyectoProgra4.Entidades.clsReserva
 
 
 @{
@@ -10,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
 
 @using (Html.BeginForm("ValidarBoton", "Reservar", FormMethod.Post, new { @class = "ui form" }))
+{
+if (Session["UserCorreo"] != null)
 {
 <div class="container body-content">
     <br />
@@ -75,7 +76,9 @@
     <input type="submit" id="btnActualizarCambios" class="hidden ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" value="Guardar Cambios" name="submit" onclick="obtenerHora()">
 
 </div>
-
+}else {
+Response.Redirect("~/Login/Index");
+}
     if (ViewBag.ErrorReserva != null)
     {
         @Html.Hidden("txtErrorReserva", (string)ViewBag.ErrorReserva.ToString())
@@ -85,6 +88,8 @@
         @Html.Hidden("txtErrorReserva", "")
     }
 }
+
+   
 
 <br />
 <br />
