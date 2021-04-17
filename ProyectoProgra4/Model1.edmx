@@ -418,6 +418,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="ID_Administrador" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Especialidad" />
           <NavigationProperty Name="Disciplinas1" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Disciplinas" />
         </EntityType>
         <EntityType Name="Motivo">

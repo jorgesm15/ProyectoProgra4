@@ -38,6 +38,7 @@ namespace ProyectoProgra4
         public virtual Administrador Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Disciplinas> Disciplinas { get; set; }
+        public virtual Especialidad Especialidad { get; set; }
         public virtual Disciplinas Disciplinas1 { get; set; }
     }
 }
