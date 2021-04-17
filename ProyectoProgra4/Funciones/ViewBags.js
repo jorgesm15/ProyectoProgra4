@@ -39,3 +39,10 @@ $(document).ready(function () {
         }, 5000);
     }
 });
+
+$(document).ready(function () {
+    debugger;
+    if ($("#txtErrorReserva").val() != "") {
+        $("#msjErrorReserva").removeClass('hidden');
+    }
+});

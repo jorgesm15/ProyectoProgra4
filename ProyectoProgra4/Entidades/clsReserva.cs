@@ -8,6 +8,7 @@ namespace ProyectoProgra4.Entidades
 {
     public class clsReserva
     {
+        public int reservaID { get; set; }
         public int claseID { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
