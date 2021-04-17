@@ -48,6 +48,7 @@
                     <div class="required field">
                         <label>Correo Electrónico</label>
                         @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "txtCorreo", @required = "true" })
+                        @Html.ValidationMessageFor(Model => Model.correo, null, new { @class = "text-danger", @style = "font-weight: 900" })
                     </div>
                     <div class="required field">
                         <label>Contraseña</label>
@@ -141,7 +142,8 @@
 
             </div>
         </div>
-    }else
+    }
+    else
     {
         Response.Redirect("~/DashboardU/Index");
     }
@@ -173,6 +175,25 @@
     @Scripts.Render("/Funciones/ViewBags.js")
 
     <script>
+
+        function ValidarDecimales(event) {
+            if (event.which >= 48 && event.which <= 57) {
+                return true;
+            } else if (event.which == 46) {
+                return true;
+            } else {
+                event.preventDefault();
+            }
+        }
+
+        function ValidarTelefono(event) {
+            if (event.which >= 48 && event.which <= 57) {
+                return true;
+            } else {
+                event.preventDefault();
+            }
+        }
+
         $(document).ready(function () {
             $("#txtEstatura").on("keypress keyup blur", function (event) {
                 ValidarDecimales(event);
@@ -182,26 +203,8 @@
             });
             $("#txtTlf").on("keypress keyup blur", function (event) {
                 ValidarTelefono(event);
-            }
+            });
+        });
 
-                                });
-
-        //function ValidarTelefono(event) {
-        //    if (event.which >= 48 && event.which <= 57)
-        //        return true;
-        //    else if (event.which >= 65 && event.which <= 90)
-        //        return false;
-        //    else
-        //        event.preventDefault();
-        //}
-
-        function ValidarDecimales(event) {
-            if (event.which >= 48 && event.which <= 57)
-                return true;
-            else if (event.which == 46)
-                return true;
-            else
-                event.preventDefault();
-        };
     </script>
 }

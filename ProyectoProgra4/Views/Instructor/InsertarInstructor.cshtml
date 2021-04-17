@@ -96,34 +96,7 @@
             </div>
 
 
-            @*<h4 class="ui dividing header">Información Médica</h4>
-                <div class="field">
-                    <div class="two fields">
-                        <div class="required field">
-                            <label>Peso</label>
-                            <div class="ui right labeled input">
-                                @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
-                                <div class="ui basic label">
-                                    kg
-                                </div>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label>Estatura</label>
-                            <div class="ui right labeled input">
-                                @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
-                                <div class="ui basic label">
-                                    m
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-
             <div class="two fields">
-                @*<div class="required field">
-                        <label>Tipo de sangre</label>
-                        @Html.TextBoxFor(Model => Model.tipoSangre, new { @class = "form-control", @id = "txtTipoSangre", @required = "true" })
-                    </div>*@
                 <div class="required field">
                     <label>Motivo</label>
                     @Html.DropDownListFor(Model => Model.especialidad, ViewBag.ListaComboEspecialidad as List<SelectListItem>, new { @id = "selectedEspecialidad", @required = "true" })
