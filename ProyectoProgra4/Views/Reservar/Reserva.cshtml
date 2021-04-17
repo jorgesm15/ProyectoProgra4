@@ -15,8 +15,7 @@
     <br />
     <br />
     <br />
-    <br />
-    <br />
+ 
     <div id="msjErrorReserva" class="ui negative message hidden">
         <i class="close icon"></i>
         <div class="header">
@@ -45,7 +44,7 @@
                 <div class="ui calendar" id="custom_format_calendar">
                     <div class="ui input left icon">
                         <i class="calendar icon"></i>
-                        @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off", required="true"})
+                        @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off", required="true", @id="dia", onblur = "ValidarFecha()" })
 
                     </div>
                 </div>

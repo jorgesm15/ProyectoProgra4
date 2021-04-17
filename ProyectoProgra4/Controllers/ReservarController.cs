@@ -51,23 +51,24 @@ namespace ProyectoProgra4.Controllers
                 ViewBag.ListaComboDis = listilla;
             }
         }
-
+        [HttpPost]
         public ActionResult ValidarBoton(clsReserva reserva, string submit)
         {
             if (submit == "Reservar")
             {
                 InsertarReserva(reserva);
                 Reserva();
-                return RedirectToAction("Reserva");
+                return View("Reserva");
+
             }
             else if (submit == "Guardar Cambios")
             {
                 ActualizarCambios(reserva);
-                return RedirectToAction("Reserva");
+                return View("Reserva");
             }
-            else 
-            { 
-                return RedirectToAction("Index", "Home"); 
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -81,10 +82,15 @@ namespace ProyectoProgra4.Controllers
                         reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
                     );
                 }
-            }catch (Exception e)
+               
+            }
+            catch (Exception e)
             {
                 ViewBag.ErrorReserva = "Reserva Duplicada";
+                
+                
             }
+
         }       
 
         [HttpPost]

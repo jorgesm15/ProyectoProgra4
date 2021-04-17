@@ -3,6 +3,13 @@
 $(document).ready(function () {
     obtenerValor();
     $('#btnActualizarCambios').hide();
+    $("#dia").on("keypress keyup blur", function (event) {
+        VerificacionNumeros(event);
+    });
+    $("#hora").on("keypress keyup blur", function (event) {
+        VerificacionNumeros(event);
+    });
+
     
 });
 
@@ -203,4 +210,38 @@ function ActualizarDatos(reservaID){
         
     });
    
+}
+
+
+function VerificacionNumeros(event) {
+
+    if (event.which < 00 && event.which > 175)
+        return true;
+    else
+        event.preventDefault();
+
+};
+
+function ValidarFecha() {
+    debugger;
+    var valorSeleccionado = document.getElementById("dia").value;
+    let hoy = new Date();
+    let  fechaActual = hoy.getDate() + '/' + (hoy.getMonth() + 1) + '/' + hoy.getFullYear();
+    //valorSeleccionado = new Date();
+    
+    //hoy = new Date(fechaActual);
+
+
+    if (valorSeleccionado > fechaActual) {
+
+        alert('Mayor');
+        
+    } else {
+        alert('Menor');
+        
+
+    }
+       
+    
+    
 }
