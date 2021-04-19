@@ -12,9 +12,11 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Especialidad
+    public partial class Errores
     {
-        public string ID_Especialidad { get; set; }
+        public int ID_Error { get; set; }
         public string Descripcion { get; set; }
+        public string Cliente { get; set; }
+        public System.DateTime Dia { get; set; }
     }
 }

@@ -20,13 +20,13 @@ namespace ProyectoProgra4.Controllers
         [HttpPost]
         public ActionResult Login(clsLogin usuario)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 using (var login = new ProyectoEntities())
                 {
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();
-
+                    var admin = login.Administrador.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash) && query.Rol.Equals("Administrador")).SingleOrDefault();
                     try
                     {
                         if (user != null)
@@ -34,6 +34,14 @@ namespace ProyectoProgra4.Controllers
                             Session["UserCorreo"] = user.Correo.ToString();
                             Session["Nombre"] = user.Nombre.ToString();
                             return RedirectToAction("Index", "DashboardU");
+                        }
+                        else if (admin != null)
+                        {
+                            Session["UserCorreo"] = admin.Correo.ToString();
+                            Session["Nombre"] = admin.Nombre.ToString();
+                            Session["Rol"] = admin.Rol.ToString();
+                            Session["ID_Admin"] = admin.ID_Administrador;
+                            return RedirectToAction("Administrador", "Administrador");
                         }
                         else
                         {
@@ -47,6 +55,13 @@ namespace ProyectoProgra4.Controllers
                             if (user == null)
                             {
                                 ViewBag.Error = "El correo electrónico que ingresaste no existe.";
+                                DateTime dateTime = DateTime.Now;
+                                using (var contextoUsuario = new ProyectoEntities())
+                                {
+                                    contextoUsuario.InsertarErrores(
+                                       e.Message.ToString(), usuario.correo, dateTime
+                                    );
+                                }
 
                             }
 
@@ -54,11 +69,11 @@ namespace ProyectoProgra4.Controllers
                     }
 
                 }
-            //}
+            }
             return View("Index");
         }
 
-    
+
         public ActionResult CerrarSession()
         {
             Session.Clear();

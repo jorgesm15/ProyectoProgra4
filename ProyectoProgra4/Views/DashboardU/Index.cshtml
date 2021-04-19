@@ -15,7 +15,19 @@
         <p>Ya puedes hacer uso de todas las funcionalidades que ofrece Power Fit.</p>
     </div>
 
-    <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>
+    if (Convert.ToInt32(Session["ID_Sexo"]) == 1)
+    {
+        <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>
+    }
+    else if (Convert.ToInt32(Session["ID_Sexo"]) == 2)
+    {
+        <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenida, @HttpContext.Current.Session["Nombre"].ToString()</label>
+    }
+    else
+    {
+        <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Buenas, @HttpContext.Current.Session["Nombre"].ToString()</label>
+    }
+
     <div class="ui four column centered grid">
         <div class="four column centered row">
             <div class="column">
@@ -44,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="column">
                 <div class="ui centered orange card">
                     <div class="image">

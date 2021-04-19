@@ -30,3 +30,19 @@ $(document).ready(function () {
         }, 5000);
     }
 });
+
+$(document).ready(function () {
+    if ($("#txtExito").val() != "") {
+        $("#msjExito").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjExito").fadeOut(300)
+        }, 5000);
+    }
+});
+
+$(document).ready(function () {
+    debugger;
+    if ($("#txtErrorReserva").val() != "") {
+        $("#msjErrorReserva").removeClass('hidden');
+    }
+});
