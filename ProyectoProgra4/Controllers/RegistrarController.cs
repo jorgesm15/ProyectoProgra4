@@ -2,9 +2,10 @@
 using ProyectoProgra4.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Linq;
 using System.Web.Mvc;
 
 
@@ -17,6 +18,7 @@ namespace ProyectoProgra4.Controllers
         {
             CargarEspecialidad();
             CargarSexo();
+            CargarTipoSangre();
             return View("InsertarUsuario");
         }
 
@@ -32,8 +34,8 @@ namespace ProyectoProgra4.Controllers
                         contextoUsuario.InsertarClientes(
                             usuario.cedula, usuario.nombre, usuario.primerApellido, usuario.segundoApellido,
                             usuario.correo, usuario.edad, GetMD5(usuario.contrasenia), usuario.direccion, usuario.telefono,
-                            usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.tipoSangre,
-                            usuario.motivo, rol, usuario.ID_Sexo
+                            usuario.telefonoEmergencia, usuario.peso, usuario.estatura, usuario.condicionesMedicas, usuario.motivo, rol, usuario.ID_Sexo,
+                            usuario.tipoSangre
                         );
                     }
                     //ViewBag.Message = "Usuario registrado";
@@ -42,6 +44,7 @@ namespace ProyectoProgra4.Controllers
                     Session["Nombre"] = usuario.nombre.ToString();
                     Session["ID_Usuario"] = usuario.cedula.ToString();
                     Session["ID_Sexo"] = usuario.ID_Sexo.ToString();
+                    Session["Rol"] = "Cliente";
                     return RedirectToAction("Index", "DashboardU");
                 }
                 ////Validar excepción de SQL
@@ -62,7 +65,7 @@ namespace ProyectoProgra4.Controllers
                     {
                         if (e.GetType().Name == "EntityCommandExecutionException")
                         {
-                            ViewBag.Error = "El usuario ya existe, intente con otro número de cédula.";
+                            ViewBag.Error = "El usuario ya existe, intente con otro número de cédula o correo electrónico.";
                             DateTime dateTime = DateTime.Now;
                             using (var contextoUsuario = new ProyectoEntities())
                             {
@@ -107,6 +110,22 @@ namespace ProyectoProgra4.Controllers
                 }
 
                 ViewBag.ListaComboMotivo = listilla;
+            }
+        }
+
+        public void CargarTipoSangre()
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var respuesta = (from x in contexto.TipoSangre select x).ToList();
+                List<SelectListItem> listilla = new List<SelectListItem>();
+
+                foreach (var item in respuesta)
+                {
+                    listilla.Add(new SelectListItem { Value = item.ID_TipoSangre.ToString(), Text = item.Descripcion });
+                }
+
+                ViewBag.ListaComboSangre = listilla;
             }
         }
 

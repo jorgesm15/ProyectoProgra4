@@ -1,6 +1,5 @@
 ﻿using ProyectoProgra4.Entidades;
 using System;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;

@@ -31,6 +31,9 @@
                 text: 'Asegúrese que escribio correctamente la cédula'
             });
             document.getElementById("cedulaPersona").value = '';
+            document.getElementById("txtNombre").value = '';
+            document.getElementById("txtPrimerApellido").value = '';
+            document.getElementById("txtSegundoApellido").value = '';
         }
     });
     document.getElementById("cedulaPersona").focus();
