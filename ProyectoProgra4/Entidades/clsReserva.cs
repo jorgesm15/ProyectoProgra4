@@ -15,7 +15,7 @@ namespace ProyectoProgra4.Entidades
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime dia { get; set; }
 
-        
+        public string nombreDis { get; set; }
 
       
         //public String diaFormato { get { return String.Format("{0:yyyy/MM/dd}", dia); } }

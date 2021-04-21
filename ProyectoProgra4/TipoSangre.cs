@@ -12,17 +12,17 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Sexo
+    public partial class TipoSangre
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sexo()
+        public TipoSangre()
         {
             this.Clientes = new HashSet<Clientes>();
             this.Instructor = new HashSet<Instructor>();
         }
     
-        public int ID_Sexo { get; set; }
-        public string Sexo1 { get; set; }
+        public int ID_TipoSangre { get; set; }
+        public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clientes> Clientes { get; set; }

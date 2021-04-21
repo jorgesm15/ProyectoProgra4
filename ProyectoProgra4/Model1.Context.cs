@@ -36,9 +36,92 @@ namespace ProyectoProgra4
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<Sexo> Sexo { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TipoSangre> TipoSangre { get; set; }
         public virtual DbSet<Errores> Errores { get; set; }
     
-        public virtual int InsertarClientes(string pIdCliente, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, Nullable<decimal> pPeso, Nullable<decimal> pEstatura, string pCondicionesMedicas, string pTipoSangre, Nullable<int> pIdMotivo, string pRol, Nullable<int> pSexo)
+        public virtual int ActualizarInstructor(string pIdInstructor, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pDireccion, string pTelefono, string pTelefonoEmergencia, string pCondicionesMedicas, Nullable<int> pIdEspecialidad, Nullable<int> pIdAdministrador)
+        {
+            var pIdInstructorParameter = pIdInstructor != null ?
+                new ObjectParameter("pIdInstructor", pIdInstructor) :
+                new ObjectParameter("pIdInstructor", typeof(string));
+    
+            var pNombreParameter = pNombre != null ?
+                new ObjectParameter("pNombre", pNombre) :
+                new ObjectParameter("pNombre", typeof(string));
+    
+            var pPrimerApellidoParameter = pPrimerApellido != null ?
+                new ObjectParameter("pPrimerApellido", pPrimerApellido) :
+                new ObjectParameter("pPrimerApellido", typeof(string));
+    
+            var pSegundoApellidoParameter = pSegundoApellido != null ?
+                new ObjectParameter("pSegundoApellido", pSegundoApellido) :
+                new ObjectParameter("pSegundoApellido", typeof(string));
+    
+            var pCorreoParameter = pCorreo != null ?
+                new ObjectParameter("pCorreo", pCorreo) :
+                new ObjectParameter("pCorreo", typeof(string));
+    
+            var pEdadParameter = pEdad.HasValue ?
+                new ObjectParameter("pEdad", pEdad) :
+                new ObjectParameter("pEdad", typeof(int));
+    
+            var pDireccionParameter = pDireccion != null ?
+                new ObjectParameter("pDireccion", pDireccion) :
+                new ObjectParameter("pDireccion", typeof(string));
+    
+            var pTelefonoParameter = pTelefono != null ?
+                new ObjectParameter("pTelefono", pTelefono) :
+                new ObjectParameter("pTelefono", typeof(string));
+    
+            var pTelefonoEmergenciaParameter = pTelefonoEmergencia != null ?
+                new ObjectParameter("pTelefonoEmergencia", pTelefonoEmergencia) :
+                new ObjectParameter("pTelefonoEmergencia", typeof(string));
+    
+            var pCondicionesMedicasParameter = pCondicionesMedicas != null ?
+                new ObjectParameter("pCondicionesMedicas", pCondicionesMedicas) :
+                new ObjectParameter("pCondicionesMedicas", typeof(string));
+    
+            var pIdEspecialidadParameter = pIdEspecialidad.HasValue ?
+                new ObjectParameter("pIdEspecialidad", pIdEspecialidad) :
+                new ObjectParameter("pIdEspecialidad", typeof(int));
+    
+            var pIdAdministradorParameter = pIdAdministrador.HasValue ?
+                new ObjectParameter("pIdAdministrador", pIdAdministrador) :
+                new ObjectParameter("pIdAdministrador", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarInstructor", pIdInstructorParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pCondicionesMedicasParameter, pIdEspecialidadParameter, pIdAdministradorParameter);
+        }
+    
+        public virtual int ActualizarReserva(Nullable<int> reservaID, Nullable<int> claseID, Nullable<System.DateTime> dia, Nullable<System.TimeSpan> hora, Nullable<bool> equipo, string idCliente)
+        {
+            var reservaIDParameter = reservaID.HasValue ?
+                new ObjectParameter("reservaID", reservaID) :
+                new ObjectParameter("reservaID", typeof(int));
+    
+            var claseIDParameter = claseID.HasValue ?
+                new ObjectParameter("claseID", claseID) :
+                new ObjectParameter("claseID", typeof(int));
+    
+            var diaParameter = dia.HasValue ?
+                new ObjectParameter("dia", dia) :
+                new ObjectParameter("dia", typeof(System.DateTime));
+    
+            var horaParameter = hora.HasValue ?
+                new ObjectParameter("hora", hora) :
+                new ObjectParameter("hora", typeof(System.TimeSpan));
+    
+            var equipoParameter = equipo.HasValue ?
+                new ObjectParameter("equipo", equipo) :
+                new ObjectParameter("equipo", typeof(bool));
+    
+            var idClienteParameter = idCliente != null ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarReserva", reservaIDParameter, claseIDParameter, diaParameter, horaParameter, equipoParameter, idClienteParameter);
+        }
+    
+        public virtual int InsertarClientes(string pIdCliente, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, Nullable<decimal> pPeso, Nullable<decimal> pEstatura, string pCondicionesMedicas, Nullable<int> pIdMotivo, string pRol, Nullable<int> pSexo, Nullable<int> pIdTipoSangre)
         {
             var pIdClienteParameter = pIdCliente != null ?
                 new ObjectParameter("pIdCliente", pIdCliente) :
@@ -92,10 +175,6 @@ namespace ProyectoProgra4
                 new ObjectParameter("pCondicionesMedicas", pCondicionesMedicas) :
                 new ObjectParameter("pCondicionesMedicas", typeof(string));
     
-            var pTipoSangreParameter = pTipoSangre != null ?
-                new ObjectParameter("pTipoSangre", pTipoSangre) :
-                new ObjectParameter("pTipoSangre", typeof(string));
-    
             var pIdMotivoParameter = pIdMotivo.HasValue ?
                 new ObjectParameter("pIdMotivo", pIdMotivo) :
                 new ObjectParameter("pIdMotivo", typeof(int));
@@ -108,7 +187,11 @@ namespace ProyectoProgra4
                 new ObjectParameter("pSexo", pSexo) :
                 new ObjectParameter("pSexo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarClientes", pIdClienteParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pContraseñaParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pPesoParameter, pEstaturaParameter, pCondicionesMedicasParameter, pTipoSangreParameter, pIdMotivoParameter, pRolParameter, pSexoParameter);
+            var pIdTipoSangreParameter = pIdTipoSangre.HasValue ?
+                new ObjectParameter("pIdTipoSangre", pIdTipoSangre) :
+                new ObjectParameter("pIdTipoSangre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarClientes", pIdClienteParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pContraseñaParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pPesoParameter, pEstaturaParameter, pCondicionesMedicasParameter, pIdMotivoParameter, pRolParameter, pSexoParameter, pIdTipoSangreParameter);
         }
     
         public virtual int InsertarErrores(string pDescripcion, string pCliente, Nullable<System.DateTime> pDia)
@@ -128,7 +211,7 @@ namespace ProyectoProgra4
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarErrores", pDescripcionParameter, pClienteParameter, pDiaParameter);
         }
     
-        public virtual int InsertarInstructores(string pIdInstructor, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, string pCondicionesMedicas, Nullable<int> pIdEspecialidad, Nullable<int> pIdAdministrador, string pRol)
+        public virtual int InsertarInstructores(string pIdInstructor, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, string pCondicionesMedicas, Nullable<int> pIdEspecialidad, Nullable<int> pIdAdministrador, string pRol, Nullable<int> pIdSexo, Nullable<int> pIdTipoSangre)
         {
             var pIdInstructorParameter = pIdInstructor != null ?
                 new ObjectParameter("pIdInstructor", pIdInstructor) :
@@ -186,7 +269,15 @@ namespace ProyectoProgra4
                 new ObjectParameter("pRol", pRol) :
                 new ObjectParameter("pRol", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarInstructores", pIdInstructorParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pContraseñaParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pCondicionesMedicasParameter, pIdEspecialidadParameter, pIdAdministradorParameter, pRolParameter);
+            var pIdSexoParameter = pIdSexo.HasValue ?
+                new ObjectParameter("pIdSexo", pIdSexo) :
+                new ObjectParameter("pIdSexo", typeof(int));
+    
+            var pIdTipoSangreParameter = pIdTipoSangre.HasValue ?
+                new ObjectParameter("pIdTipoSangre", pIdTipoSangre) :
+                new ObjectParameter("pIdTipoSangre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarInstructores", pIdInstructorParameter, pNombreParameter, pPrimerApellidoParameter, pSegundoApellidoParameter, pCorreoParameter, pEdadParameter, pContraseñaParameter, pDireccionParameter, pTelefonoParameter, pTelefonoEmergenciaParameter, pCondicionesMedicasParameter, pIdEspecialidadParameter, pIdAdministradorParameter, pRolParameter, pIdSexoParameter, pIdTipoSangreParameter);
         }
     
         public virtual ObjectResult<MostrarListaResevas_Result> MostrarListaResevas()
@@ -325,6 +416,11 @@ namespace ProyectoProgra4
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<VerInstructores_Result> VerInstructores()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerInstructores_Result>("VerInstructores");
         }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Rutina>
+
+<table class="table table-bordered table-hover" style="text-align:center">
+    <thead style="background-color: #45403F; color:white">
+        <tr>
+            <th>Ejercicio</th>
+            <th>Duración</th>
+            <th>Series</th>
+            <th>Repetición</th>
+            <th>Descanso</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.nomEjercicio</td>
+                <td>@item.duracion</td>
+                <td>@item.series</td>
+                <td>@item.repeticion</td>
+                <td>@item.descanso</td>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    {
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+        @Scripts.Render("/Funciones/RutinaF.js")
+    }

@@ -21,15 +21,16 @@ namespace ProyectoProgra4.Controllers
                                 on x.claseID equals d.claseID
                                 select new Reserva()
 
-                                {   reservaID = x.reservaID,
-
                                 {
-                                    reservaID = x.reservaID,
-                                    nombreDis = d.nombre,
-                                    dia = x.dia,
-                                    hora = x.hora,
-                                    equipo = x.equipo
-                                }).ToList();
+
+                                    
+                                        reservaID = x.reservaID,
+                                        nombreDis = d.nombre,
+                                        dia = x.dia,
+                                        hora = x.hora,
+                                        equipo = x.equipo
+                                    }
+                                ).ToList();
 
                 CargarDisciplinas(); //se trae las disciplinas al drop-down
                 Session["mostrarReservas"] = reservas;
