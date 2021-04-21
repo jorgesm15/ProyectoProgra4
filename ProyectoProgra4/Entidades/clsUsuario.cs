@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoProgra4.Entidades
 {
@@ -26,19 +22,34 @@ namespace ProyectoProgra4.Entidades
         public string contrasenia { get; set; }
         //[Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string direccion { get; set; }
+
+
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        [RegularExpression(@"^(\d{8})$", ErrorMessage = "El número de teléfono debe ser de 8 dígitos.")]
+        [DataType(DataType.PhoneNumber)]
         public string telefono { get; set; }
+
+
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        [RegularExpression(@"^(\d{8})$", ErrorMessage = "El número de teléfono debe ser de 8 dígitos.")]
+        [DataType(DataType.PhoneNumber)]
         public string telefonoEmergencia { get; set; }
+
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public decimal peso { get; set; }
+        
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public decimal estatura { get; set; }
+        
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string condicionesMedicas { get; set; }
+        
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
-        public string tipoSangre { get; set; }
+
+
+        public int tipoSangre { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+
         public int motivo { get; set; }
 
         public string rol { get; set; }

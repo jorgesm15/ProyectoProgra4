@@ -65,7 +65,7 @@
                 </div>
                 <div class="required field">
                     <label>Número de teléfono</label>
-                    @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true", @autocomplete="off" })
+                    @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true", @autocomplete = "off" })
                     @Html.ValidationMessageFor(Model => Model.telefono, null, new { @class = "text-danger", @style = "font-weight: 900" })
                 </div>
                 <div class="required field">
@@ -115,7 +115,7 @@
                 <div class="two fields">
                     <div class="required field">
                         <label>Tipo de sangre</label>
-                        @Html.TextBoxFor(Model => Model.tipoSangre, new { @class = "form-control", @id = "txtTipoSangre", @required = "true" })
+                        @Html.DropDownListFor(Model => Model.tipoSangre, ViewBag.ListaComboSangre as List<SelectListItem>, new { @id = "selectedMotivo", @required = "true" })
                     </div>
                     <div class="required field">
                         <label>Motivo</label>

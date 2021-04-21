@@ -18,6 +18,7 @@ namespace ProyectoProgra4
         public Sexo()
         {
             this.Clientes = new HashSet<Clientes>();
+            this.Instructor = new HashSet<Instructor>();
         }
     
         public int ID_Sexo { get; set; }
@@ -25,5 +26,7 @@ namespace ProyectoProgra4
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clientes> Clientes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Instructor> Instructor { get; set; }
     }
 }

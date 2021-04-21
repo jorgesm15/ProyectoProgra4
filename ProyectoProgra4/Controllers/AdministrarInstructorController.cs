@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
@@ -137,6 +136,25 @@ namespace ProyectoProgra4.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EliminarInstructor(string instructorId)
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var instructores = (from x in contexto.Instructor
+                                    where x.ID_Instructor == instructorId
+                                    select x).FirstOrDefault();
+
+                if (instructores != null)
+                {
+                    contexto.Instructor.Remove(instructores);
+                    contexto.SaveChanges();
+                    CargarEspecialidad();
+                    return RedirectToAction("Index");
+                }
+            }
+            return View("Index");
+        }
     }
 
 }
+
