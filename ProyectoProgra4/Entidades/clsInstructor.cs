@@ -18,6 +18,7 @@ namespace ProyectoProgra4.Entidades
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string segundoApellido { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        [EmailAddress(ErrorMessage = "Correo electrónico inválido.")]
         public string correo { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         [Range(0, 100, ErrorMessage = "Ingrese un numero entre 1-100")]

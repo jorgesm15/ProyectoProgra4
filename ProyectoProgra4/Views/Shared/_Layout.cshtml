@@ -80,29 +80,36 @@
                     else
                     {
                         @*<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>*@
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>*@
 
                         <li id="dropdown" class="ui pointing dropdown link item">
-                                <span class="text">Mi Perfil</span>
-                                <i class="user circle outline icon"></i>
-                                <div class="menu">
-                                    <div class="header">Perfil</div>
-                                    <div class="divider"></div>
+                            <span class="text">Mi Perfil</span>
+                            <i class="user circle outline icon"></i>
+                            <div class="menu">
+                                <div class="header">Perfil</div>
+                                <div class="divider"></div>
+                                @if (Session["Rol"].Equals("Cliente"))
+                                {
                                     <div class="dropdown-item">@Html.ActionLink("Menú Principal", "Index", "DashboardU", null, new { Style = "color:black;" })</div>
-                                    <div class="header">Cuenta</div>
-                                    <div class="divider"></div>
-                                    <div class="item">@Html.ActionLink("Cerrar Sesión", "CerrarSession", "Login", null, new { Style = "color:black;" })</div>
-                                </div>
-                            </li>
+                                }
+                                else if (Session["Rol"].Equals("Administrador"))
+                                {
+                                    <div class="dropdown-item">@Html.ActionLink("Menú Principal", "Administrador", "Administrador", null, new { Style = "color:black;" })</div>
+                                }
+                                <div class="header">Cuenta</div>
+                                <div class="divider"></div>
+                                <div class="item">@Html.ActionLink("Cerrar Sesión", "CerrarSession", "Login", null, new { Style = "color:black;" })</div>
+                            </div>
+                        </li>
                     }
                 </ul>
             </div>
@@ -131,8 +138,8 @@
     @RenderSection("scripts", required: false)
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-            $('#dropdown').dropdown()
-                ;
-        </script>
+        $('#dropdown').dropdown()
+            ;
+    </script>
 </body>
 </html>

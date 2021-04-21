@@ -24,10 +24,12 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     if ($("#txtSuccessful").val() != "") {
-        $("#msjExito").removeClass('hidden');
+        $("#msjLoginExito").removeClass('hidden');
         setTimeout(function () {
-            $("#msjExito").fadeOut(300)
+            $("#msjLoginExito").fadeOut(300)
         }, 5000);
+    } else {
+        $("#msjLoginExito").addClass('hidden');
     }
 });
 
@@ -41,7 +43,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    debugger;
     if ($("#txtErrorReserva").val() != "") {
         $("#msjErrorReserva").removeClass('hidden');
     }

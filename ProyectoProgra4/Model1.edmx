@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID_Administrador" />
           </Key>
-          <Property Name="ID_Administrador" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ID_Administrador" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SegundoApellido" Type="varchar" MaxLength="50" Nullable="false" />
@@ -86,7 +86,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="Direccion" Type="varchar" MaxLength="256" />
           <Property Name="Rol" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_Especialidad" Type="int" Nullable="false" />
-          <Property Name="ID_Administrador" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ID_Administrador" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Motivo">
           <Key>
@@ -124,6 +124,13 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoSangre">
+          <Key>
+            <PropertyRef Name="ID_TipoSangre" />
+          </Key>
+          <Property Name="ID_TipoSangre" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK__Reserva__claseID__1AD3FDA4">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
@@ -209,6 +216,20 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ActualizarInstructor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdInstructor" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pPrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="pSegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pEdad" Type="int" Mode="In" />
+          <Parameter Name="pDireccion" Type="varchar" Mode="In" />
+          <Parameter Name="pTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="pTelefonoEmergencia" Type="varchar" Mode="In" />
+          <Parameter Name="pCondicionesMedicas" Type="varchar" Mode="In" />
+          <Parameter Name="pIdEspecialidad" Type="int" Mode="In" />
+          <Parameter Name="pIdAdministrador" Type="int" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="InsertarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pIdCliente" Type="varchar" Mode="In" />
@@ -289,6 +310,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="VerInstructores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ProyectoModelStoreContainer">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
@@ -299,6 +321,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoSangre" EntityType="Self.TipoSangre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Errores" EntityType="Self.Errores" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Errores].[ID_Error] AS [ID_Error], 
@@ -345,7 +368,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Key>
             <PropertyRef Name="ID_Administrador" />
           </Key>
-          <Property Name="ID_Administrador" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Administrador" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -415,10 +438,9 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="Direccion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Especialidad" Type="Int32" Nullable="false" />
-          <Property Name="ID_Administrador" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Administrador" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
-          <NavigationProperty Name="Especialidad" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Especialidad" />
           <NavigationProperty Name="Disciplinas1" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Disciplinas" />
         </EntityType>
         <EntityType Name="Motivo">
@@ -461,6 +483,13 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoSangre">
+          <Key>
+            <PropertyRef Name="ID_TipoSangre" />
+          </Key>
+          <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Errores">
           <Key>
@@ -568,6 +597,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="Sexo" EntityType="Self.Sexo" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoSangre" EntityType="Self.TipoSangre" />
           <EntitySet Name="Errores" EntityType="Self.Errores" />
           <AssociationSet Name="FK_Instructor_Administrador" Association="Self.FK_Instructor_Administrador">
             <End Role="Administrador" EntitySet="Administrador" />
@@ -597,6 +627,20 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
+          <FunctionImport Name="ActualizarInstructor">
+            <Parameter Name="pIdInstructor" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pPrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="pSegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pEdad" Mode="In" Type="Int32" />
+            <Parameter Name="pDireccion" Mode="In" Type="String" />
+            <Parameter Name="pTelefono" Mode="In" Type="String" />
+            <Parameter Name="pTelefonoEmergencia" Mode="In" Type="String" />
+            <Parameter Name="pCondicionesMedicas" Mode="In" Type="String" />
+            <Parameter Name="pIdEspecialidad" Mode="In" Type="Int32" />
+            <Parameter Name="pIdAdministrador" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="InsertarClientes">
             <Parameter Name="pIdCliente" Mode="In" Type="String" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
@@ -676,6 +720,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="VerInstructores" ReturnType="Collection(ProyectoModel.VerInstructores_Result)" />
         </EntityContainer>
         <ComplexType Name="MostrarListaResevas_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
@@ -699,6 +744,19 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="VerInstructores_Result">
+          <Property Type="String" Name="ID_Instructor" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TelefonoEmergencia" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Edad" Nullable="false" />
+          <Property Type="String" Name="CondicionesMedicas" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="NombreDisciplina" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreAdministrador" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -819,6 +877,14 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TipoSangre">
+            <EntityTypeMapping TypeName="ProyectoModel.TipoSangre">
+              <MappingFragment StoreEntitySet="TipoSangre">
+                <ScalarProperty Name="ID_TipoSangre" ColumnName="ID_TipoSangre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Errores">
             <EntityTypeMapping TypeName="ProyectoModel.Errores">
               <MappingFragment StoreEntitySet="Errores">
@@ -829,6 +895,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarInstructor" FunctionName="ProyectoModel.Store.ActualizarInstructor" />
           <FunctionImportMapping FunctionImportName="InsertarClientes" FunctionName="ProyectoModel.Store.InsertarClientes" />
           <FunctionImportMapping FunctionImportName="InsertarErrores" FunctionName="ProyectoModel.Store.InsertarErrores" />
           <FunctionImportMapping FunctionImportName="InsertarInstructores" FunctionName="ProyectoModel.Store.InsertarInstructores" />
@@ -877,6 +944,23 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProyectoModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProyectoModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="VerInstructores" FunctionName="ProyectoModel.Store.VerInstructores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoModel.VerInstructores_Result">
+                <ScalarProperty Name="ID_Instructor" ColumnName="ID_Instructor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="TelefonoEmergencia" ColumnName="TelefonoEmergencia" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="CondicionesMedicas" ColumnName="CondicionesMedicas" />
+                <ScalarProperty Name="NombreDisciplina" ColumnName="NombreDisciplina" />
+                <ScalarProperty Name="NombreAdministrador" ColumnName="NombreAdministrador" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
