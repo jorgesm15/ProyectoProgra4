@@ -48,6 +48,7 @@
                     <div class="required field">
                         <label>Correo Electrónico</label>
                         @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "txtCorreo", @required = "true" })
+                        @Html.ValidationMessageFor(Model => Model.correo, null, new { @class = "text-danger", @style = "font-weight: 900" })
                     </div>
                     <div class="required field">
                         <label>Contraseña</label>
@@ -59,17 +60,17 @@
             <div class="four fields">
                 <div class="required field">
                     <label>Edad</label>
-                    @Html.TextBoxFor(Model => Model.edad, new { @class = "form-control", @id = "txtEdad", @required = "true" })
+                    @Html.TextBoxFor(Model => Model.edad, new { @class = "form-control", @id = "txtEdad", @required = "true", @autocomplete = "off" })
                     @Html.ValidationMessageFor(Model => Model.edad, null, new { @class = "text-danger", @style = "font-weight: 900" })
                 </div>
                 <div class="required field">
                     <label>Número de teléfono</label>
-                    @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true" })
+                    @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true", @autocomplete="off" })
                     @Html.ValidationMessageFor(Model => Model.telefono, null, new { @class = "text-danger", @style = "font-weight: 900" })
                 </div>
                 <div class="required field">
                     <label>Número de emergencia</label>
-                    @Html.TextBoxFor(Model => Model.telefonoEmergencia, new { @class = "form-control", @id = "txtTlfEmergencia", @required = "true" })
+                    @Html.TextBoxFor(Model => Model.telefonoEmergencia, new { @class = "form-control", @id = "txtTlfEmergencia", @required = "true", @autocomplete = "off" })
                     @Html.ValidationMessageFor(Model => Model.telefonoEmergencia, null, new { @class = "text-danger", @style = "font-weight: 900" })
 
                 </div>
@@ -94,7 +95,7 @@
                     <div class="required field">
                         <label>Peso</label>
                         <div class="ui right labeled input">
-                            @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
+                            @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true", @autocomplete = "off" })
                             <div class="ui basic label">
                                 kg
                             </div>
@@ -103,7 +104,7 @@
                     <div class="required field">
                         <label>Estatura</label>
                         <div class="ui right labeled input">
-                            @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
+                            @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true", @autocomplete = "off" })
                             <div class="ui basic label">
                                 m
                             </div>
@@ -141,7 +142,9 @@
 
             </div>
         </div>
-    }else
+
+    }
+    else
     {
         Response.Redirect("~/DashboardU/Index");
     }
@@ -173,6 +176,25 @@
     @Scripts.Render("/Funciones/ViewBags.js")
 
     <script>
+
+        function ValidarDecimales(event) {
+            if (event.which >= 48 && event.which <= 57) {
+                return true;
+            } else if (event.which == 46) {
+                return true;
+            } else {
+                event.preventDefault();
+            }
+        }
+
+        function ValidarTelefono(event) {
+            if (event.which >= 48 && event.which <= 57) {
+                return true;
+            } else {
+                event.preventDefault();
+            }
+        }
+
         $(document).ready(function () {
             $("#txtEstatura").on("keypress keyup blur", function (event) {
                 ValidarDecimales(event);
@@ -182,26 +204,8 @@
             });
             $("#txtTlf").on("keypress keyup blur", function (event) {
                 ValidarTelefono(event);
-            }
+            });
+        });
 
-                                });
-
-        //function ValidarTelefono(event) {
-        //    if (event.which >= 48 && event.which <= 57)
-        //        return true;
-        //    else if (event.which >= 65 && event.which <= 90)
-        //        return false;
-        //    else
-        //        event.preventDefault();
-        //}
-
-        function ValidarDecimales(event) {
-            if (event.which >= 48 && event.which <= 57)
-                return true;
-            else if (event.which == 46)
-                return true;
-            else
-                event.preventDefault();
-        };
     </script>
 }

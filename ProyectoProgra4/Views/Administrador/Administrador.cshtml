@@ -34,9 +34,9 @@
                         <img src="~/img/danielle-cerullo-CQfNt66ttZM-unsplash.jpg">
                     </div>
                     <div class="content">
-                        <a href="@Url.Action("Especialidad","Especialidad")" class="header">Especialidad</a>
+                        <a href="@Url.Action("Index", "AdministrarInstructor")" class="header">Administrar Instructores</a>
                         <div class="description">
-                            Panel de especialidades
+                            Acá podrá ver los instuctores registrados.
                         </div>
                     </div>
                 </div>
@@ -55,21 +55,20 @@
                 </div>
             </div>
         </div>
-                <div class="column">
-                    <div class="ui centered orange card">
-                        <div class="ui image">
-                            <img src="~/img/bernd-klutsch-nE2HV5AUXFo-unsplash.jpg">
-                        </div>
-                        <div class="content">
-                            <a href="@Url.Action("Reportes","Reportes")" class="header">Reportes</a>
-                            <div class="description">
-                                Reportes
-                            </div>
-                        </div>
+        <div class="column">
+            <div class="ui centered orange card">
+                <div class="ui image">
+                    <img src="~/img/bernd-klutsch-nE2HV5AUXFo-unsplash.jpg">
+                </div>
+                <div class="content">
+                    <a href="@Url.Action("Reportes","Reportes")" class="header">Reportes</a>
+                    <div class="description">
+                        Reportes
                     </div>
                 </div>
-            
+            </div>
         </div>
+    </div>
 
     if (ViewBag.Message != null)
     {

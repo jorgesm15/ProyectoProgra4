@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProyectoProgra4.Instructor>
+
+
+<h2>Adminstrar Instructores</h2>
+
+<br />
+<br />
+
+
+<table class="ui twelve column orange table" style="text-align:center">
+    <thead style="background-color: #45403F; color:white">
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Teléfono Emergencia</th>
+            <th>Edad</th>
+            <th>Condiciones Médicas</th>
+            <th>Especialidad</th>
+            <th>Administrador</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID_Instructor</td>
+                <td>@item.Nombre</td>
+                <td>@item.PrimerApellido</td>
+                <td>@item.SegundoApellido</td>
+                <td>@item.Correo</td>
+                <td>@item.Telefono</td>
+                <td>@item.TelefonoEmergencia</td>
+                <td>@item.Edad</td>
+                <td>@item.CondicionesMedicas</td>
+                <td>@item.nombreDis</td>
+                <td>@item.nombreAdm</td>
+                <td>
+                    <div class="col-sm-3">
+                        <button type="button" class="ui medium button" id="btnActualizar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.ID_Instructor);">
+                            Actualizar
+                        </button>
+                    </div>
+                    <div class="col-sm-2">
+                        @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.ID_Instructor }, FormMethod.Post))
+                        {
+                            <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                                Eliminar
+                            </button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+    @Scripts.Render("/Funciones/Instructores.js")
+    @Scripts.Render("/Funciones/ViewBags.js")
+
+}

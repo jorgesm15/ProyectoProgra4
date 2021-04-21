@@ -33,12 +33,15 @@ namespace ProyectoProgra4
         public string Direccion { get; set; }
         public string Rol { get; set; }
         public int ID_Especialidad { get; set; }
-        public string ID_Administrador { get; set; }
-    
+        public int ID_Administrador { get; set; }
+
+        public string nombreDis { get; set; }
+
+        public string nombreAdm { get; set; }
+
         public virtual Administrador Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Disciplinas> Disciplinas { get; set; }
-        public virtual Especialidad Especialidad { get; set; }
         public virtual Disciplinas Disciplinas1 { get; set; }
     }
 }
