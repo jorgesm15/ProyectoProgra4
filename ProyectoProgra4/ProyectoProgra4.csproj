@@ -190,7 +190,7 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DashboardUController.cs" />
-    <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\AdministrarInstructorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -457,14 +457,12 @@
     <Content Include="Views\Reservar\MostrarReservasPartial.cshtml" />
     <Content Include="Views\DashboardU\Index.cshtml" />
     <Content Include="Views\Administrador\Administrador.cshtml" />
-    <Content Include="Views\Especialidad\Especialidad.cshtml" />
     <Content Include="Views\PaginaPrincipal\SendEmail.cshtml" />
     <Content Include="Views\Rutina\RutinasLista.cshtml" />
     <Content Include="Views\Rutina\Rutina.cshtml" />
     <Content Include="Views\Clientes\Clientes.cshtml" />
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Instructor\InsertarInstructor.cshtml" />
-    <Content Include="Views\Rutina\RutinasParcial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

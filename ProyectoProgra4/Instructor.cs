@@ -11,7 +11,7 @@ namespace ProyectoProgra4
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Instructor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace ProyectoProgra4
         {
             this.Disciplinas = new HashSet<Disciplinas>();
         }
-    
+
         public string ID_Instructor { get; set; }
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }
