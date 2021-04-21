@@ -33,6 +33,7 @@ namespace ProyectoProgra4.Controllers
                         {
                             Session["UserCorreo"] = user.Correo.ToString();
                             Session["Nombre"] = user.Nombre.ToString();
+                            Session["Rol"] = user.Rol.ToString();
                             return RedirectToAction("Index", "DashboardU");
                         }
                         else if (admin != null)

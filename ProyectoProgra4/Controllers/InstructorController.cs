@@ -31,12 +31,13 @@ namespace ProyectoProgra4.Controllers
                         var ID_Admin = Convert.ToInt32(Session["ID_Admin"]);
                         contextoUsuario.InsertarInstructores(
                             instructor.cedula, instructor.nombre, instructor.primerApellido, instructor.segundoApellido,
-                            instructor.correo, instructor.edad, instructor.contrasenia, instructor.direccion, instructor.telefono,
+                            instructor.correo, instructor.edad, GetMD5(instructor.contrasenia), instructor.direccion, instructor.telefono,
                             instructor.telefonoEmergencia, instructor.condicionesMedicas, instructor.especialidad, ID_Admin, rol
                         );
                     }
                     ViewBag.Message = "Instructor registrado";
-                    return View("InsertarInstructor");
+                    CargarEspecialidad();
+                    return RedirectToAction("Index","AdministrarInstructor");
                 }
                 catch (Exception e)
                 {
@@ -89,6 +90,7 @@ namespace ProyectoProgra4.Controllers
                 ViewBag.ListaComboEspecialidad = listilla;
             }
         }
+
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
