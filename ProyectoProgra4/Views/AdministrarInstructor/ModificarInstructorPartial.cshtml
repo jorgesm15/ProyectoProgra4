@@ -47,12 +47,12 @@
                         </button>
                     </div>
                     <div class="col-sm-2">
-                        @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.ID_Instructor }, FormMethod.Post))
-                        {
-                            <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
-                                Eliminar
-                            </button>
-                        }
+                        @*@using (Html.BeginForm("EliminarInstructor", "AdministrarInstructor", new { instructorID = item.ID_Instructor }, FormMethod.Post))*@
+                        <!--{-->
+                        <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" onclick="EliminarInstructor(@item.ID_Instructor)">
+                            Eliminar
+                        </button>
+                        @*  *@<!--}-->
                     </div>
                 </td>
             </tr>

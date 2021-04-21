@@ -5,7 +5,7 @@
 }
 
 
-@if (Session["UserCorreo"] != null)
+@if (Session["UserCorreo"] != null && Session["Rol"].Equals("Cliente"))
 {
     <div id="msjLoginExito" class="ui success message hidden">
         <i class="close icon"></i>
@@ -77,7 +77,7 @@
     {
         @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
     }
-    else if(ViewBag.Message == null)
+    else if (ViewBag.Message == null)
     {
         @Html.Hidden("txtSuccessful", "")
     }

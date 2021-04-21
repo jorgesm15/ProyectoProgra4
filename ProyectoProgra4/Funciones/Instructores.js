@@ -32,7 +32,44 @@
 
 }
 
+
+function EliminarInstructor(instructorId) {
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar al instructor?',
+        text: "Este cambio no podrá ser revertido.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'Post',
+                url: '/AdministrarInstructor/EliminarInstructor',
+                data: {
+                    instructorId: instructorId
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    swal.fire({
+                        instructorId: instructorId,
+                        title: 'Eliminado',
+                        text: 'El cliente se ha eliminado correctamente',
+                        icon: 'success'
+                    });
+                },
+            })
+            setTimeout(function () {
+                location.reload();
+            }, 1000)
+        }
+    });
+}
+
 function EsconderDiv() {
     $("#actualizarContainer").addClass('hidden');
-    event.preventDefault(); 
+    event.preventDefault();
 }

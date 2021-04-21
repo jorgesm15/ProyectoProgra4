@@ -3,10 +3,11 @@
         Swal.fire({
             icon: 'error',
             title: 'Usuario ya registrado',
-            text: 'Intente con otra cédula'
+            text: 'El usuario ya existe, intente con otro número de cédula o correo electrónico.'
         });
 
         document.getElementById("cedulaPersona").value = '';
+        document.getElementById("txtCorreo").value = '';
         document.getElementById("txtNombre").value = '';
         document.getElementById("txtPrimerApellido").value = '';
         document.getElementById("txtSegundoApellido").value = '';
