@@ -60,6 +60,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -190,7 +193,7 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DashboardUController.cs" />
-    <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\AdministrarInstructorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -250,6 +253,7 @@
     <Compile Include="VerInstructores_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Content Include="Funciones\Instructores.js" />
     <Content Include="Funciones\RutinaF.js" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -314,6 +318,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -345,6 +353,7 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -457,13 +466,15 @@
     <Content Include="Views\Reservar\MostrarReservasPartial.cshtml" />
     <Content Include="Views\DashboardU\Index.cshtml" />
     <Content Include="Views\Administrador\Administrador.cshtml" />
-    <Content Include="Views\Especialidad\Especialidad.cshtml" />
     <Content Include="Views\PaginaPrincipal\SendEmail.cshtml" />
     <Content Include="Views\Rutina\RutinasLista.cshtml" />
     <Content Include="Views\Rutina\Rutina.cshtml" />
     <Content Include="Views\Clientes\Clientes.cshtml" />
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Instructor\InsertarInstructor.cshtml" />
+    <Content Include="Views\AdministrarInstructor\ModificarInstructorPartial.cshtml" />
+    <Content Include="Views\AdministrarInstructor\Index.cshtml" />
+    <Content Include="Views\Reportes\ReporteClientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

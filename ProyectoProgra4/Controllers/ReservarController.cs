@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity.Core.Objects;
 
@@ -14,15 +13,15 @@ namespace ProyectoProgra4.Controllers
 
         public ActionResult Reserva()
         {
-            
+
             using (var contexto = new ProyectoEntities())
             {
                 var reservas = (from x in contexto.Reserva.AsEnumerable()
                                 join d in contexto.Disciplinas.AsEnumerable()
                                 on x.claseID equals d.claseID
                                 select new Reserva()
-
-                                {   reservaID = x.reservaID,
+                                {
+                                    reservaID = x.reservaID,
                                     nombreDis = d.nombre,
                                     dia = x.dia,
                                     hora = x.hora,
@@ -33,13 +32,12 @@ namespace ProyectoProgra4.Controllers
                 Session["mostrarReservas"] = reservas;
                 return View("Reserva");
             }
-
         }
 
 
         public void CargarDisciplinas() //se trae las disciplinas al drop-down
         {
-           using (var contexto = new ProyectoEntities())
+            using (var contexto = new ProyectoEntities())
             {
                 var respuesta = (from x in contexto.Disciplinas select x).ToList();
                 List<SelectListItem> listilla = new List<SelectListItem>();
@@ -90,15 +88,15 @@ namespace ProyectoProgra4.Controllers
                         ViewBag.ErrorReserva = "Reserva Duplicada";
                     }
                 }
-               
+
             }
             catch (Exception e)
             {
-                
-                
-                
+
+                ViewBag.ErrorReserva = "Reserva Duplicada";
+
             }
-        }       
+        }
 
 
         [HttpPost]
@@ -127,16 +125,16 @@ namespace ProyectoProgra4.Controllers
         {
             using (var contexto = new ProyectoEntities())
             {
-                
+
                 var reservas = (from x in contexto.Reserva
                                 where x.reservaID == reservaID
                                 select x).FirstOrDefault();
 
                 Dictionary<String, String> reserva = new Dictionary<string, string>();
 
-                
+
                 reserva.Add("claseID", reservas.claseID.ToString());
-                reserva.Add("hora", reservas.hora.ToString()+" PM");
+                reserva.Add("hora", reservas.hora.ToString() + " PM");
                 reserva.Add("dia", reservas.dia.ToString().Split(' ')[0]);
                 reserva.Add("reservaID", reservas.reservaID.ToString());
 

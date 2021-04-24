@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Reserva>
+﻿@model IEnumerable<Reserva> 
 
 
 <table class="table table-bordered table-hover" style="text-align:center">
@@ -29,26 +29,26 @@
                 {
                     <td></td>
                 }
-            <td>
-                <div class="form-group row" style="align-content:center">
-                    <div class="col-sm-3">
+                <td>
+                    <div class="form-group row" style="align-content:center">
+                        <div class="col-sm-3">
 
-                    </div>
-                    <div class="col-sm-3">
-                        <button type="button" class="ui medium button" id="btnActualizar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.reservaID)" ;>
-                            Actualizar
-                        </button>
-                    </div>
-                    <div class="col-sm-2">
-                        @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.reservaID }, FormMethod.Post))
-                        {
-                            <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
-                                Eliminar
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="ui medium button" id="btnActualizar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.reservaID)" ;>
+                                Actualizar
                             </button>
-                        }
+                        </div>
+                        <div class="col-sm-2">
+                            @using (Html.BeginForm("EliminarReserva", "Reservar", new { id = item.reservaID }, FormMethod.Post))
+                            {
+                                <button type="submit" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white">
+                                    Eliminar
+                                </button>
+                            }
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
             </tr>
         }
     </tbody>

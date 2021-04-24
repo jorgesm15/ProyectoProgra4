@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm("InsertarInstructor", "Instructor", FormMethod.Post, new { @class = "ui form" }))
 {
-    if (Session["Rol"].Equals("Administrador"))
+    if (Session["Rol"].Equals("Administrador") && Session["InstructorRegistrado"] == null)
     {
 
         <div id="msjExito" class="ui success message hidden">
@@ -96,37 +96,18 @@
             </div>
 
 
-            @*<h4 class="ui dividing header">Información Médica</h4>
-                <div class="field">
-                    <div class="two fields">
-                        <div class="required field">
-                            <label>Peso</label>
-                            <div class="ui right labeled input">
-                                @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
-                                <div class="ui basic label">
-                                    kg
-                                </div>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label>Estatura</label>
-                            <div class="ui right labeled input">
-                                @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
-                                <div class="ui basic label">
-                                    m
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-
             <div class="two fields">
-                @*<div class="required field">
-                        <label>Tipo de sangre</label>
-                        @Html.TextBoxFor(Model => Model.tipoSangre, new { @class = "form-control", @id = "txtTipoSangre", @required = "true" })
-                    </div>*@
                 <div class="required field">
-                    <label>Motivo</label>
+                    <label>Especialidad</label>
                     @Html.DropDownListFor(Model => Model.especialidad, ViewBag.ListaComboEspecialidad as List<SelectListItem>, new { @id = "selectedEspecialidad", @required = "true" })
+                </div>
+                <div class="required field">
+                    <label>Tipo de sangre</label>
+                    @Html.DropDownListFor(Model => Model.tipoSangre, ViewBag.ListaComboSangre as List<SelectListItem>, new { @id = "selectedMotivo", @required = "true" })
+                </div>
+                <div class="required field">
+                    <label>Sexo</label>
+                    @Html.DropDownListFor(Model => Model.sexo, ViewBag.ListaComboSexo as List<SelectListItem>, new { @id = "selectedSexo", @required = "true" })
                 </div>
             </div>
 
@@ -135,18 +116,20 @@
                 <div class="required field">
                     <label>Condiciones Médicas</label>
                     @Html.TextAreaFor(Model => Model.condicionesMedicas, new { @id = "txtCondiciones", @rows = "2", @required = "true" })
-                    @*<textarea rows="2"></textarea>*@
                 </div>
-            </div>
+                <div class="required field">
+                    @* @Html.DropDownListFor(Model => Model.ID_Sexo, ViewBag.ListaComboSexo as List<SelectListItem>, new { @id = "selectedSexo", @required = "true" })*@
+                </div>
 
-            <button type="submit" class="ui big button" style="margin-top: 10px;">
-                Continuar
-            </button>
+                <button type="submit" class="ui big button" style="margin-top: 10px;">
+                    Continuar
+                </button>
+            </div>
         </div>
     }
     else
     {
-        Response.Redirect("~/DashboardU/Index");
+        Response.Redirect("~/Administrador/Administrador");
     }
 
 
