@@ -4,5 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reportes</h2>
 
+<div class="container body-content">
+    <h2 class="ui dividing header">Sección de reportes</h2>
+    <div>
+        <h3>Reporte de clientes</h3>        
+        <div class="ui buttons">
+            <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteClientes", "Reportes")'" />
+            @*<button class="ui button">Ver</button>*@
+            <div class="o"></div>
+            <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsClientes", "Reportes")'" />
+            @*<button class="ui positive button">Imprimir</button>*@
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

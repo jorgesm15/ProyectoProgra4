@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Clientes>
+@{
+    ViewBag.Title = "ReporteClientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Reporte de clientes</h2>
+
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Clientes in Model)
+        {
+        <tr>
+            <td>@Clientes.Nombre</td>
+            <td>@Clientes.PrimerApellido</td>
+            <td>@Clientes.SegundoApellido</td>
+            <td>@Clientes.Telefono</td>
+            <td>@Clientes.Correo</td>
+        </tr>
+        }
+    </tbody>
+</table>
