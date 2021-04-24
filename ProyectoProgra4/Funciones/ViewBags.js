@@ -46,5 +46,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     if ($("#txtErrorReserva").val() != "") {
         $("#msjErrorReserva").removeClass('hidden');
+        document.getElementById("dia").value = '';
+        document.getElementById("hora").value = '';
     }
 });
