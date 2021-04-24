@@ -12,18 +12,9 @@ namespace ProyectoProgra4
     using System;
     using System.Collections.Generic;
     
-    public partial class Reserva
+    public partial class TipoSangre
     {
-        public int reservaID { get; set; }
-        public int claseID { get; set; }
-        public System.DateTime dia { get; set; }
-        public System.TimeSpan hora { get; set; }
-        public bool equipo { get; set; }
-        public string ID_Cliente { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
-        public virtual Disciplinas Disciplinas { get; set; }
-
-        public string nombreDis { get; set; }
+        public int ID_TipoSangre { get; set; }
+        public string Descripcion { get; set; }
     }
 }

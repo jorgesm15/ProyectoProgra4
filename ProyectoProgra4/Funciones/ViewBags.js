@@ -41,8 +41,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    debugger;
     if ($("#txtErrorReserva").val() != "") {
         $("#msjErrorReserva").removeClass('hidden');
+        document.getElementById("dia").value = '';
+        document.getElementById("hora").value = '';
     }
 });
