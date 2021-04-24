@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoProgra4.Entidades
 {
@@ -18,6 +14,7 @@ namespace ProyectoProgra4.Entidades
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string segundoApellido { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        [EmailAddress(ErrorMessage = "Correo electrónico inválido.")]
         public string correo { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         [Range(0, 100, ErrorMessage = "Ingrese un numero entre 1-100")]
@@ -34,7 +31,12 @@ namespace ProyectoProgra4.Entidades
         public string condicionesMedicas { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public int especialidad { get; set; }
-        
+
+        public int sexo { get; set; }
+
+        public int tipoSangre { get; set; }
+
+
         public string rol { get; set; }
 
     }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
@@ -15,6 +14,8 @@ namespace ProyectoProgra4.Controllers
         public ActionResult Instructor()
         {
             CargarEspecialidad();
+            CargarSexo();
+            CargarTipoSangre();
             return View("InsertarInstructor");
         }
 
@@ -31,12 +32,15 @@ namespace ProyectoProgra4.Controllers
                         var ID_Admin = Convert.ToInt32(Session["ID_Admin"]);
                         contextoUsuario.InsertarInstructores(
                             instructor.cedula, instructor.nombre, instructor.primerApellido, instructor.segundoApellido,
-                            instructor.correo, instructor.edad, instructor.contrasenia, instructor.direccion, instructor.telefono,
-                            instructor.telefonoEmergencia, instructor.condicionesMedicas, instructor.especialidad, ID_Admin, rol
+                            instructor.correo, instructor.edad, GetMD5(instructor.contrasenia), instructor.direccion, instructor.telefono,
+                            instructor.telefonoEmergencia, instructor.condicionesMedicas, instructor.especialidad, ID_Admin, rol, instructor.sexo,
+                            instructor.tipoSangre
                         );
                     }
                     ViewBag.Message = "Instructor registrado";
-                    return View("InsertarInstructor");
+                    //Session["InstructorRegistrado"] = "Registrado"; //Se crea esta sesión para que el instructor no pueda volver a la página anterior con los campos ya rellenos, lo devuelve al dashboard
+                    CargarEspecialidad();
+                    return RedirectToAction("Index", "AdministrarInstructor");
                 }
                 catch (Exception e)
                 {
@@ -55,7 +59,7 @@ namespace ProyectoProgra4.Controllers
                     {
                         if (e.GetType().Name == "EntityCommandExecutionException")
                         {
-                            ViewBag.Error = "El usuario ya existe, intente con otro número de cédula.";
+                            ViewBag.Error = "El usuario ya existe, intente con otro número de cédula";
                             DateTime dateTime = DateTime.Now;
                             using (var contextoUsuario = new ProyectoEntities())
                             {
@@ -83,12 +87,44 @@ namespace ProyectoProgra4.Controllers
 
                 foreach (var item in respuesta)
                 {
-                    listilla.Add(new SelectListItem { Value = item.claseID.ToString(), Text = item.nombre});
+                    listilla.Add(new SelectListItem { Value = item.claseID.ToString(), Text = item.nombre });
                 }
 
                 ViewBag.ListaComboEspecialidad = listilla;
             }
         }
+        public void CargarSexo()
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var respuesta = (from x in contexto.Sexo select x).ToList();
+                List<SelectListItem> listilla = new List<SelectListItem>();
+
+                foreach (var item in respuesta)
+                {
+                    listilla.Add(new SelectListItem { Value = item.ID_Sexo.ToString(), Text = item.Sexo1 });
+                }
+
+                ViewBag.ListaComboSexo = listilla;
+            }
+        }
+
+        public void CargarTipoSangre()
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+                var respuesta = (from x in contexto.TipoSangre select x).ToList();
+                List<SelectListItem> listilla = new List<SelectListItem>();
+
+                foreach (var item in respuesta)
+                {
+                    listilla.Add(new SelectListItem { Value = item.ID_TipoSangre.ToString(), Text = item.Descripcion });
+                }
+
+                ViewBag.ListaComboSangre = listilla;
+            }
+        }
+
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();

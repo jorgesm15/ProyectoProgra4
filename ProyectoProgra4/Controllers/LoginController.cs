@@ -1,6 +1,5 @@
 ﻿using ProyectoProgra4.Entidades;
 using System;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -33,6 +32,7 @@ namespace ProyectoProgra4.Controllers
                         {
                             Session["UserCorreo"] = user.Correo.ToString();
                             Session["Nombre"] = user.Nombre.ToString();
+                            Session["Rol"] = user.Rol.ToString();
                             return RedirectToAction("Index", "DashboardU");
                         }
                         else if (admin != null)
