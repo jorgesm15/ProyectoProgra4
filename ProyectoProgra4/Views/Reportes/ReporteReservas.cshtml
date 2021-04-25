@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Reserva>
+@{
+    ViewBag.Title = "ReporteReservas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte de Reservas</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Reserva ID</th>
+            <th>Clase</th>
+            <th>Día</th>
+            <th>Hora</th>
+            <th>Equipo</th>
+            <th>Cliente</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Reserva in Model)
+        {
+            <tr>
+                <td>@Reserva.reservaID</td>
+                <td>@Reserva.claseID</td>
+                <td>@Reserva.dia</td>
+                <td>@Reserva.hora</td>
+                <td>@Reserva.equipo</td>
+                <td>@Reserva.ID_Cliente</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
