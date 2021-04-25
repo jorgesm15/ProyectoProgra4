@@ -13,26 +13,20 @@ $(document).ready(function () {
     
 });
 
-function obtenerValor() {
+$('#selectedDis').on('change', function () {
+    $('#dia').val(" ");
+    $('#hora').val(" ");
 
+});
 
+function obtenerValor()  {
+    
     var selectedValue = document.getElementById("selectedDis").value;
+    document.getElementById("dia").value = " ";
+    document.getElementById("hora").value = " ";
 
-    if (selectedValue == 1) {
-        $('#custom_format_calendar').calendar({
-            disabledDaysOfWeek: [0, 1, 2, 3, 4, 5, 6],
-            monthFirst: false,
-            type: 'date'
-            
-        })
-        $('#time_calendar')
-            .calendar({
-                type: 'time',
-                touchReadonly: true,
-                disableMinute: true        
-            })
-    }
     if (selectedValue == 2) { //Condiciones por si se selecciona Yoga
+  
         $('#custom_format_calendar').calendar({  //seleccion dia
             disabledDaysOfWeek: [0, 2, 3, 4, 5, 6],
             monthFirst: false,
@@ -46,7 +40,8 @@ function obtenerValor() {
                     return day + '/' + month + '/' + year;
 
                 }
-            }
+            },
+            
 
         })
 
@@ -79,7 +74,8 @@ function obtenerValor() {
                     var year = date.getFullYear();
                     return day + '/' + month + '/' + year;
                 }
-            }
+            },
+            
         })
 
         var minDate = new Date();
@@ -111,7 +107,8 @@ function obtenerValor() {
                     var year = date.getFullYear();
                     return day + '/' + month + '/' + year;
                 }
-            }
+            },
+            
         })
 
         var minDate = new Date();
@@ -142,7 +139,8 @@ function obtenerValor() {
                     var year = date.getFullYear();
                     return day + '/' + month + '/' + year;
                 }
-           }
+            },
+           
         })
 
         var minDate = new Date();
@@ -201,7 +199,7 @@ function ActualizarDatos(reservaID){
             obtenerValor();
             document.getElementById("dia").value = data.dia;
             document.getElementById("hora").value = data.hora;
-            debugger;
+            
             document.getElementById("reservaTXT").value = data.reservaID;
         },
         error: function (data) {
@@ -223,22 +221,28 @@ function VerificacionNumeros(event) {
 };
 
 function ValidarFecha() {
-    debugger;
-    var valorSeleccionado = document.getElementById("dia").value;
+    let fechaInput = document.getElementById("dia").value.split("/");
+    var valorSeleccionado = new Date(fechaInput[1] + "/" + fechaInput[0] + "/" + fechaInput[2]);
     let hoy = new Date();
-    let  fechaActual = hoy.getDate() + '/' + (hoy.getMonth() + 1) + '/' + hoy.getFullYear();
+    //let  fechaActual = hoy.getDate() + '/' + (hoy.getMonth() + 1) + '/' + hoy.getFullYear();
     //valorSeleccionado = new Date();
     
     //hoy = new Date(fechaActual);
 
 
-    if (valorSeleccionado > fechaActual) {
+    if (valorSeleccionado > hoy) {
 
-        alert('Mayor');
+        return true;
         
     } else {
-        alert('Menor');
+        alert("menor");
         
+            //$('#dia').val(" ");
+            //$('#hora').val(" ");
+        document.getElementById("dia").value = '';
+        document.getElementById("hora").value = '';
+        
+        return false;
 
     }
        
