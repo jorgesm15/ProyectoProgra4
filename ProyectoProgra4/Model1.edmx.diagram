@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e0fe6f97e98427b85fdde2ce16d6819" Name="Diagram1" ZoomLevel="68">
+      <Diagram DiagramId="adb0c183275448c4845e64b869000a27" Name="Diagram1">
         <EntityTypeShape EntityType="ProyectoModel.Administrador" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoModel.Clientes" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoModel.Disciplinas" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
@@ -12,10 +12,11 @@
         <EntityTypeShape EntityType="ProyectoModel.Instructor" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoModel.Motivo" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoModel.Reserva" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoModel.Rutinas" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoModel.Sexo" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyectoModel.TipoSangre" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoModel.Errores" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoModel.Errores" Width="1.5" PointX="8.75" PointY="10" IsExpanded="true" />
         <AssociationConnector Association="ProyectoModel.FK_Instructor_Administrador" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoModel.FK__Reserva__ID_Clie__56E8E7AB" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoModel.FK_Clientes_Motivo" ManuallyRouted="false" />

@@ -232,6 +232,9 @@
     <Compile Include="Reserva.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Rutinas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sexo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -459,13 +462,13 @@
     <Content Include="Views\DashboardU\Index.cshtml" />
     <Content Include="Views\Administrador\Administrador.cshtml" />
     <Content Include="Views\PaginaPrincipal\SendEmail.cshtml" />
-    <Content Include="Views\Rutina\RutinasLista.cshtml" />
     <Content Include="Views\Rutina\Rutina.cshtml" />
     <Content Include="Views\Clientes\Clientes.cshtml" />
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Instructor\InsertarInstructor.cshtml" />
     <Content Include="Views\AdministrarInstructor\ModificarInstructorPartial.cshtml" />
     <Content Include="Views\AdministrarInstructor\Index.cshtml" />
+    <Content Include="Views\Rutina\RutinasParcial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
