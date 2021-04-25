@@ -48,8 +48,8 @@
           <Property Name="cupos" Type="int" Nullable="false" />
           <Property Name="ID_Instructor" Type="varchar" MaxLength="12" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Errores">
           <Key>
             <PropertyRef Name="ID_Error" />
@@ -239,6 +239,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Association Name="FK_Instructor_Sexo">
           <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
           <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
@@ -263,6 +264,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Function Name="ActualizarInstructor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pIdInstructor" Type="varchar" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
@@ -467,7 +469,9 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="ID_Motivo" Type="Int32" Nullable="false" />
           <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Sexo" Type="Int32" Nullable="false" />
+
           <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
+
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__ID_Clie__56E8E7AB" FromRole="Clientes" ToRole="Reserva" />
           <NavigationProperty Name="Motivo" Relationship="Self.FK_Clientes_Motivo" FromRole="Clientes" ToRole="Motivo" />
           <NavigationProperty Name="Sexo" Relationship="Self.FK_Clientes_Sexo" FromRole="Clientes" ToRole="Sexo" />
@@ -510,8 +514,10 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Especialidad" Type="Int32" Nullable="false" />
           <Property Name="ID_Administrador" Type="Int32" Nullable="false" />
+
           <Property Name="ID_Sexo" Type="Int32" Nullable="false" />
           <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
+
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
           <NavigationProperty Name="Disciplinas1" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Disciplinas" />
@@ -575,8 +581,10 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
           </Key>
           <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+
           <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_TipoSangre" FromRole="TipoSangre" ToRole="Clientes" />
           <NavigationProperty Name="Instructor" Relationship="Self.FK_Instructor_TipoSangre" FromRole="TipoSangre" ToRole="Instructor" />
+
         </EntityType>
         <EntityType Name="Errores">
           <Key>
@@ -638,6 +646,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Association Name="FK_Clientes_TipoSangre">
           <End Role="TipoSangre" Type="Self.TipoSangre" Multiplicity="1" />
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
@@ -650,6 +659,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Association Name="FK__Reserva__claseID__57DD0BE4">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
@@ -739,10 +749,12 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <End Role="Sexo" EntitySet="Sexo" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+
           <AssociationSet Name="FK_Clientes_TipoSangre" Association="Self.FK_Clientes_TipoSangre">
             <End Role="TipoSangre" EntitySet="TipoSangre" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+
           <AssociationSet Name="FK__Reserva__claseID__57DD0BE4" Association="Self.FK__Reserva__claseID__57DD0BE4">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Reserva" EntitySet="Reserva" />
@@ -755,6 +767,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
+
           <AssociationSet Name="FK_Instructor_Sexo" Association="Self.FK_Instructor_Sexo">
             <End Role="Sexo" EntitySet="Sexo" />
             <End Role="Instructor" EntitySet="Instructor" />
@@ -763,6 +776,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
             <End Role="TipoSangre" EntitySet="TipoSangre" />
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
+
           <FunctionImport Name="ActualizarInstructor">
             <Parameter Name="pIdInstructor" Mode="In" Type="String" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
@@ -1139,7 +1153,7 @@ advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ning
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

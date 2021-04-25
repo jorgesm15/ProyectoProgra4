@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Data.Entity.Core.Objects;
 
 namespace ProyectoProgra4.Controllers
 {
@@ -63,6 +64,7 @@ namespace ProyectoProgra4.Controllers
             else if (submit == "Guardar Cambios")
             {
                 ActualizarCambios(reserva);
+                Reserva();
                 return View("Reserva");
             }
             else
@@ -77,16 +79,21 @@ namespace ProyectoProgra4.Controllers
             {
                 using (var contextoReservar = new ProyectoEntities())
                 {
-                    contextoReservar.RegistrarReserva(
+                    int resultado = contextoReservar.RegistrarReserva(
                         reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
                     );
+
+                    if (resultado == -1)
+                    {
+                        ViewBag.ErrorReserva = "Reserva Duplicada";
+                    }
                 }
 
             }
             catch (Exception e)
             {
-                ViewBag.ErrorReserva = "Reserva Duplicada";
 
+                ViewBag.ErrorReserva = "Reserva Duplicada";
 
             }
         }
@@ -147,19 +154,27 @@ namespace ProyectoProgra4.Controllers
 
         public void ActualizarCambios(clsReserva reserva) //Cargar los datos 
         {
-            using (var contexto = new ProyectoEntities())
+            try
             {
-                var reservas = (from x in contexto.Reserva
-                                where x.reservaID == reserva.reservaID
-                                select x).FirstOrDefault();
-
-                if (reservas != null)
+                using (var contextoReservar = new ProyectoEntities())
                 {
-                    contexto.Reserva.Remove(reservas);
-                    contexto.SaveChanges();
+                    int resultado = contextoReservar.ActualizarReserva(
+                        reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
+                    );
+
+                    if (resultado == -1)
+                    {
+                        ViewBag.ErrorReserva = "Reserva Duplicada";
+                    }
                 }
+
             }
-            InsertarReserva(reserva);
+            catch (Exception e)
+            {
+
+
+
+            }
         }
     }
 

@@ -14,6 +14,8 @@ namespace ProyectoProgra4
     
     public partial class TipoSangre
     {
+        public int ID_TipoSangre { get; set; }
+        public string Descripcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoSangre()
         {
@@ -21,12 +23,13 @@ namespace ProyectoProgra4
             this.Instructor = new HashSet<Instructor>();
         }
     
-        public int ID_TipoSangre { get; set; }
-        public string Descripcion { get; set; }
+        //public int ID_TipoSangre { get; set; }
+        //public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clientes> Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Instructor> Instructor { get; set; }
+
     }
 }
