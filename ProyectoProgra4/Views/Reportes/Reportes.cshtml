@@ -7,16 +7,82 @@
 
 <div class="container body-content">
     <h2 class="ui dividing header">Sección de reportes</h2>
-    <div>
-        <h3>Reporte de clientes</h3>        
-        <div class="ui buttons">
-            <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteClientes", "Reportes")'" />
-            @*<button class="ui button">Ver</button>*@
-            <div class="o"></div>
-            <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsClientes", "Reportes")'" />
-            @*<button class="ui positive button">Imprimir</button>*@
+
+    <div class="ui four column grid">
+        <div class="row">
+            <div class="column">
+                <h4>Reporte de clientes</h4>
+                <div class="ui buttons">
+                    <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteClientes", "Reportes")'" />
+                    @*<button class="ui button">Ver</button>*@
+                    <div class="or" data-text="o"></div>
+                    <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsClientes", "Reportes")'" />
+                    @*<button class="ui positive button">Imprimir</button>*@
+                </div>
+            </div>
+            <div class="column">
+                <h4>Reporte de instructores</h4>
+                <div class="ui buttons">
+                    <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteInstructores", "Reportes")'" />
+                    @*<button class="ui button">Ver</button>*@
+                    <div class="or" data-text="o"></div>
+                    <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsInstructores", "Reportes")'" />
+                    @*<button class="ui positive button">Imprimir</button>*@
+                </div>
+            </div>
+            <div class="column">
+                <h4>Reporte de reservas</h4>
+                <div class="ui buttons">
+                    <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteReservas", "Reportes")'" />
+                    @*<button class="ui button">Ver</button>*@
+                    <div class="or" data-text="o"></div>
+                    <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsReservas", "Reportes")'" />
+                    @*<button class="ui positive button">Imprimir</button>*@
+                </div>
+            </div>
+            <div class="column">
+                <h4>Reporte de bitácoras</h4>
+                <div class="ui buttons">
+                    <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteBitacora", "Reportes")'" />
+                    @*<button class="ui button">Ver</button>*@
+                    <div class="or" data-text="o"></div>
+                    <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsBitacora", "Reportes")'" />
+                    @*<button class="ui positive button">Imprimir</button>*@
+                </div>
+            </div>
         </div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
     </div>
+
+
+
+
+
+    <!--<div>
+        <h3>Reporte de clientes</h3>
+        <div class="ui buttons">
+            <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteClientes", "Reportes")'" />-->
+            @*<button class="ui button">Ver</button>*@
+            <!--<div class="o">or</div>
+            <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsClientes", "Reportes")'" />-->
+            @*<button class="ui positive button">Imprimir</button>*@
+        <!--</div>
+    </div>
+
+    <div>
+        <h3>Reporte de instructores</h3>
+        <div class="ui buttons">
+            <input type="button" class="ui button" value="Ver" onclick="location.href='@Url.Action("ReporteInstructores", "Reportes")'" />-->
+            @*<button class="ui button">Ver</button>*@
+            <!--<div class="o"></div>
+            <input type="button" class="ui positive button" value="Imprimir" onclick="location.href='@Url.Action("PrintReportsInstructores", "Reportes")'" />-->
+            @*<button class="ui positive button">Imprimir</button>*@
+        <!--</div>
+
+    </div>-->
 
 
 

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Instructor>
+@{
+    ViewBag.Title = "ReporteInstructores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ReporteInstructores</h2>
+
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Especialidad</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Instructor in Model)
+        {
+        <tr>
+            <td>@Instructor.Nombre</td>
+            <td>@Instructor.PrimerApellido</td>
+            <td>@Instructor.SegundoApellido</td>
+            <td>@Instructor.Telefono</td>
+            <td>@Instructor.Correo</td>
+            <td>@Instructor.ID_Especialidad</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+

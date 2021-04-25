@@ -475,6 +475,9 @@
     <Content Include="Views\AdministrarInstructor\ModificarInstructorPartial.cshtml" />
     <Content Include="Views\AdministrarInstructor\Index.cshtml" />
     <Content Include="Views\Reportes\ReporteClientes.cshtml" />
+    <Content Include="Views\Reportes\ReporteInstructores.cshtml" />
+    <Content Include="Views\Reportes\ReporteReservas.cshtml" />
+    <Content Include="Views\Reportes\ReporteBitacora.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
