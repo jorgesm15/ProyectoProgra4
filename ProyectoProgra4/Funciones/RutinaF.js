@@ -1,47 +1,26 @@
-﻿let toggleCheck = false;
+﻿
+function ObtenerRutina(ID_Ejercicio) {
+    $.ajax({
+        type: 'Post',
+        url: '/Rutina/ActualizarRutina',
+        data: {
+            ID_Ejercicio: ID_Ejercicio
+        },
+        cache: false,
+        dataType: 'json',
+        success: function (data) {
+            $("#actualizarContainer").removeClass('hidden');
+            $('#btnActualizarCambios').show();
+            document.getElementById("txtNomEjercicio").value = data.ID_Instructor;
+            document.getElementById("txtDuracion").value = data.Nombre;
+            document.getElementById("txtSeries").value = data.PrimerApellido;
+            document.getElementById("txtRepeticion").value = data.SegundoApellido;
+            document.getElementById("txtDuracion").value = data.Correo;
+        },
+        error: function (data) {
+            aler("MAL")
+        }
 
-$(document).ready(function () {
-    obtenerRutina();
-});
+    });
 
-function obtenerRutina() {
-
-
-    var selectedValue = document.getElementById("selectedRutina").value;
-
-    if (selectedValue == 1) {
-        var image = new Image();
-        image.onload = function () {
-            document.getElementById('imgRutina').setAttribute('src', this.src);
-        };
-        image.src = '/img/rutina-deportista.jpg';
-    }
-    if (selectedValue == 2) { 
-        var image = new Image();
-        image.onload = function () {
-            document.getElementById('imgRutina').setAttribute('src', this.src);
-        };
-        image.src = '/img/rutina-aficionado.jpg';
-
-    } else if (selectedValue == 3) { 
-        var image = new Image();
-        image.onload = function () {
-            document.getElementById('imgRutina').setAttribute('src', this.src);
-        };
-        image.src = '/img/rutina-senior.jpg';
-
-    } else if (selectedValue == 4) {
-        var image = new Image();
-        image.onload = function () {
-            document.getElementById('imgRutina').setAttribute('src', this.src);
-        };
-        image.src = '/img/rutina-ejecutivo.jpg';
-
-    } else if (selectedValue == 5) { 
-        var image = new Image();
-        image.onload = function () {
-            document.getElementById('imgRutina').setAttribute('src', this.src);
-        };
-        image.src = '/img/rutina-recuperacion.jpg';
-    }
 }

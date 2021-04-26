@@ -34,6 +34,7 @@ namespace ProyectoProgra4
         public virtual DbSet<Instructor> Instructor { get; set; }
         public virtual DbSet<Motivo> Motivo { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
+        public virtual DbSet<Rutinas> Rutinas { get; set; }
         public virtual DbSet<Sexo> Sexo { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TipoSangre> TipoSangre { get; set; }
