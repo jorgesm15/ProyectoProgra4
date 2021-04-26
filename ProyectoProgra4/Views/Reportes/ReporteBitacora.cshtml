@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Errores>
+@{
+    ViewBag.Title = "ReporteBitacora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte de bitácora</h2>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var bitacora in Model)
+        {
+            <tr>
+                <td>@bitacora.ID_Error</td>
+                <td>@bitacora.Descripcion</td>
+                <td>@bitacora.Cliente</td>
+                <td>@bitacora.Dia</td>
+            </tr>
+        }
+    </tbody>
+</table>
