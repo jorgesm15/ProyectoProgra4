@@ -20,6 +20,7 @@ namespace ProyectoProgra4.Controllers
                                     on x.ID_Administrador equals a.ID_Administrador
                                     select new Instructor()
                                     {
+                                        ID_Instructor = x.ID_Instructor,
                                         Nombre = x.Nombre,
                                         PrimerApellido = x.PrimerApellido,
                                         SegundoApellido = x.SegundoApellido,

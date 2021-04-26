@@ -25,7 +25,7 @@
             //document.getElementById("reservaTXT").value = data.reservaID;
         },
         error: function (data) {
-            aler("MAL")
+            alert("Se presentó un error")
         }
 
     });
