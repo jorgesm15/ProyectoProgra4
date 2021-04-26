@@ -46,6 +46,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     if ($("#txtErrorReserva").val() != "") {
         $("#msjErrorReserva").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjErrorReserva").fadeOut(300)
+        }, 5000);
         document.getElementById("dia").value = '';
         document.getElementById("hora").value = '';
     }

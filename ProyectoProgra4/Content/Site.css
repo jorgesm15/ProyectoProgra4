@@ -94,9 +94,50 @@ textarea {
     font-size: 20px;
 }
 
+.centrar{
+    text-align:center;
+}
+
+.letra {
+    color: #45403F;
+}
+
+.tamano {
+    margin-left: 95px;
+}
+
+.tamanoTitulo {
+    margin-left: 25px;
+}
+
+.tamanoServirle {
+    margin-left: 20%;
+}
+
+.botonEstilo {
+    background-color: #F05742;
+    color: white;
+}
+
 .hidden {
     display: none;
+}
+
+#transformarTexto {
+    text-transform: capitalize;
+}
+
 #comboBox {
   
     margin: 0 auto;
+}
+
+.cardColor {
+    color: #F05742;
+}
+
+#nombre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
 }
