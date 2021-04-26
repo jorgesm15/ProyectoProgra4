@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["UserCorreo"] != null && Session["Rol"].Equals("Instructor"))
+{
+    if (Convert.ToInt32(Session["ID_Sexo"]) == 1)
+    {
+        @*<label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>*@
+        <h2 class="font-weight-bold mb-4 ">
+            <i class="small circle icon" id="transformarTexto" style="color: #F05742"></i>Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()
+        </h2>
+
+    }
+    else if (Convert.ToInt32(Session["ID_Sexo"]) == 2)
+    {
+        @*<label class="transformarTexto" style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenida, @HttpContext.Current.Session["Nombre"].ToString()</label>*@
+        <h2 class="font-weight-bold mb-4 ">
+            <i class="small circle icon transformarTexto" style="color: #F05742"></i>Bienvenida, @HttpContext.Current.Session["Nombre"].ToString()
+        </h2>
+    }
+    else
+    {
+        @*<label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Buenas, @HttpContext.Current.Session["Nombre"].ToString()</label>*@
+        <h2 class="font-weight-bold mb-4 ">
+            <i class="small circle icon transformarTexto" style="color: #F05742"></i>Buenas, @HttpContext.Current.Session["Nombre"].ToString()
+        </h2>
+    }
+
+    <div class="column">
+        <div class="ui centered red card">
+            <div class="image">
+                <img src="~/img/bruce-mars-gJtDg6WfMlQ-unsplash.jpg">
+            </div>
+            <div class="content">
+                <a href="@Url.Action("Index","Rutina")" class="header">Rutina</a>
+                <div class="description">
+                    Acá podrá ver las rutinas de sus clases reservadas
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

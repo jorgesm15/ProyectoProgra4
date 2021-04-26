@@ -105,6 +105,10 @@
                                 {
                                     <div class="dropdown-item">@Html.ActionLink("Menú Principal", "Administrador", "Administrador", null, new { Style = "color:black;" })</div>
                                 }
+                                else if (Session["Rol"].Equals("Instructor"))
+                                {
+                                    <div class="dropdown-item">@Html.ActionLink("Menú Principal", "Index", "DashboardI", null, new { Style = "color:black;" })</div>
+                                }
                                 <div class="header">Cuenta</div>
                                 <div class="divider"></div>
                                 <div class="item">@Html.ActionLink("Cerrar Sesión", "CerrarSession", "Login", null, new { Style = "color:black;" })</div>

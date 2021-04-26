@@ -1,0 +1,67 @@
+﻿@model ProyectoProgra4.Entidades.clsRutina
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+@using (Html.BeginForm("ActualizarRutina", "Rutina", FormMethod.Post, new { @class = "ui form" }))
+{
+    if (Session["Rol"].Equals("Instructor"))
+    {
+        <div id="actualizarContainer" class="container body-content hidden">
+            <a href="">
+                <i onclick="EsconderDiv();" class="close large icon"></i>
+            </a>
+            <div class="required field">
+                @Html.TextBoxFor(Model => Model.ID_Ejercicio, new { @class = "text hidden", @id = "txtIdEjercicio" })
+            </div>
+            <div class="field" style="margin-top: 5%">
+                <div class="five fields">
+                    <div class="required field">
+                        <label>Nombre del ejercicio</label>
+                        @Html.TextBoxFor(Model => Model.nomEjercicio, new { @class = "form-control", @id = "txtNomEjercicio", @required = "true" })
+                    </div>
+                    <div class="required field">
+                        <label>Duración</label>
+                        @Html.TextBoxFor(Model => Model.duracion, new { @class = "form-control", @id = "txtDuracion", @required = "true" })
+                    </div>
+                    <div class="required field">
+                        <label>Series</label>
+                        @Html.TextBoxFor(Model => Model.series, new { @class = "form-control", @id = "txtSeries", @required = "true" })
+                    </div>
+                    <div class="required field">
+                        <label>Repetición</label>
+                        @Html.TextBoxFor(Model => Model.repeticion, new { @class = "form-control", @id = "txtRepeticion", @required = "true" })
+                    </div>
+                    <div class="field">
+                        <label>Descanso</label>
+                        @Html.TextBoxFor(Model => Model.descanso, new { @class = "form-control", @id = "txtDescanso", @required = "true" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="required field">
+                    <input type="submit" id="btnActualizarRutina" class="ui medium button hidden" style="margin-top:10px; background-color:#F05742; color:white" value="Guardar cambios" name="submit">
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+    }
+
+
+    @Html.Partial("RutinaPartial", Session["VerRutinas"])
+}
+
+
+@section Scripts
+{
+    @Scripts.Render("/Funciones/RutinaF.js")
+}

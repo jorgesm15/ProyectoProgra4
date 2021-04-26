@@ -5,7 +5,8 @@
 <br />
 <br />
 
-<table class="ui twelve column purple table" style="text-align:center">
+
+<table class="ui five column orange table" style="text-align:center">
     <thead style="background-color: #45403F; color:white">
         <tr>
             <th>Nombre de la rutina</th>
@@ -13,6 +14,7 @@
             <th>Series</th>
             <th>Repetición</th>
             <th>Descanso</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -25,11 +27,14 @@
                 <td>@item.Repeticion</td>
                 <td>@item.Descanso</td>
                 <td>
-                    <div class="col-sm-3">
-                        <button type="button" class="ui medium button" id="btnModificar" style="margin-top: 10px; background-color:#F05742; color:white" onclick="ActualizarDatos(@item.ID_Instructor);">
-                            Modificar
-                        </button>
-                    </div>
+                    @if (Session["Rol"].Equals("Instructor"))
+                    {
+                        <div class="col-sm-2">
+                            <button type="button" class="ui medium button" id="btnModificar" style="background-color:#F05742; color:white;" onclick="ObtenerRutina(@item.ID_Ejercicio);">
+                                Modificar
+                            </button>
+                        </div>
+                    }
                 </td>
             </tr>
         }

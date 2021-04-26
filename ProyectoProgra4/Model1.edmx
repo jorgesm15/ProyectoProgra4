@@ -48,8 +48,8 @@
           <Property Name="cupos" Type="int" Nullable="false" />
           <Property Name="ID_Instructor" Type="varchar" MaxLength="12" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyecto.dbo.Errores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Errores">
           <Key>
             <PropertyRef Name="ID_Error" />
@@ -112,7 +112,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Key>
             <PropertyRef Name="ID_Ejercicio" />
           </Key>
-          <Property Name="ID_Ejercicio" Type="int" Nullable="false" />
+          <Property Name="ID_Ejercicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NomEjercicio" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Duracion" Type="decimal" Precision="2" Scale="1" Nullable="false" />
           <Property Name="Series" Type="int" Nullable="false" />
@@ -543,7 +543,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Key>
             <PropertyRef Name="ID_Ejercicio" />
           </Key>
-          <Property Name="ID_Ejercicio" Type="Int32" Nullable="false" />
+          <Property Name="ID_Ejercicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NomEjercicio" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Duracion" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
           <Property Name="Series" Type="Int32" Nullable="false" />
@@ -1139,7 +1139,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
