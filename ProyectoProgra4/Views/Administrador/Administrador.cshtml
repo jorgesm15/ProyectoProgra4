@@ -21,9 +21,9 @@
                         <img src="~/img/jonathan-borba-R0y_bEUjiOM-unsplash.jpg">
                     </div>
                     <div class="content">
-                        <a href="@Url.Action("InsertarInstructor","Instructor")" class="header">Instructores</a>
+                        <a href="@Url.Action("InsertarInstructor","Instructor")" class="header">Agregar Instructor</a>
                         <div class="description">
-                            Panel de instructores
+                            Agregar un nuevo instructor
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <div class="content">
                         <a href="@Url.Action("Index", "AdministrarInstructor")" class="header">Administrar Instructores</a>
                         <div class="description">
-                            Acá podrá ver los instuctores registrados.
+                            Ver los instuctores registrados.
                         </div>
                     </div>
                 </div>
@@ -55,35 +55,37 @@
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div class="ui centered red card">
-                <div class="ui image">
-                    <img src="~/img/firmbee-com-jrh5lAq-mIs-unsplash.jpg">
-                </div>
-                <div class="content">
-                    <a href="@Url.Action("Reportes","Reportes")" class="header">Reportes</a>
-                    <div class="description">
-                        Reportes
+        <div class="four column centered row">
+            <div class="column">
+                <div class="ui centered red card">
+                    <div class="ui image">
+                        <img src="~/img/firmbee-com-jrh5lAq-mIs-unsplash.jpg">
+                    </div>
+                    <div class="content">
+                        <a href="@Url.Action("Reportes","Reportes")" class="header">Reportes</a>
+                        <div class="description">
+                            Reportes
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    if (ViewBag.Message != null)
-    {
+        if (ViewBag.Message != null)
+        {
         @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
-    }
-    else
-    {
+        }
+        else
+        {
         @Html.Hidden("txtSuccessful", "")
-    }
+        }
 
-}
-else
-{
-    Response.Redirect("~/Login/Index");
-}
+        }
+        else
+        {
+        Response.Redirect("~/Login/Index");
+        }
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("/Funciones/ViewBags.js")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("/Funciones/ViewBags.js")

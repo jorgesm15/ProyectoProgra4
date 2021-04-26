@@ -40,7 +40,6 @@ namespace ProyectoProgra4.Entidades
 
         public int tipoSangre { get; set; }
 
-
         public string rol { get; set; }
 
     }
