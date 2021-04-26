@@ -15,23 +15,39 @@
         <p>Ya puedes hacer uso de todas las funcionalidades que ofrece Power Fit.</p>
     </div>
 
+    <br />
+    <br />
+
     if (Convert.ToInt32(Session["ID_Sexo"]) == 1)
     {
-        <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>
+        @*<label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()</label>*@
+        <h2 class="font-weight-bold mb-4 ">
+            <i class="small circle icon" id="transformarTexto" style="color: #F05742"></i>Bienvenido, @HttpContext.Current.Session["Nombre"].ToString()
+        </h2>
+
     }
     else if (Convert.ToInt32(Session["ID_Sexo"]) == 2)
     {
-        <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenida, @HttpContext.Current.Session["Nombre"].ToString()</label>
+        @*<label class="transformarTexto" style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Bienvenida, @HttpContext.Current.Session["Nombre"].ToString()</label>*@
+        <h2 class="font-weight-bold mb-4 ">
+            <i class="small circle icon transformarTexto" style="color: #F05742"></i>Bienvenida, @HttpContext.Current.Session["Nombre"].ToString()
+        </h2>
     }
     else
     {
-        <label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Buenas, @HttpContext.Current.Session["Nombre"].ToString()</label>
+        @*<label style="font-weight: 900; font-size: 20px; padding-bottom: 10px;">Buenas, @HttpContext.Current.Session["Nombre"].ToString()</label>*@
+        <h2 class="font-weight-bold mb-4 ">
+            <i class="small circle icon transformarTexto" style="color: #F05742"></i>Buenas, @HttpContext.Current.Session["Nombre"].ToString()
+        </h2>
     }
+
+    <br />
+    <br />
 
     <div class="ui four column centered grid">
         <div class="four column centered row">
             <div class="column">
-                <div class="ui centered orange card">
+                <div class="ui centered red card" style="width:390px; height:390px">
                     <div class="image">
                         <img src="~/img/mitchell-hollander-8b1cWDyvT7Y-unsplash.jpg">
                     </div>
@@ -44,7 +60,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui centered orange card">
+                <div class="ui centered red card" >
                     <div class="image">
                         <img src="~/img/hayley-kim-design-eot-ka5dM7Q-unsplash.jpg">
                     </div>
@@ -58,7 +74,7 @@
             </div>
 
             <div class="column">
-                <div class="ui centered orange card">
+                <div class="ui centered red card" style="width:390px; height:390px">
                     <div class="image">
                         <img src="">
                     </div>

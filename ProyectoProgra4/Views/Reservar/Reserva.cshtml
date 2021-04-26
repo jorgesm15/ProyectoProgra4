@@ -16,36 +16,49 @@ if (Session["UserCorreo"] != null)
     <br />
     <br />
     <br />
- 
+
     <div id="msjErrorReserva" class="ui negative message hidden">
         <i class="close icon"></i>
         <div class="header">
-           Ya se encuentra una reserva para el día seleccionado.
+            Ya se encuentra una reserva para el día seleccionado.
         </div>
         <p>
             Por favor seleccionar otro día o disciplina.
+        </p>
+    </div>
+    <div id="msjErrorFecha" class="ui negative message hidden">
+        <i class="close icon"></i>
+        <div class="header">
+            La fecha seleccionada es menor a la fecha actual.
+        </div>
+        <p>
+            Por favor seleccionar otra fecha
         </p>
     </div>
     <br />
 
     <div class="two field">
         <div class="field">
-            <label>¿Qué disciplina desea reservar?</label>
-            @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerValor()", @id = "selectedDis", required="true"})
+            @*<label>¿Qué disciplina desea reservar?</label>*@
+            <div class=" label"  id="nombre">¿Qué disciplina desea reservar?</div>
+            <br />
+            @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerValor()", @id = "selectedDis", required = "true" })
         </div>
         <div class="field">
-            @Html.TextBoxFor(m => m.reservaID, new { @class = "text hidden", autocomplete = "off", @id="reservaTXT" })
+            @Html.TextBoxFor(m => m.reservaID, new { @class = "text hidden", autocomplete = "off", @id = "reservaTXT" })
         </div>
     </div>
     <br />
     <div class="field">
-        <label>Día y hora que desea reservar</label>
+        @*<label>Día y hora que desea reservar</label>*@
+        <div class=" label" style=" font-size:medium;">Día y hora que desea reservar</div>
+        <br />
         <div class="two fields">
             <div class="field">
                 <div class="ui calendar" id="custom_format_calendar">
                     <div class="ui input left icon">
                         <i class="calendar icon"></i>
-                        @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off", required="true", @id="dia", onblur = "ValidarFecha()" })
+                        @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off", required = "true", @id = "dia", onblur = "ValidarFecha()" })
 
                     </div>
                 </div>
@@ -54,14 +67,17 @@ if (Session["UserCorreo"] != null)
                 <div class="ui calendar" id="time_calendar">
                     <div class="ui input left icon">
                         <i class="time icon"></i>
-                        @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", required="true", onchange = "obtenerHora()" })
+                        @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", required = "true", onchange = "obtenerHora()" })
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <h4 class="ui dividing header">Equipo</h4>
+    <br />
+    @*<h4 class="ui dividing header">Equipo</h4>*@
+    <h3 class="font-weight-bold mb-4 ui dividing header">
+        <i class=" small circle icon" style="color: #F05742"></i>EQUIPO
+    </h3>
     <div class="field">
     </div>
     <div class="ui segment">
