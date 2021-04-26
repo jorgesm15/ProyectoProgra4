@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -30,7 +31,7 @@ namespace ProyectoProgra4.Controllers
                 {
                     var senderEmail = new MailAddress("proyectoprogra4fidelitas@gmail.com", "Proyecto Gimnasio");
                     var receiverEmail = new MailAddress("proyectoprogra4fidelitas@gmail.com", "Proyecto Gimnasio");
-                    var password = "";
+                    var password = ConfigurationManager.AppSettings["emailPass"];
                     var sub = "Solicitud de contacto de la Web";
                     var body = "Nombre: " + nombre + "\n\r" + "Apellidos: " + apellidos + "\n\r" + "Telefono: " + telefono + "\n\r" + "Email: " + email + "\n\r" + "Mensaje: " + mensaje;
                     var smtp = new SmtpClient
