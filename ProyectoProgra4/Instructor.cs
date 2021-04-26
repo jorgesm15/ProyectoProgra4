@@ -36,13 +36,16 @@ namespace ProyectoProgra4
         public int ID_Administrador { get; set; }
         public int ID_Sexo { get; set; }
         public int ID_TipoSangre { get; set; }
-        public string nombreDis { get; set; }
-        public string nombreAdm { get; set; }
+    
         public virtual Administrador Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Disciplinas> Disciplinas { get; set; }
         public virtual Disciplinas Disciplinas1 { get; set; }
         public virtual Sexo Sexo { get; set; }
         public virtual TipoSangre TipoSangre { get; set; }
+
+        public string nombreDis { get; set; }
+
+        public string nombreAdm { get; set; }
     }
 }
