@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\DashboardIController.cs" />
     <Compile Include="Controllers\DashboardUController.cs" />
     <Compile Include="Controllers\AdministrarInstructorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -289,7 +290,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="img\anastase-maragos-9dzWZQWZMdE-unsplash.jpg" />
     <Content Include="img\bernd-klutsch-nE2HV5AUXFo-unsplash.jpg" />
+    <Content Include="img\bruce-mars-gJtDg6WfMlQ-unsplash.jpg" />
     <Content Include="img\calendar.jpg" />
     <Content Include="img\calendario.png" />
     <Content Include="img\calendario2.png" />
@@ -304,6 +307,7 @@
     <Content Include="img\pesas.jpg" />
     <Content Include="img\pilates8.jpg" />
     <Content Include="img\PowerFit.png" />
+    <Content Include="img\risen-wang-20jX9b35r_M-unsplash.jpg" />
     <Content Include="img\rutina-aficionado.jpg" />
     <Content Include="img\rutina-deportista.jpg" />
     <Content Include="img\rutina-ejecutivo.jpg" />
@@ -470,17 +474,18 @@
     <Content Include="Views\DashboardU\Index.cshtml" />
     <Content Include="Views\Administrador\Administrador.cshtml" />
     <Content Include="Views\PaginaPrincipal\SendEmail.cshtml" />
-    <Content Include="Views\Rutina\Rutina.cshtml" />
     <Content Include="Views\Clientes\Clientes.cshtml" />
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Instructor\InsertarInstructor.cshtml" />
     <Content Include="Views\AdministrarInstructor\ModificarInstructorPartial.cshtml" />
     <Content Include="Views\AdministrarInstructor\Index.cshtml" />
-    <Content Include="Views\Rutina\RutinasParcial.cshtml" />
     <Content Include="Views\Reportes\ReporteClientes.cshtml" />
     <Content Include="Views\Reportes\ReporteInstructores.cshtml" />
     <Content Include="Views\Reportes\ReporteReservas.cshtml" />
     <Content Include="Views\Reportes\ReporteBitacora.cshtml" />
+    <Content Include="Views\Rutina\Index.cshtml" />
+    <Content Include="Views\Rutina\RutinaPartial.cshtml" />
+    <Content Include="Views\DashboardI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

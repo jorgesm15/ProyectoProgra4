@@ -26,6 +26,7 @@ namespace ProyectoProgra4.Controllers
                     var contraseniaHash = GetMD5(usuario.contrasenia);
                     var user = login.Clientes.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash)).SingleOrDefault();
                     var admin = login.Administrador.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash) && query.Rol.Equals("Administrador")).SingleOrDefault();
+                    var instructor = login.Instructor.Where(query => query.Correo.Equals(usuario.correo) && query.Contraseña.Equals(contraseniaHash) && query.Rol.Equals("Instructor")).SingleOrDefault();
                     try
                     {
                         if (user != null)
@@ -34,6 +35,7 @@ namespace ProyectoProgra4.Controllers
                             Session["Nombre"] = user.Nombre.ToString();
                             Session["Rol"] = user.Rol.ToString();
                             Session["cedula"] = user.ID_Cliente.ToString();
+                            Session["ID_Sexo"] = user.ID_Sexo.ToString();
                             return RedirectToAction("Index", "DashboardU");
                         }
                         else if (admin != null)
@@ -42,7 +44,17 @@ namespace ProyectoProgra4.Controllers
                             Session["Nombre"] = admin.Nombre.ToString();
                             Session["Rol"] = admin.Rol.ToString();
                             Session["ID_Admin"] = admin.ID_Administrador;
+                            //Session["ID_Sexo"] = admin..ToString();
                             return RedirectToAction("Administrador", "Administrador");
+                        }else if(instructor != null)
+                        {
+                            Session["UserCorreo"] = instructor.Correo.ToString();
+                            Session["Nombre"] = instructor.Nombre.ToString();
+                            Session["Rol"] = instructor.Rol.ToString();
+                            Session["ID_Instructor"] = instructor.ID_Instructor;
+                            Session["ID_Especialidad"] = instructor.ID_Especialidad;
+                            Session["ID_Sexo"] = instructor.ID_Sexo.ToString();
+                            return RedirectToAction("Index", "DashboardI");
                         }
                         else
                         {
