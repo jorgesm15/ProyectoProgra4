@@ -6,12 +6,10 @@
 }
 
 
-
-
-
+  
 @using (Html.BeginForm("ActualizarRutina", "Rutina", FormMethod.Post, new { @class = "ui form" }))
 {
-    if (Session["Rol"].Equals("Instructor"))
+    if (Session["UserCorreo"] != null &&  Session["Rol"].Equals("Instructor"))
     {
         <div id="actualizarContainer" class="container body-content hidden">
             <a href="">

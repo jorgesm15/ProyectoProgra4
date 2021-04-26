@@ -36,10 +36,11 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     if ($("#txtExito").val() != "") {
-        $("#msjExito").removeClass('hidden');
+        $("#msjExitoInstructor").removeClass('hidden');
         setTimeout(function () {
-            $("#msjExito").fadeOut(300)
+            $("#msjExitoInstructor").fadeOut(300)
         }, 5000);
+        $("#formInstructor").trigger('reset');
     }
 });
 
