@@ -7,18 +7,10 @@
 
 
 
-@using (Html.BeginForm("InsertarInstructor", "Instructor", FormMethod.Post, new { @class = "ui form" }))
+@using (Html.BeginForm("InsertarInstructor", "Instructor", FormMethod.Post, new { @class = "ui form", @id = "formInstructor" }))
 {
     if (Session["Rol"].Equals("Administrador") && Session["InstructorRegistrado"] == null)
     {
-
-        <div id="msjExito" class="ui success message hidden">
-            <i class="close icon"></i>
-            <div class="header">
-                El instructor fue registrado exitosamente.
-            </div>
-            <p>Ya puedes hacer uso de todas las funcionalidades que ofrece Power Fit.</p>
-        </div>
 
         <div class="container body-content">
             <br />
@@ -90,15 +82,15 @@
 
                 @* Arreglar el select de los paises *@
                 <!--<div class="required field">
-            <label>País</label>
-            <div class="ui fluid search selection dropdown">
-                <input type="hidden" name="country">
-                <i class="dropdown icon"></i>
-                <div class="default text">Select Country</div>
-                <div class="menu">
-                </div>
-            </div>
-        </div>>-->
+                    <label>País</label>
+                    <div class="ui fluid search selection dropdown">
+                        <input type="hidden" name="country">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Select Country</div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                </div>>-->
             </div>
 
 
@@ -128,8 +120,8 @@
                 </div>
 
                 @*<button type="submit" class="ui big button" style="margin-top: 10px;">
-                    Continuar
-                </button>*@
+                        Continuar
+                    </button>*@
                 <button type="submit" class="ui big button" style="margin-top: 10px; background-color:#F05742; color:white">
                     Continuar
                 </button>
@@ -142,14 +134,14 @@
     }
 
 
-    if (ViewBag.Message != null)
+    @*if (ViewBag.Message != null)
     {
         @Html.Hidden("txtExito", (string)ViewBag.Message.ToString())
     }
     else
     {
         @Html.Hidden("txtExito", "")
-    }
+    }*@
 }
 
 @section Scripts
@@ -179,7 +171,7 @@
             $("#txtTlf").on("keypress keyup blur", function (event) {
                 ValidarTelefono(event);
             });
-        }
+        });
 
 
 
