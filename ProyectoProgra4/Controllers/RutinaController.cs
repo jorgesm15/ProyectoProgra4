@@ -8,7 +8,7 @@ namespace ProyectoProgra4.Controllers
     {
 
         [HttpPost]
-        public void VerRutina()
+        public void Rutina()
         {
             using (var contexto = new ProyectoEntities())
             {
@@ -25,11 +25,39 @@ namespace ProyectoProgra4.Controllers
             }
         }
 
-        public ActionResult Rutina()
+        public ActionResult RutinasParcial()
         {
-            VerRutina();
+            Rutina();
 
             return View();
+        }
+
+        public ActionResult ActualizarRutina(int ID_Ejercicio)
+        {
+            using (var contexto = new ProyectoEntities())
+            {
+
+                var rutinas = (from x in contexto.Rutinas
+                                    where x.ID_Ejercicio == ID_Ejercicio
+                                    select x).FirstOrDefault();
+
+                Dictionary<string, string> rutina = new Dictionary<string, string>();
+
+                rutina.Add("nomEjercicio", rutinas.NomEjercicio);
+                rutina.Add("duracion", rutinas.Duracion.ToString());
+                rutina.Add("series", rutinas.Series.ToString());
+                rutina.Add("repeticion", rutinas.Repeticion);
+                rutina.Add("descanso", rutinas.Descanso);
+
+                if (rutinas.ID_Ejercicio != ID_Ejercicio)
+                {
+                    return Json(null, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    return Json(rutina, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
     }
 }

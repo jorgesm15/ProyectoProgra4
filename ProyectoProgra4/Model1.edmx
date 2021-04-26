@@ -108,6 +108,17 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Property Name="equipo" Type="bit" Nullable="false" />
           <Property Name="ID_Cliente" Type="varchar" MaxLength="9" Nullable="false" />
         </EntityType>
+        <EntityType Name="Rutinas">
+          <Key>
+            <PropertyRef Name="ID_Ejercicio" />
+          </Key>
+          <Property Name="ID_Ejercicio" Type="int" Nullable="false" />
+          <Property Name="NomEjercicio" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duracion" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="Series" Type="int" Nullable="false" />
+          <Property Name="Repeticion" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descanso" Type="nchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Sexo">
           <Key>
             <PropertyRef Name="ID_Sexo" />
@@ -228,7 +239,6 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_Instructor_Sexo">
           <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
           <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
@@ -253,7 +263,6 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Function Name="ActualizarInstructor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pIdInstructor" Type="varchar" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
@@ -367,6 +376,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Motivo" EntityType="Self.Motivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rutinas" EntityType="Self.Rutinas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoSangre" EntityType="Self.TipoSangre" Schema="dbo" store:Type="Tables" />
@@ -457,9 +467,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Property Name="ID_Motivo" Type="Int32" Nullable="false" />
           <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Sexo" Type="Int32" Nullable="false" />
-
           <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
-
           <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__ID_Clie__56E8E7AB" FromRole="Clientes" ToRole="Reserva" />
           <NavigationProperty Name="Motivo" Relationship="Self.FK_Clientes_Motivo" FromRole="Clientes" ToRole="Motivo" />
           <NavigationProperty Name="Sexo" Relationship="Self.FK_Clientes_Sexo" FromRole="Clientes" ToRole="Sexo" />
@@ -502,10 +510,8 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Especialidad" Type="Int32" Nullable="false" />
           <Property Name="ID_Administrador" Type="Int32" Nullable="false" />
-
           <Property Name="ID_Sexo" Type="Int32" Nullable="false" />
           <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
-
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Instructor_Administrador" FromRole="Instructor" ToRole="Administrador" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK_Disciplinas_Instructor" FromRole="Instructor" ToRole="Disciplinas" />
           <NavigationProperty Name="Disciplinas1" Relationship="Self.FK_Instructor_Especialidad" FromRole="Instructor" ToRole="Disciplinas" />
@@ -533,6 +539,17 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <NavigationProperty Name="Clientes" Relationship="Self.FK__Reserva__ID_Clie__56E8E7AB" FromRole="Reserva" ToRole="Clientes" />
           <NavigationProperty Name="Disciplinas" Relationship="Self.FK__Reserva__claseID__57DD0BE4" FromRole="Reserva" ToRole="Disciplinas" />
         </EntityType>
+        <EntityType Name="Rutinas">
+          <Key>
+            <PropertyRef Name="ID_Ejercicio" />
+          </Key>
+          <Property Name="ID_Ejercicio" Type="Int32" Nullable="false" />
+          <Property Name="NomEjercicio" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Duracion" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="Series" Type="Int32" Nullable="false" />
+          <Property Name="Repeticion" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Descanso" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="Sexo">
           <Key>
             <PropertyRef Name="ID_Sexo" />
@@ -558,10 +575,8 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           </Key>
           <Property Name="ID_TipoSangre" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-
           <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_TipoSangre" FromRole="TipoSangre" ToRole="Clientes" />
           <NavigationProperty Name="Instructor" Relationship="Self.FK_Instructor_TipoSangre" FromRole="TipoSangre" ToRole="Instructor" />
-
         </EntityType>
         <EntityType Name="Errores">
           <Key>
@@ -623,7 +638,6 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_Clientes_TipoSangre">
           <End Role="TipoSangre" Type="Self.TipoSangre" Multiplicity="1" />
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
@@ -636,7 +650,6 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK__Reserva__claseID__57DD0BE4">
           <End Role="Disciplinas" Type="Self.Disciplinas" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
@@ -705,6 +718,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <EntitySet Name="Instructor" EntityType="Self.Instructor" />
           <EntitySet Name="Motivo" EntityType="Self.Motivo" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="Rutinas" EntityType="Self.Rutinas" />
           <EntitySet Name="Sexo" EntityType="Self.Sexo" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TipoSangre" EntityType="Self.TipoSangre" />
@@ -725,12 +739,10 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             <End Role="Sexo" EntitySet="Sexo" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
-
           <AssociationSet Name="FK_Clientes_TipoSangre" Association="Self.FK_Clientes_TipoSangre">
             <End Role="TipoSangre" EntitySet="TipoSangre" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
-
           <AssociationSet Name="FK__Reserva__claseID__57DD0BE4" Association="Self.FK__Reserva__claseID__57DD0BE4">
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Reserva" EntitySet="Reserva" />
@@ -743,7 +755,6 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             <End Role="Disciplinas" EntitySet="Disciplinas" />
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
-
           <AssociationSet Name="FK_Instructor_Sexo" Association="Self.FK_Instructor_Sexo">
             <End Role="Sexo" EntitySet="Sexo" />
             <End Role="Instructor" EntitySet="Instructor" />
@@ -752,7 +763,6 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
             <End Role="TipoSangre" EntitySet="TipoSangre" />
             <End Role="Instructor" EntitySet="Instructor" />
           </AssociationSet>
-
           <FunctionImport Name="ActualizarInstructor">
             <Parameter Name="pIdInstructor" Mode="In" Type="String" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
@@ -993,6 +1003,18 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
                 <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="equipo" ColumnName="equipo" />
                 <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rutinas">
+            <EntityTypeMapping TypeName="ProyectoModel.Rutinas">
+              <MappingFragment StoreEntitySet="Rutinas">
+                <ScalarProperty Name="ID_Ejercicio" ColumnName="ID_Ejercicio" />
+                <ScalarProperty Name="NomEjercicio" ColumnName="NomEjercicio" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Repeticion" ColumnName="Repeticion" />
+                <ScalarProperty Name="Descanso" ColumnName="Descanso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
