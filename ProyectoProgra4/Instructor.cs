@@ -11,7 +11,7 @@ namespace ProyectoProgra4
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Instructor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace ProyectoProgra4
         {
             this.Disciplinas = new HashSet<Disciplinas>();
         }
-
+    
         public string ID_Instructor { get; set; }
         public string Cedula { get; set; }
         public string Nombre { get; set; }
@@ -40,7 +40,6 @@ namespace ProyectoProgra4
 
         public string nombreDis { get; set; }
         public string nombreAdm { get; set; }
-
 
         public virtual Administrador Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

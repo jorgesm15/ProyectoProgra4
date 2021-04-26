@@ -24,8 +24,12 @@ namespace ProyectoProgra4.Entidades
         //[Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string direccion { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        //[RegularExpression(@"^(\d{8})$", ErrorMessage = "El número de teléfono debe ser de 8 dígitos.")]
+        //[DataType(DataType.PhoneNumber)]
         public string telefono { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
+        //[RegularExpression(@"^(\d{8})$", ErrorMessage = "El número de teléfono debe ser de 8 dígitos.")]
+        //[DataType(DataType.PhoneNumber)]
         public string telefonoEmergencia { get; set; }
         [Required(ErrorMessage = "Este campo no puede ser vacío.")]
         public string condicionesMedicas { get; set; }
