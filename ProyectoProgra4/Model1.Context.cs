@@ -121,9 +121,7 @@ namespace ProyectoProgra4
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarReserva", reservaIDParameter, claseIDParameter, diaParameter, horaParameter, equipoParameter, idClienteParameter);
         }
     
-
         public virtual int InsertarClientes(string pIdCliente, string pNombre, string pPrimerApellido, string pSegundoApellido, string pCorreo, Nullable<int> pEdad, string pContraseña, string pDireccion, string pTelefono, string pTelefonoEmergencia, Nullable<decimal> pPeso, Nullable<decimal> pEstatura, string pCondicionesMedicas, Nullable<int> pIdMotivo, string pRol, Nullable<int> pSexo, Nullable<int> pIdTipoSangre)
-
         {
             var pIdClienteParameter = pIdCliente != null ?
                 new ObjectParameter("pIdCliente", pIdCliente) :

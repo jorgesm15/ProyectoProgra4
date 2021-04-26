@@ -21,15 +21,21 @@
         </div>
 
         <div class="container body-content">
-            <h2 class="ui dividing header">Registrar Instructores</h2>
+            <br />
+            @*<h2 class="ui dividing header">Registrar Instructores</h2>*@
+            <h3 class="font-weight-bold mb-4 ui dividing header">
+                <i class=" small circle icon" style="color: #F05742"></i>REGISTRAR INSTRUCTORES
+            </h3>
+            <br />
             <div class="field">
-                <label>Cédula</label>
+                <label id="nombre">Cédula</label>
                 <div class="three fields">
                     <div class="required field">
                         @Html.TextBoxFor(Model => Model.cedula, new { @class = "form-control", @id = "cedulaPersona", @required = "true" })
                     </div>
                     <div class="field">
-                        <div class="ui big button" onclick="ConsultarPersona();" tabindex="0">Buscar</div>
+                        @*<div class="ui big button" onclick="ConsultarPersona();" tabindex="0">Buscar</div>*@
+                        <div class="ui big button" onclick="ConsultarPersona();" tabindex="0" style=" background-color:#F05742; color:white">Buscar</div>
                     </div>
                 </div>
             </div>
@@ -37,15 +43,15 @@
             <div class="required field">
                 <div class="three fields">
                     <div class="required field">
-                        <label>Nombre</label>
+                        <label id="nombre">Nombre</label>
                         @Html.TextBoxFor(Model => Model.nombre, new { @class = "form-control", @id = "txtNombre", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
                     </div>
                     <div class="required field">
-                        <label>Primer Apellido</label>
+                        <label id="nombre">Primer Apellido</label>
                         @Html.TextBoxFor(Model => Model.primerApellido, new { @class = "form-control", @id = "txtPrimerApellido", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
                     </div>
                     <div class="required field">
-                        <label>Segundo Apellido</label>
+                        <label id="nombre">Segundo Apellido</label>
                         @Html.TextBoxFor(Model => Model.segundoApellido, new { @class = "form-control", @id = "txtSegundoApellido", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
                     </div>
                 </div>
@@ -54,29 +60,29 @@
                 <div class="three fields">
                     @* Revisar campo de texto, es de 12 pero no se visualiza *@
                     <div class="required field">
-                        <label>Correo Electrónico</label>
+                        <label id="nombre">Correo Electrónico</label>
                         @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "txtCorreo", @required = "true" })
                     </div>
                     <div class="required field">
-                        <label>Contraseña</label>
+                        <label id="nombre">Contraseña</label>
                         @Html.TextBoxFor(Model => Model.contrasenia, new { @class = "form-control", @id = "txtContrasenia", @type = "password", @required = "true" })
                     </div>
                 </div>
             </div>
             <br />
-            <div class="four fields">
+            <div class="three fields">
                 <div class="required field">
-                    <label>Edad</label>
+                    <label id="nombre">Edad</label>
                     @Html.TextBoxFor(Model => Model.edad, new { @class = "form-control", @id = "txtEdad", @required = "true" })
                     @Html.ValidationMessageFor(Model => Model.edad, null, new { @class = "text-danger", @style = "font-weight: 900" })
                 </div>
                 <div class="required field">
-                    <label>Número de teléfono</label>
+                    <label id="nombre">Número de teléfono</label>
                     @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true" })
                     @Html.ValidationMessageFor(Model => Model.telefono, null, new { @class = "text-danger", @style = "font-weight: 900" })
                 </div>
                 <div class="required field">
-                    <label>Número de emergencia</label>
+                    <label id="nombre">Número de emergencia</label>
                     @Html.TextBoxFor(Model => Model.telefonoEmergencia, new { @class = "form-control", @id = "txtTlfEmergencia", @required = "true" })
                     @Html.ValidationMessageFor(Model => Model.telefonoEmergencia, null, new { @class = "text-danger", @style = "font-weight: 900" })
 
@@ -84,29 +90,29 @@
 
                 @* Arreglar el select de los paises *@
                 <!--<div class="required field">
-                    <label>País</label>
-                    <div class="ui fluid search selection dropdown">
-                        <input type="hidden" name="country">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Select Country</div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>>-->
+            <label>País</label>
+            <div class="ui fluid search selection dropdown">
+                <input type="hidden" name="country">
+                <i class="dropdown icon"></i>
+                <div class="default text">Select Country</div>
+                <div class="menu">
+                </div>
+            </div>
+        </div>>-->
             </div>
 
 
             <div class="two fields">
                 <div class="required field">
-                    <label>Especialidad</label>
+                    <label id="nombre">Especialidad</label>
                     @Html.DropDownListFor(Model => Model.especialidad, ViewBag.ListaComboEspecialidad as List<SelectListItem>, new { @id = "selectedEspecialidad", @required = "true" })
                 </div>
                 <div class="required field">
-                    <label>Tipo de sangre</label>
+                    <label id="nombre">Tipo de sangre</label>
                     @Html.DropDownListFor(Model => Model.tipoSangre, ViewBag.ListaComboSangre as List<SelectListItem>, new { @id = "selectedMotivo", @required = "true" })
                 </div>
                 <div class="required field">
-                    <label>Sexo</label>
+                    <label id="nombre">Sexo</label>
                     @Html.DropDownListFor(Model => Model.sexo, ViewBag.ListaComboSexo as List<SelectListItem>, new { @id = "selectedSexo", @required = "true" })
                 </div>
             </div>
@@ -114,14 +120,17 @@
 
             <div class="ui form">
                 <div class="required field">
-                    <label>Condiciones Médicas</label>
+                    <label id="nombre">Condiciones Médicas</label>
                     @Html.TextAreaFor(Model => Model.condicionesMedicas, new { @id = "txtCondiciones", @rows = "2", @required = "true" })
                 </div>
                 <div class="required field">
                     @* @Html.DropDownListFor(Model => Model.ID_Sexo, ViewBag.ListaComboSexo as List<SelectListItem>, new { @id = "selectedSexo", @required = "true" })*@
                 </div>
 
-                <button type="submit" class="ui big button" style="margin-top: 10px;">
+                @*<button type="submit" class="ui big button" style="margin-top: 10px;">
+                    Continuar
+                </button>*@
+                <button type="submit" class="ui big button" style="margin-top: 10px; background-color:#F05742; color:white">
                     Continuar
                 </button>
             </div>

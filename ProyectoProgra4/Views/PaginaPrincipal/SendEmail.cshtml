@@ -1,4 +1,10 @@
 ﻿
+<head>
+ 
+    @Styles.Render("~/Content/css")
+  
+</head>
+
 <br />
 @using (Html.BeginForm("SendEmail", "PaginaPrincipal", FormMethod.Post))
 {
@@ -6,11 +12,14 @@
         <div class="ui form" style="color:white;">
             <div class="ui middle aligned center aligned grid">
                 <div class="ui form">
-                    <h3>Formulario de contacto</h3>
+                    @*<h3>Formulario de contacto</h3>*@
+                    <h2 id="fraseFinal" class="font-weight-bold mb-4" style="text-align:center">
+                        <i class="small circle icon" style="color: #F05742"></i>FORMULARIO DE <span class="colorDos" style="color:#F05742; font-size: 30px">CONTACTO</span>
+                    </h2>
                     <br />
                     <div class="field">
-                        <div>
-                            <h5>Nombre</h5>
+                        <div class=" label" style=" font-size:medium;">
+                           Nombre
                         </div>
                         <div class="ui left icon input">
                             <input type="text" placeholder="" name="nombre">
@@ -18,8 +27,8 @@
                         </div>
                     </div>
                     <div class="field">
-                        <div>
-                            <h5>Apellidos</h5>
+                        <div class=" label" style=" font-size:medium;">
+                            Apellidos
                         </div>
                         <div class="ui left icon input">
                             <input type="text" placeholder="" name="apellidos">
@@ -27,8 +36,8 @@
                         </div>
                     </div>
                     <div class="field">
-                        <div>
-                            <h5>Teléfono</h5>
+                        <div class=" label" style=" font-size:medium;">
+                            Teléfono
                         </div>
                         <div class="ui left icon input">
                             <input type="text" placeholder="" name="telefono">
@@ -36,8 +45,8 @@
                         </div>
                     </div>
                     <div class="field">
-                        <div>
-                            <h5>Correo Electrónico</h5>
+                        <div class=" label" style=" font-size:medium;">
+                            Correo Electrónico
                         </div>
                         <div class="ui left icon input">
                             <input type="text" placeholder="" name="email">
@@ -45,18 +54,18 @@
                         </div>
                     </div>
                     <div class="field">
-                        <div>
-                            <h5>Mensaje</h5>
+                        <div class=" label" style=" font-size:medium;">
+                            Mensaje
                         </div>
-                        <br />
                         <div class="ui left icon input">
                             <input type="text" placeholder="" name="mensaje">
                             <i class="edit outline icon"></i>
                         </div>
                     </div>
                     <br />
-                    <div class="middle aligned column">
-                        <button class="ui orange button" type="submit"><i class="envelope icon"></i>Enviar</button>
+                    <div class="middle aligned column" style="text-align: center">
+                        <button class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white"type="submit"><i class="envelope icon"></i>Enviar</button>
+                        @*<input type="submit" id="btnReservar" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" value="Reservar" ">*@
                     </div>
 
                 </div>

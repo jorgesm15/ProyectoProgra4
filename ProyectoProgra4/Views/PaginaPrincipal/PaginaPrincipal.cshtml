@@ -4,12 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
 
-@*<div class="container bg-video d-flex ">
-        <video src="https://media.istockphoto.com/videos/fit-athletic-caucasian-girl-is-starting-to-run-on-the-treadmill-in-video-id670000372" muted autoplay loop height="500" width="1100" style="margin-left:0px"></video>
-    </div>*@
-
-<div class="ui secondary menu" id="secNav">
+<div class="ui secondary menu" id="secNav" style="font-size:medium">
     @*Menu interno*@
     <br />
     <br />
@@ -29,18 +28,18 @@
 
 <div class="row justify-content-start">
     @*Div de carousel, parte izquierda*@
-    <div class="col-7" id="seccionDisciplinas">
+    <div class="col-7" id="">
         <div style="background-color: #45403F; color:white; padding-top:3%; margin-left:5%; padding-bottom:8%; border-radius:15px">
             <h2 style=" text-align: center">¿Qué disciplinas ofrecemos en PowerFit?</h2>
             <br />
             <br />
             <div id="carousel" class="carousel slide" data-ride="carousel" style="width:75%; margin-left:13%; ">
-                <ol class="carousel-indicators">
+                <ul class="carousel-indicators">
                     <li data-target="#carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel" data-slide-to="1"></li>
                     <li data-target="#carousel" data-slide-to="2"></li>
                     <li data-target="#carousel" data-slide-to="3"></li>
-                </ol>
+                </ul>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="~/img/yoga.jpg" alt="YOGA">
@@ -55,51 +54,49 @@
                         <img class="d-block w-100" src="~/img/funcional4.jpg" alt="FUNCIONAL">
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                <a class="carousel-control-prev" href="#carousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
                 </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                <a class="carousel-control-next" href="#carousel" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
         </div>
     </div>
 
     <div class="col-5">
-        <div style=" width: 80%;  padding-left:5% ; padding-top:15%; ">
+        <div style=" width: 80%;  padding-left:5% ; padding-top:17%; ">
             @*div de las disciplinas, parte derecha*@
-            <div style="background-color:#F05742; color:#45403F; padding-top:7%;  padding-bottom:7%; border-radius:15px">
+            <div style="background-color:#45403F; color:white; padding-top:7%;  padding-bottom:7%; border-radius:15px">
                 <div style="margin-left:15%">
-                    <div class=" label" style=" font-size:medium; font-weight:bold;">
-                        <i class="large arrow box right icon"></i> YOGA
+                    <div class=" label" style=" font-size:large; font-weight:bold;">
+                        <i class="large arrow box right icon" style="color:#F05742;"></i> YOGA
                     </div>
-                    <div class=" label" style=" font-size:small; margin-left:12%;">
+                    <div class=" label" style=" font-size:medium; margin-left:12%;">
                         Cuida tu mente
                     </div>
                     <br />
                     <br />
-                    <div class=" label" style=" font-size:medium; font-weight:bold">
-                        <i class="large arrow box right icon" style="color:#45403F"></i> FITNESS
+                    <div class=" label" style=" font-size:large; font-weight:bold">
+                        <i class="large arrow box right icon" style="color:#F05742"></i> FITNESS
                     </div>
-                    <div class=" label" style=" font-size:small; margin-left:12%">
+                    <div class=" label" style=" font-size:medium; margin-left:12%">
                         Tonifica tus músculos
                     </div>
                     <br />
                     <br />
-                    <div class=" label" style=" font-size:medium; font-weight:bold">
-                        <i class="large arrow box right icon" style="color:#45403F;"></i> PILATES
+                    <div class=" label" style=" font-size:large; font-weight:bold">
+                        <i class="large arrow box right icon" style="color:#F05742;"></i> PILATES
                     </div>
-                    <div class=" label" style=" font-size:small; margin-left:12%">
+                    <div class=" label" style=" font-size:medium; margin-left:12%">
                         Gana Flexibilidad
                     </div>
                     <br />
                     <br />
-                    <div class=" label" style=" font-size:medium; font-weight:bold">
-                        <i class="large arrow box right icon" style="color:#45403F;"></i> FUNCIONALES
+                    <div class=" label" style=" font-size:large; font-weight:bold">
+                        <i class="large arrow box right icon" style="color:#F05742;"></i> FUNCIONALES
                     </div>
-                    <div class=" label" style=" font-size:small; margin-left:12%">
+                    <div class=" label" style=" font-size:medium; margin-left:12%">
                         Mantén un estilo de vida saludable
                     </div>
                 </div>
@@ -108,6 +105,7 @@
     </div>
 </div>
 
+<br />
 <br />
 <br />
 
@@ -166,67 +164,97 @@
 <br />
 <br />
 <br />
+<br />
+
+<h2 class="font-weight-bold mb-4 centrar letra" id="seccionHistoria">
+    <i class="small circle icon " style="color: #F05742"></i>HISTORIA
+</h2>
 
 @*div de Historia*@
-<h2 id="seccionHistoria">Historia</h2>
-<div class="col-5">
-    <div style=" width: 240%;  padding-left:2% ; padding-top: 5%; padding-bottom: 5%">
+
+<div class="col-5" style="text-align: justify">
+    <div style=" width: 227%;  padding-left:3% ; padding-top: 5%; padding-bottom: 5%; ">
         <div style="background-color:  #45403F; color: white; padding-top: 3%; padding-bottom: 3%; border-radius: 15px">
             <div style="margin-left: 3%; margin-right: 3%; align-content: center;">
-                <h4>
+                <div class=" label" style=" font-size:medium;">
                     Power Fit nace con la idea de crear un emprendimiento el cual brinde bienestar y calidad de vida a personas de todas partes del país, desde adultos jóvenes hasta personas en recuperación. A partir de la crisis generada
                     por la pandemia, se da la necesidad del público en general para mantenerse activo físicamente, tomando en cuenta las normas sanitarias en un sitio seguro. Es allí cuando llega la idea de Power Fit, un nuevo estilo de gimnasio
                     capaz de proveer este servicio a todos los públicos innovando el mercado, por medio de actividades virtuales en las cuales los clientes pueden asistir desde casa, además de una serie de ejercicios y entrenamientos en
                     un espacio sanitizado y con zonas verdes de manera presencial, incluyendo planes de entrenamiento para novatos y especializados, ya sea para tonificar, adelgazar o habilitar zonas del cuerpo que lo requieran.
-                </h4>
+
+                </div>
                 <br />
-                <h4>Este gimnasio pretende ofrecer una gran variedad de actividades y secciones especializadas para todos los sectores interesados, esperando convertir el espacio en un sitio seguro y agradable para todos los públicos.</h4>
+                <div class=" label" style=" font-size:medium;">
+                    Este gimnasio pretende ofrecer una gran variedad de actividades y secciones especializadas para todos los sectores interesados, esperando convertir el espacio en un sitio seguro y agradable para todos los públicos.
+
+                </div>
                 <br />
-                <h4>
+                <div class=" label" style=" font-size:medium;">
                     La misión principal de Power Fit es darse a conocer de manera nacional como uno de los gimnasios de mejor carácter económico y mayor calidad para todos los consumidores interesados en ejercitarse.
                     Su visión es ser de los mayores partícipes en el deporte nacional como patrocinador de diversas actividades deportivas y ser reconocido como una marca partidaria en la actividad física enfocada a todos los sectores.
-                </h4>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<h2 id="seccionContacto">Contacto</h2>
 <br />
 
-
-
+<h2 class="font-weight-bold mb-4 centrar letra" id="seccionContacto">
+    <i class="small circle icon " style="color: #F05742"></i>CONTACTO
+</h2>
+<br />
+<br />
 
 <div class="row justify-content-start">
     <div class="col-6">
-        <div style=" width: 90%; margin-left:3%; padding-left:2% ; padding-top:0%; ">
+        <div style=" width: 90%; margin-left:3%; padding-left:2% ; padding-top:0% ">
             @*texto parte izquierda*@
-            <div style="background-color: #45403F; color:white; padding-top:7%;  padding-bottom:2%; border-radius:15px">
+            <div style="background-color: #45403F; color:white; padding-top:6%;  padding-bottom:3%; border-radius:15px ">
                 <div class="col-lg-12 align-content-md-center">
-                    <h2>Estamos ubicados en: </h2>
-                    <h4>Heredia, San Francisco, Mall Oxígeno, tercer piso</h4>
+                    <h4 class="tamanoTitulo">Estamos ubicados en: </h4>
+                    <div class=" label tamano " style=" font-size:medium; ">
+                        <i class="circle outline icon " style="color:#4ABBDE;"></i> Heredia, San Francisco, Mall Oxígeno, tercer piso
+                    </div>
+                    <br />
                     <br />
                 </div>
                 <div class="col-lg-12">
-                    <h2>Número de teléfono: </h2>
-                    <h4>2288-1753</h4>
+                    <h4 class="tamanoTitulo">Número de teléfono: </h4>
+                    <div class=" label tamano" style=" font-size:medium;">
+                        <i class="circle outline icon" style="color:#4ABBDE;"></i>2288-1753
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="col-lg-12">
+                    <h4 class="tamanoTitulo">Correo electrónico: </h4>
+                    <div class=" label tamano" style=" font-size:medium;">
+                        <i class="circle outline icon" style="color:#4ABBDE;"></i>contacto@powerfit.com
+                    </div>
+                    <br />
                     <br />
                 </div>
                 <div class="col-lg-12">
-                    <h2>Correo electrónico: </h2>
-                    <h4>contacto@powerfit.com</h4>
+                    <h4 class="tamanoTitulo">Horario: </h4>
+                    <div class=" label tamano" style=" font-size:medium;">
+                        <i class="circle outline icon" style="color:#4ABBDE;"></i>De lunes a viernes de 8am a 11pm - Sábados y domingos de 9am a 9pm
+                    </div>
                     <br />
-                </div>
-                <div class="col-lg-12">
-                    <h2>Horario: </h2>
-                    <h4>De lunes a viernes de 8am a 11pm - Sábados y domingos de 9am a 9pm</h4>
                     <br />
-                    <h2 id="fraseFinal">¡Estamos para servirle!</h2>
+                    <br />
+                    @*<h3 id="fraseFinal" class="tamanoTitulo">¡Estamos para servirle!</h3>*@
+                    <div class="row" id="titulo">
+                        <h2 id="fraseFinal" class="font-weight-bold mb-4 tamanoServirle" style="text-align:center">
+                            <i class="small circle icon" style="color: #F05742"></i>ESTAMOS PARA <span class="colorDos">SERVIRLE!</span>
+                        </h2>
+                    </div>
                     <br />
                 </div>
             </div>
         </div>
     </div>
+
 
     @*Div imagen, parte derecha*@
     <div class="col-5" id="formularioContacto" style="padding-top:0%">
@@ -242,3 +270,6 @@
 
 
 @Scripts.Render("/Funciones/ViewBags.js")
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>

@@ -230,18 +230,18 @@ function ValidarFecha() {
     //hoy = new Date(fechaActual);
 
 
-    if (valorSeleccionado > hoy) {
+    if (valorSeleccionado >= hoy) {
 
         return true;
         
     } else {
-        alert("menor");
-        
-            //$('#dia').val(" ");
-            //$('#hora').val(" ");
+        $("#msjErrorFecha").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjErrorFecha").fadeOut(300)
+        }, 5000);
         document.getElementById("dia").value = '';
         document.getElementById("hora").value = '';
-        
+                
         return false;
 
     }
