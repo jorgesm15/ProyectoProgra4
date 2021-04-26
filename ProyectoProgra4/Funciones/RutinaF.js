@@ -2,7 +2,7 @@
 function ObtenerRutina(ID_Ejercicio) {
     $.ajax({
         type: 'Post',
-        url: '/Rutina/ActualizarRutina',
+        url: '/Rutina/ActualizarDatos',
         data: {
             ID_Ejercicio: ID_Ejercicio
         },
@@ -11,16 +11,22 @@ function ObtenerRutina(ID_Ejercicio) {
         success: function (data) {
             $("#actualizarContainer").removeClass('hidden');
             $('#btnActualizarCambios').show();
-            document.getElementById("txtNomEjercicio").value = data.ID_Instructor;
-            document.getElementById("txtDuracion").value = data.Nombre;
-            document.getElementById("txtSeries").value = data.PrimerApellido;
-            document.getElementById("txtRepeticion").value = data.SegundoApellido;
-            document.getElementById("txtDuracion").value = data.Correo;
+            document.getElementById("txtIdEjercicio").value = data.ID_Ejercicio;
+            document.getElementById("txtNomEjercicio").value = data.NomEjercicio;
+            document.getElementById("txtDuracion").value = data.Duracion;
+            document.getElementById("txtSeries").value = data.Series;
+            document.getElementById("txtRepeticion").value = data.Repeticion;
+            document.getElementById("txtDescanso").value = data.Descanso;
         },
         error: function (data) {
-            aler("MAL")
+            alert("MAL")
         }
 
     });
 
+}
+
+function EsconderDiv() {
+    $("#actualizarContainer").addClass('hidden');
+    event.preventDefault();
 }
