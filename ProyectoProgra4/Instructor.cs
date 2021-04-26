@@ -21,6 +21,7 @@ namespace ProyectoProgra4
         }
 
         public string ID_Instructor { get; set; }
+        public string Cedula { get; set; }
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
