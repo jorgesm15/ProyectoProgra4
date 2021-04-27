@@ -142,14 +142,14 @@ namespace ProyectoProgra4.Controllers
 
 
         [HttpPost]
-        public ActionResult EliminarReserva(int id)
+        public ActionResult EliminarReserva(int reservaID)
         {
             try
             {
                 using (var contexto = new ProyectoEntities())
                 {
                     var reservas = (from x in contexto.Reserva
-                                    where x.reservaID == id
+                                    where x.reservaID == reservaID
                                     select x).FirstOrDefault();
 
                     if (reservas != null)
@@ -232,7 +232,7 @@ namespace ProyectoProgra4.Controllers
             using (var contextoReservar = new ProyectoEntities())
             {
                 int resultado = contextoReservar.ActualizarReserva(
-                    reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
+                    reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, Session["cedula"].ToString()
                 );
 
                 if (resultado == -1)

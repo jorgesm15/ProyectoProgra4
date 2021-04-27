@@ -8,7 +8,7 @@
 
 @if (Session["UserCorreo"] != null && Session["Rol"].Equals("Instructor"))
 {
-    <table class="ui five column orange table" style="text-align:center">
+    <table class="table table-bordered table-hover" style="text-align:center">
         <thead style="background-color: #45403F; color:white">
             <tr>
                 <th>Nombre de la rutina</th>
@@ -31,11 +31,15 @@
                     <td>
                         @if (Session["Rol"].Equals("Instructor"))
                         {
-                            <div class="col-sm-2">
+
+                          
                                 <button type="button" class="ui medium button" id="btnModificar" style="background-color:#F05742; color:white;" onclick="ObtenerRutina(@item.ID_Ejercicio);">
                                     Modificar
                                 </button>
-                            </div>
+                      
+
+                  
+
                         }
                     </td>
                 </tr>
@@ -45,7 +49,7 @@
 }
 else if (Session["UserCorreo"] != null && Session["Rol"].Equals("Cliente"))
 {
-    <table class="ui four column orange table" style="text-align:center">
+    <table class="table table-bordered table-hover" style="text-align:center">
         <thead style="background-color: #45403F; color:white">
             <tr>
                 <th>Nombre de la rutina</th>
@@ -64,16 +68,6 @@ else if (Session["UserCorreo"] != null && Session["Rol"].Equals("Cliente"))
                     <td>@item.Series</td>
                     <td>@item.Repeticion</td>
                     <td>@item.Descanso</td>
-                    @*<td>
-                        @if (Session["Rol"].Equals("Instructor"))
-                        {
-                            <div class="col-sm-2">
-                                <button type="button" class="ui medium button" id="btnModificar" style="background-color:#F05742; color:white;" onclick="ObtenerRutina(@item.ID_Ejercicio);">
-                                    Modificar
-                                </button>
-                            </div>
-                        }
-                    </td>*@
                 </tr>
             }
         </tbody>
