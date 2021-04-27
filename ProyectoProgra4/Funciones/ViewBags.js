@@ -11,9 +11,7 @@
         document.getElementById("txtNombre").value = '';
         document.getElementById("txtPrimerApellido").value = '';
         document.getElementById("txtSegundoApellido").value = '';
-
     }
-
 });
 
 $(document).ready(function () {
@@ -52,5 +50,17 @@ $(document).ready(function () {
         }, 5000);
         document.getElementById("dia").value = '';
         document.getElementById("hora").value = '';
+    }
+});
+
+
+$(document).ready(function () {
+    if ($("#txtCorreo").val().trim() != "") {
+        $("#msjCorreo").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjCorreo").fadeOut(300)
+        }, 5000);
+    } else {
+        $("#msjLoginExito").addClass('hidden');
     }
 });

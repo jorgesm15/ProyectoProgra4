@@ -40,24 +40,6 @@ namespace ProyectoProgra4.Controllers
             }
         }
 
-        //public ActionResult ValidarBoton(clsInstructor instructor, string submit)
-        //{
-        //    if (submit == "Reservar")
-        //    {
-        //        //InsertarReserva(reserva);
-        //        //Reserva();
-        //        //return View("Reserva");
-        //    }
-        //    else if (submit == "Guardar Cambios")
-        //    {
-        //        ActualizarCambios(reserva);
-        //        return View("Reserva");
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
 
         public void CargarEspecialidad()
         {
@@ -112,32 +94,31 @@ namespace ProyectoProgra4.Controllers
 
         public ActionResult ActualizarInstructor(clsInstructor instructor)
         {
-            if (ModelState.IsValid)
+
+            using (var contexto = new ProyectoEntities())
             {
-                using (var contexto = new ProyectoEntities())
+                var ID_Administrador = Convert.ToInt32(Session["ID_Admin"]);
+                var respuesta = (from x in contexto.Instructor
+                                 where x.ID_Instructor == instructor.cedula
+                                 select x).FirstOrDefault();
+                if (respuesta != null)
                 {
-                    var ID_Administrador = Convert.ToInt32(Session["ID_Admin"]);
-                    var respuesta = (from x in contexto.Instructor
-                                     where x.ID_Instructor == instructor.cedula
-                                     select x).FirstOrDefault();
-                    if (respuesta != null)
-                    {
-                        respuesta.ID_Instructor = instructor.cedula;
-                        respuesta.Nombre = instructor.nombre;
-                        respuesta.PrimerApellido = instructor.primerApellido;
-                        respuesta.SegundoApellido = instructor.segundoApellido;
-                        respuesta.Correo = instructor.correo;
-                        respuesta.Edad = instructor.edad;
-                        respuesta.Telefono = instructor.telefono;
-                        respuesta.TelefonoEmergencia = instructor.telefonoEmergencia;
-                        respuesta.CondicionesMedicas = instructor.condicionesMedicas;
-                        respuesta.ID_Especialidad = instructor.especialidad;
-                        respuesta.ID_Administrador = ID_Administrador;
-                        contexto.SaveChanges();
-                    }
+                    respuesta.ID_Instructor = instructor.cedula;
+                    respuesta.Nombre = instructor.nombre;
+                    respuesta.PrimerApellido = instructor.primerApellido;
+                    respuesta.SegundoApellido = instructor.segundoApellido;
+                    respuesta.Correo = instructor.correo;
+                    respuesta.Edad = instructor.edad;
+                    respuesta.Telefono = instructor.telefono;
+                    respuesta.TelefonoEmergencia = instructor.telefonoEmergencia;
+                    respuesta.CondicionesMedicas = instructor.condicionesMedicas;
+                    respuesta.ID_Especialidad = instructor.especialidad;
+                    respuesta.ID_Administrador = ID_Administrador;
+                    contexto.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
             }
+
             CargarEspecialidad();
             return View("Index");
         }

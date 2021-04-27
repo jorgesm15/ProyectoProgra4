@@ -10,91 +10,93 @@
 
 @using (Html.BeginForm("ValidarBoton", "Reservar", FormMethod.Post, new { @class = "ui form" }))
 {
-if (Session["UserCorreo"] != null)
-{
-<div class="container body-content">
-    <br />
-    <br />
-    <br />
-
-    <div id="msjErrorReserva" class="ui negative message hidden">
-        <i class="close icon"></i>
-        <div class="header">
-            Ya se encuentra una reserva para el día seleccionado.
-        </div>
-        <p>
-            Por favor seleccionar otro día o disciplina.
-        </p>
-    </div>
-    <div id="msjErrorFecha" class="ui negative message hidden">
-        <i class="close icon"></i>
-        <div class="header">
-            La fecha seleccionada es menor a la fecha actual.
-        </div>
-        <p>
-            Por favor seleccionar otra fecha
-        </p>
-    </div>
-    <br />
-
-    <div class="two field">
-        <div class="field">
-            @*<label>¿Qué disciplina desea reservar?</label>*@
-            <div class=" label"  id="nombre">¿Qué disciplina desea reservar?</div>
+    if (Session["UserCorreo"] != null)
+    {
+        <div class="container body-content">
             <br />
-            @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerValor()", @id = "selectedDis", required = "true" })
-        </div>
-        <div class="field">
-            @Html.TextBoxFor(m => m.reservaID, new { @class = "text hidden", autocomplete = "off", @id = "reservaTXT" })
-        </div>
-    </div>
-    <br />
-    <div class="field">
-        @*<label>Día y hora que desea reservar</label>*@
-        <div class=" label" style=" font-size:medium;">Día y hora que desea reservar</div>
-        <br />
-        <div class="two fields">
-            <div class="field">
-                <div class="ui calendar" id="custom_format_calendar">
-                    <div class="ui input left icon">
-                        <i class="calendar icon"></i>
-                        @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off", required = "true", @id = "dia", onblur = "ValidarFecha()" })
+            <br />
+            <br />
 
+            <div id="msjErrorReserva" class="ui negative message hidden">
+                <i class="close icon"></i>
+                <div class="header">
+                    Ya se encuentra una reserva para el día seleccionado.
+                </div>
+                <p>
+                    Por favor seleccionar otro día o disciplina.
+                </p>
+            </div>
+            <div id="msjErrorFecha" class="ui negative message hidden">
+                <i class="close icon"></i>
+                <div class="header">
+                    La fecha seleccionada es menor a la fecha actual.
+                </div>
+                <p>
+                    Por favor seleccionar otra fecha
+                </p>
+            </div>
+            <br />
+
+            <div class="two field">
+                <div class="field">
+                    @*<label>¿Qué disciplina desea reservar?</label>*@
+                    <div class=" label" id="nombre">¿Qué disciplina desea reservar?</div>
+                    <br />
+                    @Html.DropDownListFor(m => m.claseID, ViewBag.ListaComboDis as List<SelectListItem>, new { onchange = "obtenerValor()", @id = "selectedDis", required = "true" })
+                </div>
+                <div class="field">
+                    @Html.TextBoxFor(m => m.reservaID, new { @class = "text hidden", autocomplete = "off", @id = "reservaTXT" })
+                </div>
+            </div>
+            <br />
+            <div class="field">
+                @*<label>Día y hora que desea reservar</label>*@
+                <div class=" label" style=" font-size:medium;">Día y hora que desea reservar</div>
+                <br />
+                <div class="two fields">
+                    <div class="field">
+                        <div class="ui calendar" id="custom_format_calendar">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                @Html.TextBoxFor(m => m.dia, new { @class = "text", @placeholder = "Dia", autocomplete = "off", required = "true", @id = "dia", onblur = "ValidarFecha()" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui calendar" id="time_calendar">
+                            <div class="ui input left icon">
+                                <i class="time icon"></i>
+                                @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", required = "true", onchange = "obtenerHora()" })
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <br />
+            @*<h4 class="ui dividing header">Equipo</h4>*@
+            <h3 class="font-weight-bold mb-4 ui dividing header">
+                <i class=" small circle icon" style="color: #F05742"></i>EQUIPO
+            </h3>
             <div class="field">
-                <div class="ui calendar" id="time_calendar">
-                    <div class="ui input left icon">
-                        <i class="time icon"></i>
-                        @Html.TextBoxFor(m => m.hora, new { @id = "hora", @class = "text", @placeholder = "Hora", autocomplete = "off", required = "true", onchange = "obtenerHora()" })
+            </div>
+            <div class="ui segment">
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        @Html.CheckBoxFor(m => m.equipo, new { @class = "checkbox", @id = "togBtn", onchange = "toggle()" })
+                        <label>Desea reservar equipo para su clase?</label>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <br />
-    @*<h4 class="ui dividing header">Equipo</h4>*@
-    <h3 class="font-weight-bold mb-4 ui dividing header">
-        <i class=" small circle icon" style="color: #F05742"></i>EQUIPO
-    </h3>
-    <div class="field">
-    </div>
-    <div class="ui segment">
-        <div class="field">
-            <div class="ui toggle checkbox">
-                @Html.CheckBoxFor(m => m.equipo, new { @class = "checkbox", @id = "togBtn", onchange = "toggle()" })
-                <label>Desea reservar equipo para su clase?</label>
-            </div>
-        </div>
-    </div>
-    <input type="submit" id="btnReservar" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" value="Reservar" name="submit">
-    <input type="submit" id="btnActualizarCambios" class="hidden ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" value="Guardar Cambios" name="submit" onclick="obtenerHora()">
+            <input type="submit" id="btnReservar" class="ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" value="Reservar" name="submit">
+            <input type="submit" id="btnActualizarCambios" class="hidden ui medium button" style="margin-top: 10px; background-color:#F05742; color:white" value="Guardar Cambios" name="submit" onclick="obtenerHora()">
 
-</div>
-}else {
-Response.Redirect("~/Login/Index");
-}
+        </div>
+    }
+    else
+    {
+        Response.Redirect("~/Login/Index");
+    }
     if (ViewBag.ErrorReserva != null)
     {
         @Html.Hidden("txtErrorReserva", (string)ViewBag.ErrorReserva.ToString())
@@ -105,7 +107,7 @@ Response.Redirect("~/Login/Index");
     }
 }
 
-   
+
 
 <br />
 <br />
@@ -117,6 +119,8 @@ Response.Redirect("~/Login/Index");
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
 
+
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("/Funciones/Reserva.js")
     @Scripts.Render("/Funciones/ViewBags.js")
     <script>
