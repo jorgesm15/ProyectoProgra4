@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace ProyectoProgra4.Controllers
 {
-    public class ContactController : Controller
+    public class DashboardIController : Controller
     {
-        // GET: Contact
+        // GET: DashboardI
         public ActionResult Index()
         {
             return View();
