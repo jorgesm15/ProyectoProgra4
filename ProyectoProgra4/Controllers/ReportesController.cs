@@ -64,6 +64,7 @@ namespace ProyectoProgra4.Controllers
             {
                 var reservas = (from x in BaseDatos.Reserva
                                     select x).ToList();
+
                 return View(reservas);
             }
 
