@@ -4,30 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reporte de bitácora</h2>
+@if (Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador"))
+{
+    <h2>Reporte de bitácora</h2>
 
-<br />
+    <br />
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Descripción</th>
-            <th>Usuario</th>
-            <th>Fecha</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var bitacora in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@bitacora.ID_Error</td>
-                <td>@bitacora.Descripcion</td>
-                <td>@bitacora.Cliente</td>
-                <td>@bitacora.Dia</td>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var bitacora in Model)
+            {
+                <tr>
+                    <td>@bitacora.ID_Error</td>
+                    <td>@bitacora.Descripcion</td>
+                    <td>@bitacora.Cliente</td>
+                    <td>@bitacora.Dia</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    if (ViewBag.Message != null)
+    {
+        @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtSuccessful", "")
+    }
+
+}
+else
+{
+    Response.Redirect("~/Login/Index");
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("/Funciones/ViewBags.js")
