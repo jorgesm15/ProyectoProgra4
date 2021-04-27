@@ -23,6 +23,7 @@ namespace ProyectoProgra4
     
         public virtual Clientes Clientes { get; set; }
         public virtual Disciplinas Disciplinas { get; set; }
+
         public string nombreDis { get; set; }
     }
 }

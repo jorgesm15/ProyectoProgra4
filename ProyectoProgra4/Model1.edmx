@@ -112,7 +112,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Key>
             <PropertyRef Name="ID_Ejercicio" />
           </Key>
-          <Property Name="ID_Ejercicio" Type="int" Nullable="false" />
+          <Property Name="ID_Ejercicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NomEjercicio" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="Duracion" Type="decimal" Precision="2" Scale="1" Nullable="false" />
           <Property Name="Series" Type="int" Nullable="false" />
@@ -543,7 +543,7 @@ warning 6002: The table/view 'Proyecto.dbo.Errores' does not have a primary key 
           <Key>
             <PropertyRef Name="ID_Ejercicio" />
           </Key>
-          <Property Name="ID_Ejercicio" Type="Int32" Nullable="false" />
+          <Property Name="ID_Ejercicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NomEjercicio" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Duracion" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
           <Property Name="Series" Type="Int32" Nullable="false" />
