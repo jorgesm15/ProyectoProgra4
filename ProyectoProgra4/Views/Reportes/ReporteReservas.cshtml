@@ -26,7 +26,16 @@
                 <td>@Reserva.claseID</td>
                 <td>@Reserva.dia</td>
                 <td>@Reserva.hora</td>
-                <td>@Reserva.equipo</td>
+                @if (Reserva.equipo == true)
+                {
+                    <td> Si</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+
+
                 <td>@Reserva.ID_Cliente</td>
             </tr>
         }
