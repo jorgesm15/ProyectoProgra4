@@ -251,7 +251,6 @@ function ValidarFecha() {
 }
 
 function EliminarReserva(reservaID) {
-    debugger;
     Swal.fire({
         title: '¿Está seguro que desea eliminar la reserva?',
         text: "Este cambio no podrá ser revertido.",

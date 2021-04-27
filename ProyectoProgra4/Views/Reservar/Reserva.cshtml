@@ -114,13 +114,13 @@
 
 @Html.Partial("MostrarReservasPartial", Session["mostrarReservas"]) @*Se llama a la vista parcial donde se ven todas las reservas*@
 
+@*<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>*@
+
+
 @section Scripts
 {
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
-
-
     @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
     @Scripts.Render("/Funciones/Reserva.js")
     @Scripts.Render("/Funciones/ViewBags.js")
     <script>
