@@ -1,12 +1,9 @@
 ﻿@model ProyectoProgra4.Entidades.clsUsuario
-
 @{
     ViewBag.Title = "Clientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<h2>Clientes</h2>
 
 @using (Html.BeginForm("ActualizarCliente", "Clientes", FormMethod.Post, new { @class = "ui form" }))
 {
@@ -23,6 +20,21 @@
             </div>
         </div>
 
+
+@using (Html.BeginForm("ActualizarCliente", "Clientes", FormMethod.Post, new { @class = "ui form" }))
+{
+    <div id="actualizarContainer" class="container body-content hidden">
+        <a href="">
+            <i onclick="EsconderDiv();" class="close large icon"></i>
+        </a>
+        <div class="field">
+            <label>Cédula</label>
+            <div class="three fields">
+                <div class="required field">
+                    @Html.TextBoxFor(Model => Model.cedula, new { @class = "form-control", @id = "cedulaPersona", @required = "true", @readonly = "true", @style = "background-color: #f6f6f6" })
+                </div>
+            </div>
+        </div>
         <div class="required field">
             <div class="three fields">
                 <div class="required field">
@@ -119,4 +131,6 @@
     @Scripts.Render("/Funciones/Clientes.js")
     @Scripts.Render("/Funciones/ViewBags.js")
 
+
 }
+

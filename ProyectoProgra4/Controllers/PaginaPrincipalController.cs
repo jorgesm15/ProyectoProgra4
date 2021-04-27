@@ -51,6 +51,7 @@ namespace ProyectoProgra4.Controllers
                     {
                         smtp.Send(mess);
                     }
+                    ViewBag.Correo = "Correo enviado";
                     return View("PaginaPrincipal");
 
                 }

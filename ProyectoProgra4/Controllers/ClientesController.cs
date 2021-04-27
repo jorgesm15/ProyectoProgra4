@@ -15,6 +15,7 @@ namespace ProyectoProgra4.Controllers
             {
                 var clientes = (from x in contexto.Clientes.AsEnumerable()
                                 select new Clientes()
+
                                 {
                                     ID_Cliente = x.ID_Cliente,
                                     Nombre = x.Nombre,
@@ -28,7 +29,6 @@ namespace ProyectoProgra4.Controllers
                                     Estatura = x.Estatura,
                                     CondicionesMedicas = x.CondicionesMedicas,
                                 }).ToList();
-
                 Session["VerClientes"] = clientes;
 
 
@@ -37,15 +37,13 @@ namespace ProyectoProgra4.Controllers
         }
 
 
-
-
-
         public ActionResult ActualizarDatos(string clienteId) //Cargar Datos en la parte de mostrar vista reserva
         {
             using (var contexto = new ProyectoEntities())
             {
 
                 var clientes = (from x in contexto.Clientes
+
                                 where x.ID_Cliente == clienteId
                                 select x).FirstOrDefault();
 
@@ -110,6 +108,7 @@ namespace ProyectoProgra4.Controllers
                                       where x.ID_Cliente == clienteId
                                       select x).FirstOrDefault();
 
+
                 if (clienteBuscado != null)
                 {
                     contexto.Clientes.Remove(clienteBuscado);
@@ -122,3 +121,4 @@ namespace ProyectoProgra4.Controllers
     }
 
 }
+
