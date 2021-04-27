@@ -257,6 +257,7 @@
     <Compile Include="VerInstructores_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Content Include="Funciones\Clientes.js" />
     <Content Include="Funciones\Instructores.js" />
     <Content Include="Funciones\RutinaF.js" />
     <Compile Include="Global.asax.cs">
@@ -486,6 +487,7 @@
     <Content Include="Views\Rutina\Index.cshtml" />
     <Content Include="Views\Rutina\RutinaPartial.cshtml" />
     <Content Include="Views\DashboardI\Index.cshtml" />
+    <Content Include="Views\Clientes\ModificarClientePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
