@@ -16,7 +16,7 @@ namespace ProyectoProgra4.Controllers
         }
 
         public ActionResult PrintReportsClientes()
-        {
+        {            
             return new ActionAsPdf("ReporteClientes", new { name = "Clientes" }) { FileName = "Reporte Clientes.pdf" };
         }
 
