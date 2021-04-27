@@ -60,7 +60,5 @@ $(document).ready(function () {
         setTimeout(function () {
             $("#msjCorreo").fadeOut(300)
         }, 5000);
-    } else {
-        $("#msjLoginExito").addClass('hidden');
     }
 });
