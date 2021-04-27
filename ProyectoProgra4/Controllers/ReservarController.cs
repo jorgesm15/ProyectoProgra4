@@ -142,14 +142,14 @@ namespace ProyectoProgra4.Controllers
 
 
         [HttpPost]
-        public ActionResult EliminarReserva(int id)
+        public ActionResult EliminarReserva(int reservaID)
         {
             try
             {
                 using (var contexto = new ProyectoEntities())
                 {
                     var reservas = (from x in contexto.Reserva
-                                    where x.reservaID == id
+                                    where x.reservaID == reservaID
                                     select x).FirstOrDefault();
 
                     if (reservas != null)

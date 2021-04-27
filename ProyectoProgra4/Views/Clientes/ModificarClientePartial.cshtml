@@ -1,5 +1,6 @@
-﻿@model IEnumerable<ProyectoProgra4.Clientes>
-@*@model IEnumerable<Clientes>*@
+
+@model IEnumerable<ProyectoProgra4.Clientes>
+
 
 
 <h2>Administrar Clientes</h2>
@@ -8,7 +9,7 @@
 <br />
 
 
-<table class="ui twelve column red table table-hover" style="text-align:center">
+<table class="table table-bordered table-hover" style="text-align:center">
     <thead style="background-color: #45403F; color:white">
         <tr>
             <th>Cédula</th>
@@ -67,4 +68,6 @@
     @Scripts.Render("/Funciones/Clientes.js")
     @Scripts.Render("/Funciones/ViewBags.js")
 
+
 }
+
