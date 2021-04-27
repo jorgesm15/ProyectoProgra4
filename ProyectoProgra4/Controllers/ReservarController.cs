@@ -232,7 +232,7 @@ namespace ProyectoProgra4.Controllers
             using (var contextoReservar = new ProyectoEntities())
             {
                 int resultado = contextoReservar.ActualizarReserva(
-                    reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, "117800977"
+                    reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, Session["cedula"].ToString()
                 );
 
                 if (resultado == -1)
