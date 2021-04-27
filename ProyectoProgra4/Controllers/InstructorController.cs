@@ -37,7 +37,7 @@ namespace ProyectoProgra4.Controllers
                             instructor.tipoSangre
                         );
                     }
-                    ViewBag.Message = "Instructor registrado";
+                    TempData["MsjInstructor"] = "Instructor registrado";
                     //Session["InstructorRegistrado"] = "Registrado"; //Se crea esta sesión para que el instructor no pueda volver a la página anterior con los campos ya rellenos, lo devuelve al dashboard
                     CargarEspecialidad();
                     return RedirectToAction("Index", "AdministrarInstructor");

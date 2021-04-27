@@ -34,6 +34,7 @@ namespace ProyectoProgra4.Controllers
                                     }).ToList();
 
                 Session["VerInstructores"] = instructores;
+                ViewBag.Message = TempData["MsjInstructor"];
                 CargarEspecialidad();
                 return View();
             }
@@ -75,7 +76,7 @@ namespace ProyectoProgra4.Controllers
         }
 
 
-        public ActionResult ActualizarDatos(string instructorId) //Cargar Datos en la parte de mostrar vista reserva
+        public ActionResult ActualizarDatosInstructor(string instructorId) //Cargar Datos en la parte de mostrar vista reserva
         {
             using (var contexto = new ProyectoEntities())
             {
@@ -111,29 +112,34 @@ namespace ProyectoProgra4.Controllers
 
         public ActionResult ActualizarInstructor(clsInstructor instructor)
         {
-            using (var contexto = new ProyectoEntities())
+            if (ModelState.IsValid)
             {
-                var ID_Administrador = Convert.ToInt32(Session["ID_Admin"]);
-                var respuesta = (from x in contexto.Instructor
-                                 where x.ID_Instructor == instructor.cedula
-                                 select x).FirstOrDefault();
-                if (respuesta != null)
+                using (var contexto = new ProyectoEntities())
                 {
-                    respuesta.ID_Instructor = instructor.cedula;
-                    respuesta.Nombre = instructor.nombre;
-                    respuesta.PrimerApellido = instructor.primerApellido;
-                    respuesta.SegundoApellido = instructor.segundoApellido;
-                    respuesta.Correo = instructor.correo;
-                    respuesta.Edad = instructor.edad;
-                    respuesta.Telefono = instructor.telefono;
-                    respuesta.TelefonoEmergencia = instructor.telefonoEmergencia;
-                    respuesta.CondicionesMedicas = instructor.condicionesMedicas;
-                    respuesta.ID_Especialidad = instructor.especialidad;
-                    respuesta.ID_Administrador = ID_Administrador;
-                    contexto.SaveChanges();
+                    var ID_Administrador = Convert.ToInt32(Session["ID_Admin"]);
+                    var respuesta = (from x in contexto.Instructor
+                                     where x.ID_Instructor == instructor.cedula
+                                     select x).FirstOrDefault();
+                    if (respuesta != null)
+                    {
+                        respuesta.ID_Instructor = instructor.cedula;
+                        respuesta.Nombre = instructor.nombre;
+                        respuesta.PrimerApellido = instructor.primerApellido;
+                        respuesta.SegundoApellido = instructor.segundoApellido;
+                        respuesta.Correo = instructor.correo;
+                        respuesta.Edad = instructor.edad;
+                        respuesta.Telefono = instructor.telefono;
+                        respuesta.TelefonoEmergencia = instructor.telefonoEmergencia;
+                        respuesta.CondicionesMedicas = instructor.condicionesMedicas;
+                        respuesta.ID_Especialidad = instructor.especialidad;
+                        respuesta.ID_Administrador = ID_Administrador;
+                        contexto.SaveChanges();
+                    }
                 }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            CargarEspecialidad();
+            return View("Index");
         }
 
         public ActionResult EliminarInstructor(string instructorId)
