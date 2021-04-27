@@ -15,29 +15,26 @@ namespace ProyectoProgra4.Controllers
             {
                 var clientes = (from x in contexto.Clientes.AsEnumerable()
                                 select new Clientes()
-                                    {
-                                        ID_Cliente = x.ID_Cliente,
-                                        Nombre = x.Nombre,
-                                        PrimerApellido = x.PrimerApellido,
-                                        SegundoApellido = x.SegundoApellido,
-                                        Correo = x.Correo,
-                                        Edad = x.Edad,
-                                        Telefono = x.Telefono,
-                                        TelefonoEmergencia = x.TelefonoEmergencia,
-                                        Peso = x.Peso,
-                                        Estatura = x.Estatura,
-                                        CondicionesMedicas = x.CondicionesMedicas,
-                                    }).ToList();
 
+                                {
+                                    ID_Cliente = x.ID_Cliente,
+                                    Nombre = x.Nombre,
+                                    PrimerApellido = x.PrimerApellido,
+                                    SegundoApellido = x.SegundoApellido,
+                                    Correo = x.Correo,
+                                    Edad = x.Edad,
+                                    Telefono = x.Telefono,
+                                    TelefonoEmergencia = x.TelefonoEmergencia,
+                                    Peso = x.Peso,
+                                    Estatura = x.Estatura,
+                                    CondicionesMedicas = x.CondicionesMedicas,
+                                }).ToList();
                 Session["VerClientes"] = clientes;
 
 
                 return View();
             }
         }
-
-        
-        
 
 
         public ActionResult ActualizarDatos(string clienteId) //Cargar Datos en la parte de mostrar vista reserva
@@ -46,7 +43,8 @@ namespace ProyectoProgra4.Controllers
             {
 
                 var clientes = (from x in contexto.Clientes
-                                    where x.ID_Cliente == clienteId
+
+                                where x.ID_Cliente == clienteId
                                 select x).FirstOrDefault();
 
                 Dictionary<String, String> actualizacliente = new Dictionary<string, string>();
@@ -93,7 +91,7 @@ namespace ProyectoProgra4.Controllers
                     respuesta.Edad = cliente.edad;
                     respuesta.Telefono = cliente.telefono;
                     respuesta.TelefonoEmergencia = cliente.telefonoEmergencia;
-                    respuesta.Peso = cliente.peso;                    
+                    respuesta.Peso = cliente.peso;
                     respuesta.Estatura = cliente.estatura;
                     respuesta.CondicionesMedicas = cliente.condicionesMedicas;
                     contexto.SaveChanges();
@@ -107,8 +105,9 @@ namespace ProyectoProgra4.Controllers
             using (var contexto = new ProyectoEntities())
             {
                 var clienteBuscado = (from x in contexto.Clientes
-                                    where x.ID_Cliente == clienteId
-                                    select x).FirstOrDefault();
+                                      where x.ID_Cliente == clienteId
+                                      select x).FirstOrDefault();
+
 
                 if (clienteBuscado != null)
                 {
