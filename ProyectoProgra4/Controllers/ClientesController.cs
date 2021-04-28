@@ -102,18 +102,32 @@ namespace ProyectoProgra4.Controllers
 
         public ActionResult EliminarCliente(string clienteId)
         {
-            using (var contexto = new ProyectoEntities())
+            try
             {
-                var clienteBuscado = (from x in contexto.Clientes
-                                      where x.ID_Cliente == clienteId
-                                      select x).FirstOrDefault();
-
-
-                if (clienteBuscado != null)
+                using (var contexto = new ProyectoEntities())
                 {
-                    contexto.Clientes.Remove(clienteBuscado);
-                    contexto.SaveChanges();
-                    return RedirectToAction("Clientes");
+                    var clienteBuscado = (from x in contexto.Clientes
+                                          where x.ID_Cliente == clienteId
+                                          select x).FirstOrDefault();
+
+
+                    if (clienteBuscado != null)
+                    {
+                        contexto.Clientes.Remove(clienteBuscado);
+                        contexto.SaveChanges();
+                        return RedirectToAction("Clientes");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                ViewBag.ClienteRegistrado = "El usuario tiene reservas pendientes.";
+                DateTime dateTime = DateTime.Now;
+                using (var contextoUsuario = new ProyectoEntities())
+                {
+                    contextoUsuario.InsertarErrores(
+                       e.Message.ToString(), clienteId, dateTime
+                    );
                 }
             }
             return View("Clientes");

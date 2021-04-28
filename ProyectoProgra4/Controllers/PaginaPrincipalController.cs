@@ -53,7 +53,6 @@ namespace ProyectoProgra4.Controllers
                     }
                     ViewBag.Correo = "Correo enviado";
                     return View("PaginaPrincipal");
-
                 }
             }
             catch (Exception)
