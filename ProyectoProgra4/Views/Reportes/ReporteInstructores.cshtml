@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador"))
+@if ((Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador")) || Model != null)
 {
 
     <h2>ReporteInstructores</h2>

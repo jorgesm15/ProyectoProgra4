@@ -62,3 +62,12 @@ $(document).ready(function () {
         }, 5000);
     }
 });
+
+$(document).ready(function () {
+    if ($("#txtErrorCliente").val().trim() != "") {
+        $("#msjErrorCliente").removeClass('hidden');
+        setTimeout(function () {
+            $("#msjErrorCliente").fadeOut(300)
+        }, 5000);
+    }
+});

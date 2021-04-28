@@ -20,7 +20,7 @@ namespace ProyectoProgra4.Controllers
                     var reservas = (from x in contexto.Reserva.AsEnumerable()
                                     join d in contexto.Disciplinas.AsEnumerable()
                                     on x.claseID equals d.claseID
-                                    where x.ID_Cliente == Session["cedula"].ToString()  
+                                    where x.ID_Cliente == Session["ID_Usuario"].ToString()  
                                     select new Reserva()
                                     {
                                         reservaID = x.reservaID,
@@ -115,7 +115,7 @@ namespace ProyectoProgra4.Controllers
                 using (var contextoReservar = new ProyectoEntities())
                 {
                     int resultado = contextoReservar.RegistrarReserva(
-                        reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, Session["cedula"].ToString()
+                        reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, Session["ID_Usuario"].ToString()
                     );
 
                     if (resultado == -1)
@@ -232,7 +232,7 @@ namespace ProyectoProgra4.Controllers
             using (var contextoReservar = new ProyectoEntities())
             {
                 int resultado = contextoReservar.ActualizarReserva(
-                    reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, Session["cedula"].ToString()
+                    reserva.reservaID, reserva.claseID, reserva.dia, reserva.hora, reserva.equipo, Session["ID_Usuario"].ToString()
                 );
 
                 if (resultado == -1)
