@@ -1,127 +1,135 @@
 ﻿@model ProyectoProgra4.Entidades.clsUsuario
+
+
 @{
     ViewBag.Title = "Clientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@using (Html.BeginForm("ActualizarCliente", "Clientes", FormMethod.Post, new { @class = "ui form" }))
+
+@if (Session["Rol"].Equals("Administrador"))
 {
-    <div id="actualizarContainer" class="container body-content hidden">
-        <a href="">
-            <i onclick="EsconderDiv();" class="close large icon"></i>
-        </a>
-        <div class="field">
-            <label>Cédula</label>
-            <div class="three fields">
+    using (Html.BeginForm("ActualizarCliente", "Clientes", FormMethod.Post, new { @class = "ui form" }))
+    {
+        <div id="msjErrorCliente" class="ui negative message hidden">
+            <i class="close icon"></i>
+            <div class="header">
+                El cliente tiene reservas pendientes de realizar.
+            </div>
+            <p>
+                Por favor, revisa e inténtalo de nuevo.
+            </p>
+        </div>
+
+        <div id="actualizarContainer" class="container body-content hidden">
+            <a href="">
+                <i onclick="EsconderDiv();" class="close large icon"></i>
+            </a>
+            <div class="field">
+                <label>Cédula</label>
+                <div class="three fields">
+                    <div class="required field">
+                        @Html.TextBoxFor(Model => Model.cedula, new { @class = "form-control", @id = "cedulaPersona", @required = "true", @readonly = "true", @style = "background-color: #f6f6f6" })
+                    </div>
+                </div>
+            </div>
+            <div class="required field">
+                <div class="three fields">
+                    <div class="required field">
+                        <label>Nombre</label>
+                        @Html.TextBoxFor(Model => Model.nombre, new { @class = "form-control", @id = "txtNombre", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
+                    </div>
+                    <div class="required field">
+                        <label>Primer Apellido</label>
+                        @Html.TextBoxFor(Model => Model.primerApellido, new { @class = "form-control", @id = "txtPrimerApellido", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
+                    </div>
+                    <div class="required field">
+                        <label>Segundo Apellido</label>
+                        @Html.TextBoxFor(Model => Model.segundoApellido, new { @class = "form-control", @id = "txtSegundoApellido", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="three fields">
+                    @* Revisar campo de texto, es de 12 pero no se visualiza *@
+                    <div class="required field">
+                        <label>Correo Electrónico</label>
+                        @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "txtCorreo", @required = "true" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="four fields">
                 <div class="required field">
-                    @Html.TextBoxFor(Model => Model.cedula, new { @class = "form-control", @id = "cedulaPersona", @required = "true", @readonly = "true", @style = "background-color: #f6f6f6" })
+                    <label>Edad</label>
+                    @Html.TextBoxFor(Model => Model.edad, new { @class = "form-control", @id = "txtEdad", @required = "true" })
+                    @Html.ValidationMessageFor(Model => Model.edad, null, new { @class = "text-danger", @style = "font-weight: 900" })
+                </div>
+                <div class="required field">
+                    <label>Número de teléfono</label>
+                    @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true" })
+                    @Html.ValidationMessageFor(Model => Model.telefono, null, new { @class = "text-danger", @style = "font-weight: 900" })
+                </div>
+                <div class="required field">
+                    <label>Número de emergencia</label>
+                    @Html.TextBoxFor(Model => Model.telefonoEmergencia, new { @class = "form-control", @id = "txtTlfEmergencia", @required = "true" })
+                    @Html.ValidationMessageFor(Model => Model.telefonoEmergencia, null, new { @class = "text-danger", @style = "font-weight: 900" })
+
+                </div>
+                <div class="required field">
+                    <label>Peso</label>
+                    @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
+                    @Html.ValidationMessageFor(Model => Model.edad, null, new { @class = "text-danger", @style = "font-weight: 900" })
+
+                </div>
+                <div class="required field">
+                    <label>Estatura</label>
+                    @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
+                    @Html.ValidationMessageFor(Model => Model.estatura, null, new { @class = "text-danger", @style = "font-weight: 900" })
+
+                </div>
+
+            </div>
+
+
+
+            <div class="ui form">
+                <div class="required field">
+                    <label>Condiciones Médicas</label>
+                    @Html.TextAreaFor(Model => Model.condicionesMedicas, new { @id = "txtCondiciones", @rows = "2", @required = "true" })
+                    @*<textarea rows="2"></textarea>*@
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="required field">
+                    <input type="submit" id="btnActualizarCambios" class="ui medium button hidden" style="margin-top:10px; background-color:#F05742; color:white" value="Guardar Cambios" name="submit">
                 </div>
             </div>
         </div>
 
 
-@using (Html.BeginForm("ActualizarCliente", "Clientes", FormMethod.Post, new { @class = "ui form" }))
-{
-    <div id="actualizarContainer" class="container body-content hidden">
-        <a href="">
-            <i onclick="EsconderDiv();" class="close large icon"></i>
-        </a>
-        <div class="field">
-            <label>Cédula</label>
-            <div class="three fields">
-                <div class="required field">
-                    @Html.TextBoxFor(Model => Model.cedula, new { @class = "form-control", @id = "cedulaPersona", @required = "true", @readonly = "true", @style = "background-color: #f6f6f6" })
-                </div>
-            </div>
-        </div>
-        <div class="required field">
-            <div class="three fields">
-                <div class="required field">
-                    <label>Nombre</label>
-                    @Html.TextBoxFor(Model => Model.nombre, new { @class = "form-control", @id = "txtNombre", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
-                </div>
-                <div class="required field">
-                    <label>Primer Apellido</label>
-                    @Html.TextBoxFor(Model => Model.primerApellido, new { @class = "form-control", @id = "txtPrimerApellido", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
-                </div>
-                <div class="required field">
-                    <label>Segundo Apellido</label>
-                    @Html.TextBoxFor(Model => Model.segundoApellido, new { @class = "form-control", @id = "txtSegundoApellido", @readonly = "true", @style = "background-color: #f6f6f6", @required = "true" })
-                </div>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="three fields">
-                @* Revisar campo de texto, es de 12 pero no se visualiza *@
-                <div class="required field">
-                    <label>Correo Electrónico</label>
-                    @Html.TextBoxFor(Model => Model.correo, new { @class = "form-control", @id = "txtCorreo", @required = "true" })
-                </div>
-            </div>
-        </div>
 
         <br />
-        <div class="four fields">
-            <div class="required field">
-                <label>Edad</label>
-                @Html.TextBoxFor(Model => Model.edad, new { @class = "form-control", @id = "txtEdad", @required = "true" })
-                @Html.ValidationMessageFor(Model => Model.edad, null, new { @class = "text-danger", @style = "font-weight: 900" })
-            </div>
-            <div class="required field">
-                <label>Número de teléfono</label>
-                @Html.TextBoxFor(Model => Model.telefono, new { @class = "form-control", @id = "txtTlf", @required = "true" })
-                @Html.ValidationMessageFor(Model => Model.telefono, null, new { @class = "text-danger", @style = "font-weight: 900" })
-            </div>
-            <div class="required field">
-                <label>Número de emergencia</label>
-                @Html.TextBoxFor(Model => Model.telefonoEmergencia, new { @class = "form-control", @id = "txtTlfEmergencia", @required = "true" })
-                @Html.ValidationMessageFor(Model => Model.telefonoEmergencia, null, new { @class = "text-danger", @style = "font-weight: 900" })
+        <br />
+        <br />
 
-            </div>
-            <div class="required field">
-                <label>Peso</label>
-                @Html.TextBoxFor(Model => Model.peso, new { @class = "form-control", @id = "txtPeso", @required = "true" })
-                @Html.ValidationMessageFor(Model => Model.edad, null, new { @class = "text-danger", @style = "font-weight: 900" })
+        @Html.Partial("ModificarClientePartial", Session["VerClientes"])
 
-            </div>
-            <div class="required field">
-                <label>Estatura</label>
-                @Html.TextBoxFor(Model => Model.estatura, new { @class = "form-control", @id = "txtEstatura", @required = "true" })
-                @Html.ValidationMessageFor(Model => Model.estatura, null, new { @class = "text-danger", @style = "font-weight: 900" })
-
-            </div>
-
-        </div>
-
-
-
-        <div class="ui form">
-            <div class="required field">
-                <label>Condiciones Médicas</label>
-                @Html.TextAreaFor(Model => Model.condicionesMedicas, new { @id = "txtCondiciones", @rows = "2", @required = "true" })
-                @*<textarea rows="2"></textarea>*@
-            </div>
-        </div>
-
-        <div class="two fields">
-            <div class="required field">
-                <input type="submit" id="btnActualizarCambios" class="ui medium button hidden" style="margin-top:10px; background-color:#F05742; color:white" value="Guardar Cambios" name="submit">
-            </div>
-        </div>
-    </div>
-
-
-
-    <br />
-    <br />
-    <br />
-
-
-
-    @Html.Partial("ModificarClientePartial", Session["VerClientes"])
+        if (ViewBag.ClienteRegistrado != null)
+        {
+            @Html.Hidden("txtErrorCliente", (string)ViewBag.ClienteRegistrado.ToString())
+        }
+        else
+        {
+            @Html.Hidden("txtErrorCliente", "")
+        }
+    }
 }
+
 
 @section Scripts
 {
@@ -130,7 +138,6 @@
 
     @Scripts.Render("/Funciones/Clientes.js")
     @Scripts.Render("/Funciones/ViewBags.js")
-
 
 }
 
