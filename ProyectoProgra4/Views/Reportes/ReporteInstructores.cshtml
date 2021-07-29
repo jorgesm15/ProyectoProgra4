@@ -4,36 +4,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ReporteInstructores</h2>
+@if ((Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador")) || Model != null)
+{
+
+    <h2>ReporteInstructores</h2>
 
 
-<br />
+    <br />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Primer Apellido</th>
-            <th>Segundo Apellido</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-            <th>Especialidad</th>
-        </tr>
-    </thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Especialidad</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        @foreach (var Instructor in Model)
-        {
-        <tr>
-            <td>@Instructor.Nombre</td>
-            <td>@Instructor.PrimerApellido</td>
-            <td>@Instructor.SegundoApellido</td>
-            <td>@Instructor.Telefono</td>
-            <td>@Instructor.Correo</td>
-            <td>@Instructor.ID_Especialidad</td>
-        </tr>
-        }
-    </tbody>
-</table>
+        <tbody>
+            @foreach (var Instructor in Model)
+            {
+                <tr>
+                    <td>@Instructor.Nombre</td>
+                    <td>@Instructor.PrimerApellido</td>
+                    <td>@Instructor.SegundoApellido</td>
+                    <td>@Instructor.Telefono</td>
+                    <td>@Instructor.Correo</td>
+                    <td>@Instructor.ID_Especialidad</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
+    if (ViewBag.Message != null)
+    {
+        @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtSuccessful", "")
+    }
 
+}
+else
+{
+    Response.Redirect("~/Login/Index");
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("/Funciones/ViewBags.js")

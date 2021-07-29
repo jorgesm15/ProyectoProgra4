@@ -5,32 +5,53 @@
 }
 
 
-<h2>Reporte de clientes</h2>
+@if ((Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador")) || Model != null)
+{
+    <h2>Reporte de clientes</h2>
 
 
-<br />
+    <br />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Primer Apellido</th>
-            <th>Segundo Apellido</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-        </tr>
-    </thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        @foreach (var Clientes in Model)
-        {
-        <tr>
-            <td>@Clientes.Nombre</td>
-            <td>@Clientes.PrimerApellido</td>
-            <td>@Clientes.SegundoApellido</td>
-            <td>@Clientes.Telefono</td>
-            <td>@Clientes.Correo</td>
-        </tr>
-        }
-    </tbody>
-</table>
+        <tbody>
+            @foreach (var Clientes in Model)
+            {
+                <tr>
+                    <td>@Clientes.Nombre</td>
+                    <td>@Clientes.PrimerApellido</td>
+                    <td>@Clientes.SegundoApellido</td>
+                    <td>@Clientes.Telefono</td>
+                    <td>@Clientes.Correo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+
+    if (ViewBag.Message != null)
+    {
+        @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtSuccessful", "")
+    }
+
+}
+else
+{
+    Response.Redirect("~/Login/Index");
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("/Funciones/ViewBags.js")

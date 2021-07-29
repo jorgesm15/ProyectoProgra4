@@ -4,42 +4,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reporte de Reservas</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Reserva ID</th>
-            <th>Clase</th>
-            <th>Día</th>
-            <th>Hora</th>
-            <th>Equipo</th>
-            <th>Cliente</th>
-        </tr>
-    </thead>
 
-    <tbody>
-        @foreach (var Reserva in Model)
-        {
+@if ((Session["UserCorreo"] != null && Session["Rol"].Equals("Administrador")) || Model != null)
+{
+    <h2>Reporte de Reservas</h2>
+
+    <table class="table">
+        <thead>
             <tr>
-                <td>@Reserva.reservaID</td>
-                <td>@Reserva.claseID</td>
-                <td>@Reserva.dia</td>
-                <td>@Reserva.hora</td>
-                @if (Reserva.equipo == true)
-                {
-                    <td> Si</td>
-                }
-                else
-                {
-                    <td>No</td>
-                }
-
-
-                <td>@Reserva.ID_Cliente</td>
+                <th>Reserva ID</th>
+                <th>Clase</th>
+                <th>Día</th>
+                <th>Hora</th>
+                <th>Equipo</th>
+                <th>Cliente</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var Reserva in Model)
+            {
+                <tr>
+                    <td>@Reserva.reservaID</td>
+                    <td>@Reserva.claseID</td>
+                    <td>@Reserva.dia</td>
+                    <td>@Reserva.hora</td>
+                    @if (Reserva.equipo == true)
+                    {
+                        <td> Si</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
 
 
+                    <td>@Reserva.ID_Cliente</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    if (ViewBag.Message != null)
+    {
+        @Html.Hidden("txtSuccessful", (string)ViewBag.Message.ToString())
+    }
+    else
+    {
+        @Html.Hidden("txtSuccessful", "")
+    }
+
+}
+else
+{
+    Response.Redirect("~/Login/Index");
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("/Funciones/ViewBags.js")

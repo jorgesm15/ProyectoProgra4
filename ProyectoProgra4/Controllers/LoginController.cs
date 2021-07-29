@@ -34,7 +34,7 @@ namespace ProyectoProgra4.Controllers
                             Session["UserCorreo"] = user.Correo.ToString();
                             Session["Nombre"] = user.Nombre.ToString();
                             Session["Rol"] = user.Rol.ToString();
-                            Session["cedula"] = user.ID_Cliente.ToString();
+                            Session["ID_Usuario"] = user.ID_Cliente.ToString();
                             Session["ID_Sexo"] = user.ID_Sexo.ToString();
                             return RedirectToAction("Index", "DashboardU");
                         }

@@ -8,6 +8,7 @@
         cache: false,
         dataType: 'json',
         success: function (data) {
+            window.scroll(0, 0);
             $("#actualizarContainer").removeClass('hidden');
             $('#btnActualizarCambios').show();
             document.getElementById("cedulaPersona").value = data.ID_Cliente;
